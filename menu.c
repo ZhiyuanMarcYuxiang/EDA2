@@ -48,6 +48,32 @@ void list_users(){
 }
 
 void operate_user(){
+    printf("What do you want to do?\n");
+    int option = INVALID_OPTION;
+
+    while (option != OPTION_QUIT){
+        printf("%d. Send friend request\n");
+    }
+
+
     ;
 }
+
+/*
+ * Enviar solicitudes de amistad
+Gestionar las solicitudes pendientes
+Realizar una publicación
+Listar las publicaciones del usuario seleccionado
+volver al menú principal.
+Salir (Terminar ejecución)
+Crear el typedef para el usuario (20 min), como mínimo el usuario debe registrar:
+nombre de usuario
+edad ( o bien año de nacimiento)
+dirección de correo electrónico
+Ubicación actual (Ciudad)
+Lista de 5 gustos o preferencias.
+Crear una interfaz para llenar los datos básicos de los usuarios (60 min)
+Añadir automáticamente cada usuario creado a una lista dinámica de usuarios (40 min)
+Listar los usuarios registrados
+ */
 

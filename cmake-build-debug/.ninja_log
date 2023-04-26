@@ -1,0 +1,5 @@
+# ninja log v5
+1	236	7042005754784749	build.ninja	7283459c57a434e5
+1	150	7042005757170105	CMakeFiles/Xarxa_Social.dir/main.c.obj	752a13ce260e5ec
+8	156	7042005757249900	CMakeFiles/Xarxa_Social.dir/menu.c.obj	ce1f511f9da8888
+156	368	7042005759295610	Xarxa_Social.exe	bab6894e9d64f308
