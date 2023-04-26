@@ -2,8 +2,8 @@
 // Created by Marc on 26/4/2023.
 //
 
-#include "menu.h"
-#include "stdio.h"
+#include "../Headers/menu.h"
+
 
 // MARC BOSCH BRANCH
 
@@ -18,8 +18,7 @@ void show_menu(){
         printf("%d. List all existing users.\n",OPTION_LIST_USERS);
         printf("%d. Operate like an specific user.\n",OPTION_OPERATE_USER);
         printf("%d. Quit.\n",OPTION_QUIT);
-        printf("Choose your option:\n");
-        scanf("%d",&option);
+        option = read_int("Choose your option:\n");
 
         if(option==OPTION_NEW_USER){
             new_user();
@@ -49,31 +48,38 @@ void list_users(){
 
 void operate_user(){
     printf("What do you want to do?\n");
+
     int option = INVALID_OPTION;
 
-    while (option != OPTION_QUIT){
-        printf("%d. Send friend request\n");
+    while(option!=OPTION_RETURN_MENU){
+
+        printf("\n%d. Send friend request.\n",OPTION_REQUEST);
+        printf("%d. Manage the pending requests.\n",OPTION_MANAGE);
+        printf("%d. Make a new post.\n",OPTION_POST);
+        printf("%d. List all of the user posts.\n", OPTION_LIST_POSTS);
+        option = read_int("Choose your option:\n");
+
+        if(option==OPTION_REQUEST){
+
+        }
+        else if(option==OPTION_MANAGE){
+
+        }
+        else if(option==OPTION_POST){
+
+        }
+        else if(option==OPTION_LIST_POSTS){
+
+        }
+
+        else if(option==OPTION_RETURN_MENU){
+            ;//DO NOTHING
+        }
+        else{
+            printf("\nInvalid option!\n");
+        }
     }
-
-
-    ;
 }
 
-/*
- * Enviar solicitudes de amistad
-Gestionar las solicitudes pendientes
-Realizar una publicación
-Listar las publicaciones del usuario seleccionado
-volver al menú principal.
-Salir (Terminar ejecución)
-Crear el typedef para el usuario (20 min), como mínimo el usuario debe registrar:
-nombre de usuario
-edad ( o bien año de nacimiento)
-dirección de correo electrónico
-Ubicación actual (Ciudad)
-Lista de 5 gustos o preferencias.
-Crear una interfaz para llenar los datos básicos de los usuarios (60 min)
-Añadir automáticamente cada usuario creado a una lista dinámica de usuarios (40 min)
-Listar los usuarios registrados
- */
+
 

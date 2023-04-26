@@ -49,14 +49,26 @@ cmake_ninja_workdir = C$:/Users/Usuari/Xarxa_Social/cmake-build-debug/
 
 build cmake_object_order_depends_target_Xarxa_Social: phony || CMakeFiles/Xarxa_Social.dir
 
-build CMakeFiles/Xarxa_Social.dir/main.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/main.c || cmake_object_order_depends_target_Xarxa_Social
-  DEP_FILE = CMakeFiles\Xarxa_Social.dir\main.c.obj.d
+build CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/Sources/main.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\main.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
-  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
 
-build CMakeFiles/Xarxa_Social.dir/menu.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/menu.c || cmake_object_order_depends_target_Xarxa_Social
-  DEP_FILE = CMakeFiles\Xarxa_Social.dir\menu.c.obj.d
+build CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/Sources/menu.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\menu.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
+
+build CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/Sources/utils.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\utils.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
+
+build CMakeFiles/Xarxa_Social.dir/user.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/user.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\user.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
   OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir
@@ -69,7 +81,7 @@ build CMakeFiles/Xarxa_Social.dir/menu.c.obj: C_COMPILER__Xarxa_Social_Debug C$:
 #############################################
 # Link the executable Xarxa_Social.exe
 
-build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/main.c.obj CMakeFiles/Xarxa_Social.dir/menu.c.obj
+build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj CMakeFiles/Xarxa_Social.dir/user.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
