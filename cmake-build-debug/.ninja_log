@@ -1,3 +1,25 @@
 # ninja log v5
-1	626	7042170604442227	build.ninja	7283459c57a434e5
+1	626	7042282397374199	build.ninja	7283459c57a434e5
 311	507	7042011905998263	Xarxa_Social.exe	bab6894e9d64f308
+3	392	7042282397374199	build.ninja	7283459c57a434e5
+1	250	7042282401253826	CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj	79c7472ac8960fc6
+7	287	7042282401504750	CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj	d29a729952020106
+17	301	7042282401684276	CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj	b3f555bcd8ee31ae
+252	386	7042282402725698	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+387	628	7042282405105477	Xarxa_Social.exe	60de42722b12b9f0
+29	511	7042527427142817	CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj	b3f555bcd8ee31ae
+5	595	7042527427252546	CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj	79c7472ac8960fc6
+15	626	7042527427322342	CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj	d29a729952020106
+512	860	7042527431142311	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+6	251	7042528499510500	CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj	79c7472ac8960fc6
+14	262	7042528499754931	CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj	d29a729952020106
+22	265	7042528499785439	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+266	470	7042528501760170	Xarxa_Social.exe	60de42722b12b9f0
+4	157	7042529995267325	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+158	361	7042529997252012	Xarxa_Social.exe	60de42722b12b9f0
+5	149	7042530220529935	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+150	356	7042530222555774	Xarxa_Social.exe	60de42722b12b9f0
+5	148	7042531297793278	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+149	337	7042531299624666	Xarxa_Social.exe	60de42722b12b9f0
+4	141	7042531716508535	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
+142	340	7042531718462217	Xarxa_Social.exe	60de42722b12b9f0

@@ -24,3 +24,10 @@ void flush_input() {
     }
 }
 
+void read_bounded_str(char *string[], char *name, int const min, int const max){
+    scanf("%s",string);
+    while(strlen(string)<min || strlen(string)>max){
+        printf("Length not correct!\n");
+        printf("Introduce a new %s:",name);scanf("%s",string);
+    }
+}

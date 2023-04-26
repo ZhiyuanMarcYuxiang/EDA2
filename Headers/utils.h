@@ -22,7 +22,14 @@
 #define OPTION_LIST_POSTS (4)
 #define OPTION_RETURN_MENU (0)
 
+
+// Funcions per a llegir enters i validar-los.
+int read_int(const char *message);
 void flush_input();
-int read_int(const char* message);
+
+// Funció per a llegir una cadena d'una longitud concreta.
+
+void read_bounded_str(char *string[], char *name, int min, int max);
+
 
 #endif //XARXA_SOCIAL_UTILS_H

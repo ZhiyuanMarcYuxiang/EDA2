@@ -4,27 +4,27 @@
 
 #include "../Headers/menu.h"
 
-
 // MARC BOSCH BRANCH
 
 void show_menu(){
+    int option = INVALID_OPTION;
+    ArrayUsers *arrayUsers = init_users();
+
     printf("\nWelcome to our social Network!\n");
     printf("What do you want to do?\n");
-
-    int option = INVALID_OPTION;
 
     while (option != OPTION_QUIT){
         printf("\n%d. Insert new user.\n",OPTION_NEW_USER);
         printf("%d. List all existing users.\n",OPTION_LIST_USERS);
-        printf("%d. Operate like an specific user.\n",OPTION_OPERATE_USER);
+        printf("%d. Operate over an specific user.\n",OPTION_OPERATE_USER);
         printf("%d. Quit.\n",OPTION_QUIT);
         option = read_int("Choose your option:\n");
 
         if(option==OPTION_NEW_USER){
-            new_user();
+            new_user(arrayUsers);
         }
         else if(option==OPTION_LIST_USERS){
-            list_users();
+            print_list_users(arrayUsers);
         }
         else if(option==OPTION_OPERATE_USER){
             operate_user();
@@ -38,46 +38,23 @@ void show_menu(){
     }
 }
 
-void new_user(){
-    ;
+ArrayUsers* init_users(){
+    ArrayUsers *aU = malloc(sizeof(ArrayUsers));
+    aU->size = 0;
+    aU->user = malloc(sizeof(User));
+    return aU;
 }
 
-void list_users(){
-    ;
+void new_user(ArrayUsers *aU){
+    int i = aU->size;
+    aU->size += 1;
+    aU->user = realloc(aU->user,aU->size*sizeof(User));
+    new_data(&aU->user[i]);
 }
 
-void operate_user(){
-    printf("What do you want to do?\n");
-
-    int option = INVALID_OPTION;
-
-    while(option!=OPTION_RETURN_MENU){
-
-        printf("\n%d. Send friend request.\n",OPTION_REQUEST);
-        printf("%d. Manage the pending requests.\n",OPTION_MANAGE);
-        printf("%d. Make a new post.\n",OPTION_POST);
-        printf("%d. List all of the user posts.\n", OPTION_LIST_POSTS);
-        option = read_int("Choose your option:\n");
-
-        if(option==OPTION_REQUEST){
-
-        }
-        else if(option==OPTION_MANAGE){
-
-        }
-        else if(option==OPTION_POST){
-
-        }
-        else if(option==OPTION_LIST_POSTS){
-
-        }
-
-        else if(option==OPTION_RETURN_MENU){
-            ;//DO NOTHING
-        }
-        else{
-            printf("\nInvalid option!\n");
-        }
+void print_list_users(ArrayUsers *aU){
+    for(int i=0; i<aU->size; i++){
+        print_user(&aU->user[i]);
     }
 }
 
