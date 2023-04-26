@@ -1,14 +1,11 @@
 //
-// Created by Usuari on 26/4/2023.
+// Created by Marc on 26/4/2023.
 //
 
 #include "menu.h"
 #include "stdio.h"
 
-
-// HOLA PULL REQUEST DE PROVA
-// hola
-
+// MARC BOSCH BRANCH
 
 void show_menu(){
     printf("\nWelcome to our social Network!\n");
@@ -40,5 +37,17 @@ void show_menu(){
             printf("\nInvalid option!\n");
         }
     }
+}
+
+void new_user(){
+    ;
+}
+
+void list_users(){
+    ;
+}
+
+void operate_user(){
+    ;
 }
 

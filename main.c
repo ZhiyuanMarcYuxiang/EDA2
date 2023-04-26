@@ -1,7 +1,9 @@
-#include <stdio.h>
-#include "menu.c"
+#include "stdio.h"
+#include "menu.h"
 
 // Social Network Project EDA2
+
+// MARC BOSCH BRANCH
 
 int main() {
     show_menu();
