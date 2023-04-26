@@ -5,7 +5,7 @@
 #include "menu.h"
 #include "stdio.h"
 
-
+// Sóc el Yuxiang
 
 void show_menu(){
     printf("\nWelcome to our social Network!\n");
