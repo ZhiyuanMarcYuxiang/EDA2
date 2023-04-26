@@ -2,6 +2,8 @@
 // Created by Usuari on 26/4/2023.
 //
 
+// THIS IS THE MASTER
+
 #ifndef XARXA_SOCIAL_MENU_H
 #define XARXA_SOCIAL_MENU_H
 

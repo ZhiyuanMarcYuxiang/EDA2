@@ -5,12 +5,7 @@
 #include "menu.h"
 #include "stdio.h"
 
-
-
-// HOLA PULL REQUEST DE PROVA
-// hola
-
-
+// THIS IS THE MASTER
 
 void show_menu(){
     printf("\nWelcome to our social Network!\n");
