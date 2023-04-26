@@ -1,7 +1,3 @@
-//
-// Created by Usuari on 26/4/2023.
-//
-
 #include "menu.h"
 #include "stdio.h"
 
@@ -39,3 +35,15 @@ void show_menu(){
     }
 }
 
+
+void new_user(){
+    ;
+}
+
+void list_users(){
+    ;
+}
+
+void operate_user(){
+    ;
+}
