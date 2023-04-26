@@ -13,4 +13,8 @@
 
 void show_menu();
 
+void new_user();
+void list_users();
+void operate_user();
+
 #endif //XARXA_SOCIAL_MENU_H

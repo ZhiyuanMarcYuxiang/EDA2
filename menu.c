@@ -5,6 +5,8 @@
 #include "menu.h"
 #include "stdio.h"
 
+
+
 void show_menu(){
     printf("\nWelcome to our social Network!\n");
     printf("What do you want to do?\n");
@@ -20,13 +22,13 @@ void show_menu(){
         scanf("%d",&option);
 
         if(option==OPTION_NEW_USER){
-            ;
+            new_user();
         }
         else if(option==OPTION_LIST_USERS){
-            ;
+            list_users();
         }
         else if(option==OPTION_OPERATE_USER){
-            ;
+            operate_user();
         }
         else if(option==OPTION_QUIT){
             ; //DO NOTHING
@@ -35,5 +37,5 @@ void show_menu(){
             printf("\nInvalid option!\n");
         }
     }
-
 }
+
