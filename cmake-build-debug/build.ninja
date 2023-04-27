@@ -73,6 +73,18 @@ build CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj: C_COMPILER__Xarxa_Social_D
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
   OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
 
+build CMakeFiles/Xarxa_Social.dir/Sources/network.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/Sources/network.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\network.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
+
+build CMakeFiles/Xarxa_Social.dir/Sources/hobbies.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Xarxa_Social/Sources/hobbies.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\hobbies.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Xarxa_Social
@@ -81,7 +93,7 @@ build CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj: C_COMPILER__Xarxa_Social_D
 #############################################
 # Link the executable Xarxa_Social.exe
 
-build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj
+build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj CMakeFiles/Xarxa_Social.dir/Sources/network.c.obj CMakeFiles/Xarxa_Social.dir/Sources/hobbies.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir

@@ -7,18 +7,18 @@
 #ifndef XARXA_SOCIAL_MENU_H
 #define XARXA_SOCIAL_MENU_H
 
-#include "user.h"
+#define OPTION_NEW_USER (1)
+#define OPTION_LIST_USERS (2)
+#define OPTION_OPERATE_USER (3)
+#define OPTION_QUIT (0)
+
+#include "network.h"
 
 // Funció principal amb el primer menú.
-//      a) Nou usuari -> Aplica funció de "user.c"
-//      b) Llista d'usuaris -> Aplica funció de "user.c"
-//      c) Operar amb l'usuari -> Aplica funció de "user.c"
+//      a) Nou usuari -> Aplica funció
+//      b) Llista d'usuaris -> Aplica funció
+//      c) Operar amb l'usuari -> Aplica funció
 //      d) Sortir
 void show_menu();
-
-// Inicialitza la llista d'usuaris.
-ArrayUsers* init_users();
-void new_user(ArrayUsers *aU);
-void print_list_users(ArrayUsers *aU);
 
 #endif //XARXA_SOCIAL_MENU_H
