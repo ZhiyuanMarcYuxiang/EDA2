@@ -2,8 +2,8 @@
 // Created by Usuari on 26/4/2023.
 //
 
-#ifndef XARXA_SOCIAL_USER_H
-#define XARXA_SOCIAL_USER_H
+#ifndef XARXA_SOCIAL_3_USER_H
+#define XARXA_SOCIAL_3_USER_H
 
 #define MAX_EMAIL 50
 #define MAX_HOME 20
@@ -11,7 +11,7 @@
 
 #define USER_NOT_FOUND (-1)
 
-#include "hobbies.h"
+#include "4_hobbies.h"
 
 /**
  * Estructura d'un usuari (nivell II).
@@ -54,5 +54,5 @@ User* merge(User* userA, int sizeA, User* userB, int sizeB);
 
 
 
-#endif //XARXA_SOCIAL_USER_H
+#endif //XARXA_SOCIAL_3_USER_H
 

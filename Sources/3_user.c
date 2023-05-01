@@ -2,7 +2,7 @@
 // Created by Usuari on 26/4/2023.
 //
 
-#include "../Headers/user.h"
+#include "../Headers/3_user.h"
 
 /**
  * @param user: Usuari declarat, però sense valors.
@@ -28,6 +28,16 @@ void new_user_data(User *user){
     new_hobbies(user->hobbies);
 }
 
+void read_email(char *email, int min, int max){
+    read_bounded_str(email, "e-mail", min, max);
+    int i = 0;
+    while(email[i] != '@' && i<strlen(email)){
+        i++;
+    }
+
+
+}
+
 /**
  * @param user: Usuari inicialitzat amb valors.
  * Imprimim per pantalla els atributs d'un usuari.
@@ -40,7 +50,7 @@ void print_user(User user){
 
 /**
  * @param copy: Usuari no necessàriament inicialitzat que rebrà atributs copiats.
- * @param origin: Usuari inicialitzat d'on s'extrauran els valors.
+ * @param origin: Usuari inicialitzat d'on s'extrauran els valors per a copiar-los.
  * Copiem tots els valors de l'usuari d'origen a l'usuari còpia.
  */
 void copy_user_data(User *copy,User *origin){

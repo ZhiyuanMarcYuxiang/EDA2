@@ -2,8 +2,8 @@
 // Created by Usuari on 27/4/2023.
 //
 
-#ifndef XARXA_SOCIAL_HOBBIES_H
-#define XARXA_SOCIAL_HOBBIES_H
+#ifndef XARXA_SOCIAL_4_HOBBIES_H
+#define XARXA_SOCIAL_4_HOBBIES_H
 
 #define MAX_HOBBY 20
 #define MIN_STRING 1
@@ -25,4 +25,4 @@ void print_hobbies(Hobbies *h);
 
 void copy_hobbies(Hobbies *copy, Hobbies *origin);
 
-#endif //XARXA_SOCIAL_HOBBIES_H
+#endif //XARXA_SOCIAL_4_HOBBIES_H

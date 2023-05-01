@@ -1,5 +1,5 @@
 #include "stdio.h"
-#include "../Headers/menu.h"
+#include "../Headers/1_menu.h"
 
 // Social Network Project EDA2
 

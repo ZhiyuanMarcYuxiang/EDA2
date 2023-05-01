@@ -2,7 +2,7 @@
 // Created by Usuari on 27/4/2023.
 //
 
-#include "../Headers/network.h"
+#include "../Headers/2_network.h"
 
 /**
  * @return Inicialitza una llista dinàmica d'usuaris.
@@ -29,7 +29,7 @@ void new_user(Network *n){
 
 /**
  * @param n: Llista d'usuaris inicialitzada.
- * Si la llista té més d'un usuari, i si el penúltim element no és més gran que l'últim (el més recent introduït)
+ * Si la llista té més d'un usuari, i si el penúltim element no és més gran que l'últim (el més recent introduït),
  * aleshores ordenem la llista. En cas contrari, no caldrà fer-ho.
  */
 

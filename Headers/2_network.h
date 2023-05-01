@@ -2,8 +2,8 @@
 // Created by Usuari on 27/4/2023.
 //
 
-#ifndef XARXA_SOCIAL_NETWORK_H
-#define XARXA_SOCIAL_NETWORK_H
+#ifndef XARXA_SOCIAL_2_NETWORK_H
+#define XARXA_SOCIAL_2_NETWORK_H
 
 #define OPTION_REQUEST (1)
 #define OPTION_MANAGE (2)
@@ -13,7 +13,7 @@
 
 #define INVALID_OPTION (-1)
 
-#include "user.h"
+#include "3_user.h"
 
 /**
  * Estructura de la llista d'usuaris (nivell I).
@@ -47,4 +47,4 @@ void sort_list(Network *n);
 // Ens busca binàriament un usuari a la llista d'usuaris.
 int search_list(Network *n);
 
-#endif //XARXA_SOCIAL_NETWORK_H
+#endif //XARXA_SOCIAL_2_NETWORK_H

@@ -2,7 +2,7 @@
 // Created by Usuari on 27/4/2023.
 //
 
-#include "../Headers/hobbies.h"
+#include "../Headers/4_hobbies.h"
 
 /**
  * @param h: Llista de hobbies declarada.
@@ -27,8 +27,9 @@ void print_hobbies(Hobbies *h){
 }
 
 /**
- * @param copy:
- * @param origin
+ * @param copy: Hobbies no necessàriament inicialitzats que rebran atributs copiats.
+ * @param origin: Hobbies inicialitzats d'on s'extrauran els valors per a copiar-los.
+ * Copiem tots els valors dels hobbies d'origen als hobbies còpia.
  */
 void copy_hobbies(Hobbies *copy, Hobbies *origin){
     for(int i=0; i<QUANTITY; i++)

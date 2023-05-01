@@ -3,4 +3,4 @@ project(Xarxa_Social C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Xarxa_Social Sources/main.c Sources/menu.c Headers/menu.h Sources/utils.c Headers/utils.h Sources/user.c Headers/user.h Sources/network.c Headers/network.h Headers/hobbies.h Sources/hobbies.c)
+add_executable(Xarxa_Social Sources/0_main.c Sources/1_menu.c Headers/1_menu.h Sources/utils.c Headers/utils.h Sources/3_user.c Headers/3_user.h Sources/2_network.c Headers/2_network.h Headers/4_hobbies.h Sources/4_hobbies.c)
