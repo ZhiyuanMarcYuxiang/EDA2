@@ -7,3 +7,10 @@
 4	331	7043370248847673	CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj	79c7472ac8960fc6
 21	413	7043370249775185	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	3e368ec1dd8f8087
 13	435	7043370249954722	CMakeFiles/Xarxa_Social.dir/Sources/network.c.obj	92409eb543ea3d54
+4	443	7046375229703959	CMakeFiles/Xarxa_Social.dir/Sources/main.c.obj	6e76ae6037febbb2
+27	454	7046375229774584	CMakeFiles/Xarxa_Social.dir/Sources/utils.c.obj	fc1e5552b76d1acc
+18	476	7046375229794532	CMakeFiles/Xarxa_Social.dir/Sources/menu.c.obj	a863aadc07bf427e
+445	802	7046375233173570	CMakeFiles/Xarxa_Social.dir/Sources/hobbies.c.obj	cb05a15ab6190d7d
+454	810	7046375233213454	CMakeFiles/Xarxa_Social.dir/Sources/user.c.obj	c93f6f95bb5ce08
+476	830	7046375233712126	CMakeFiles/Xarxa_Social.dir/Sources/network.c.obj	58f0e6e21e8ab32e
+831	1271	7046375238013495	Xarxa_Social.exe	aeac9f79b9878f9e
