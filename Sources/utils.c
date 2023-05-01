@@ -24,7 +24,8 @@ int read_int(const char* message){
 // fgetc(stdin), però és més efectiva, ja que esborra més d'un caràcter incorrecte.
 void flush_input() {
     char c;
-    while ((c = getchar()) != '\n' && c != EOF) {
+    while ((c = getchar()) != '\n' && c != EOF){
+        // Do nothing
     }
 }
 
