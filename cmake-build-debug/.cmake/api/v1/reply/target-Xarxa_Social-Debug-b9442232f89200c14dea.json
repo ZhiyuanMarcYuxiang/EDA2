@@ -122,18 +122,18 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Sources/main.c",
+			"path" : "Sources/0_main.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Sources/menu.c",
+			"path" : "Sources/1_menu.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Headers/menu.h",
+			"path" : "Headers/1_menu.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -150,34 +150,34 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Sources/user.c",
+			"path" : "Sources/3_user.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Headers/user.h",
+			"path" : "Headers/3_user.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Sources/network.c",
+			"path" : "Sources/2_network.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Headers/network.h",
+			"path" : "Headers/2_network.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Headers/hobbies.h",
+			"path" : "Headers/4_hobbies.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Sources/hobbies.c",
+			"path" : "Sources/4_hobbies.c",
 			"sourceGroupIndex" : 0
 		}
 	],

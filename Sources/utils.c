@@ -29,11 +29,12 @@ void flush_input() {
     }
 }
 
-// Legeix una cadena que té una longitud fitada entre dos extrems (min i max).
-void read_bounded_str(char string[], char name[], int const min, int const max){
+// Llegeix una cadena que té una longitud fitada entre un extrem màxim.
+void read_bounded_str(char string[], const char type[], int const max){
     scanf("%s",string);
-    while(strlen(string)<min || strlen(string)>max){
+    while(strlen(string)>max){
         printf("Length not correct!\n");
-        printf("Introduce a new %s:",name); scanf("%s",string);
+        printf("Enter a new %s",type);
+        scanf("%s",string);
     }
 }

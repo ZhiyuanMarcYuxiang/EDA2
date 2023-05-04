@@ -12,7 +12,7 @@ void new_hobbies(Hobbies *h){
     printf("Introduce your hobbies:\n");
     for(int i=0; i<QUANTITY; i++){
         printf(" - Hobby %d:", i+1);
-        read_bounded_str(h[i].hobby,"hobbies",MIN_STRING,MAX_HOBBY);
+        read_bounded_str(h[i].hobby,"hobbies",MAX_HOBBY);
     }
 }
 

@@ -33,14 +33,6 @@ void new_user(Network *n);
 //      Imprimeix tots els usuaris que hi ha inscrits.
 void print_list_users(Network *n);
 
-// c) Operar amb un usuari
-//      1) Enviar sol·liticituds d'amistat
-//      2) Gestionar sol·licituds
-//      3) Nova publicació
-//      4) Llista de publicacions
-//      5) Tornar al menú principal
-void operate_user(Network *n);
-
 // Ens ordena ascendentment una llista d'usuaris.
 void sort_list(Network *n);
 
