@@ -5,7 +5,7 @@
 
 // MARC BOSCH BRANCH
 
-int main() {
-    show_menu();
+int main () {
+    showMenu ();
     return 0;
 }
