@@ -89,7 +89,12 @@ User* merge(User *userA, int sizeA, User *userB, int sizeB, int type){
 }
 
 
-
+/**
+ * @param userA: Un usuari de la xarxa.
+ * @param userB: Un altra usuari de la xarxa.
+ * @param type: Tipus d'atribut.
+ * @return Compara dos atributs del mateix tipus i de dos usuaris diferents.
+ */
 int compAttribute (User userA, User userB, int type){
     return strcmp(userA.attr[type], userB.attr[type]);
 }
