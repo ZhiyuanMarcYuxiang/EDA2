@@ -8,7 +8,7 @@
 User* chooseUser (Network *net){
     printf("\nWhich user do you want to operate with?\n");
 
-    char * attribute = readAttribute();
+    char * attribute = readString();
 
     int idx = searchNetwork (attribute, net, NAME);
 
@@ -48,10 +48,10 @@ void operateUserMenu (Network *net) {
             manageRequests (net);
         }
         else if(option == OPTION_NEW_POST){
-            newPost (net);
+            newPost (choosed_user);
         }
         else if(option == OPTION_LIST_POSTS){
-            listPosts (choosed_user);
+            listPosts (choosed_user->post,choosed_user->size_posts);
         }
 
         else if(option == OPTION_RETURN_MENU){

@@ -34,14 +34,15 @@
 typedef struct User{
     char** data;
 
+    char** post;
+    int size_posts;
+
     struct User* request;
-    int size_requests;
+    int old_requests;
+    int new_size;
 
     struct User* friend;
     int size_firends;
-
-    char** post;
-    int size_posts;
 }User;
 
 
@@ -60,11 +61,15 @@ char* initAttribute (int size);
 
 char** initData();
 
+char** initPosts();
+
 User* initUser();
 
 Network* initNetwork ();
 
-User * expandUsers (User *user, int real_size);
+User * expandUsers (User *user, int current_size);
+
+char ** expandPosts (char** post, int current_size);
 
 void clearAttribute(char *attribute);
 
@@ -78,6 +83,6 @@ void copyUser (User* copy, User* origin);
 
 int compAttribute (User userA, User userB, int type);
 
-char* readAttribute();
+char* readString();
 
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H

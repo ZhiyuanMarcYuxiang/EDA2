@@ -10,6 +10,10 @@ char* initAttribute (int size){
     return malloc(size * sizeof(char));
 }
 
+char** initPosts (){
+    return malloc(sizeof(char *));
+}
+
 char** initData (){
     return malloc(ATTRIBUTES * sizeof(char *));
 }
@@ -33,13 +37,22 @@ User* expandUsers (User *user, int current_size){
 
     // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem.
     if ((current_size % MULTIPLICATIVE_FACTOR) == 0) {
-        int real_size = current_size + MULTIPLICATIVE_FACTOR;
 
+        int real_size = current_size + MULTIPLICATIVE_FACTOR;
         user = realloc(user, real_size * sizeof(User));
     }
     return user;
 }
 
+char** expandPosts (char **post, int current_size){
+
+    if ((current_size % MULTIPLICATIVE_FACTOR) == 0) {
+
+        int real_size = current_size + MULTIPLICATIVE_FACTOR;
+        post = realloc(post, real_size * sizeof(char *));
+    }
+    return post;
+}
 
 /// Funcions d'alliberament de dades.
 
@@ -101,7 +114,7 @@ int compAttribute (User userA, User userB, int type){
 
 /// Lectura d'strings mitjançant un buffer i inicialització dinàmica d'un atribut.
 
-char* readAttribute(){
+char* readString() {
 
     char buffer[BUFFER_SIZE];
 
@@ -110,9 +123,9 @@ char* readAttribute(){
     int length = strlen(buffer);
     buffer[length -1] = '\0';
 
-    char* attribute = initAttribute(length);
-    strcpy(attribute,buffer);
+    char* string = malloc(length * sizeof(char));
+    strcpy(string, buffer);
 
-    return attribute;
+    return string;
 }
 

@@ -8,8 +8,13 @@
 // Més o menys, ha de tenir aquesta forma la funció, però es pot ampliar més perquè quedi millor
 // la impressió per pantalla dels posts.
 
-void listPosts (User *user){
-    for (int i = 0; i<user->size_posts; i++){
-        printf("%d. %s\n", i, user->post[i]);
-    }
+void listPosts (char **posts, int size_posts){
+
+    printf("You have %d posts", size_posts);
+
+    if(size_posts == 0) return;
+
+    printf("We will list all the posts from newest to oldest");
+        for (int i = size_posts; i>=0; i--)
+            printf("%d. %s\n", i, posts[i]);
 }
