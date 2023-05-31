@@ -5,27 +5,15 @@
 #ifndef XARXA_SOCIAL_SORT_UTILS_H
 #define XARXA_SOCIAL_SORT_UTILS_H
 
-#include "data_structures.h"
-
 #define LESSTHAN (-1)
-#define GREATERTHAN (1)
+#define GREATERTHAN 1
 
-// Ens ordena ascendentment una llista d'usuaris.
-void sortNetwork (Network *n, int type);
+#define ONE_USER (1)
 
-// Funcions d'ordenació de llista de forma combinada i recursiva.
-// La funció auxiliar és "merge", que combina dues llistes de forma ordenada.
+#include "../Headers/network_file_control.h"
 
-User* mergeSort(User *user, int size, int type);
-
-User* merge (User* userA, int sizeA, User* userB, int sizeB, int type);
-
-
-int compAttribute (User userA, User userB, int type);
-
-// Copia per valor totes les dades d'un usuari a un altre.
-void copyUser (User *copy,User *origin);
-
+// Ens ordena ascendentment una llista d'usuaris a partir de l'ordenació combinada i recursiva (merge sort).
+void sortNetwork (Network *net, int type);
 
 #endif //XARXA_SOCIAL_SORT_UTILS_H
 
