@@ -133,6 +133,12 @@ build CMakeFiles/Xarxa_Social.dir/Sources/34.list_posts.c.obj: C_COMPILER__Xarxa
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
   OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
 
+build CMakeFiles/Xarxa_Social.dir/Sources/decorations.c.obj: C_COMPILER__Xarxa_Social_Debug C$:/Users/Usuari/Desktop/Projectes$ CLion/EDA_II_Xarxa_Social/Sources/decorations.c || cmake_object_order_depends_target_Xarxa_Social
+  DEP_FILE = CMakeFiles\Xarxa_Social.dir\Sources\decorations.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\Xarxa_Social.dir
+  OBJECT_FILE_DIR = CMakeFiles\Xarxa_Social.dir\Sources
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Xarxa_Social
@@ -141,7 +147,7 @@ build CMakeFiles/Xarxa_Social.dir/Sources/34.list_posts.c.obj: C_COMPILER__Xarxa
 #############################################
 # Link the executable Xarxa_Social.exe
 
-build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/Sources/0.main.c.obj CMakeFiles/Xarxa_Social.dir/Sources/0.menu.c.obj CMakeFiles/Xarxa_Social.dir/Sources/option_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/sort_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/search_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/network_file_control.c.obj CMakeFiles/Xarxa_Social.dir/Sources/1.new_user.c.obj CMakeFiles/Xarxa_Social.dir/Sources/2.list_users.c.obj CMakeFiles/Xarxa_Social.dir/Sources/network_data_control.c.obj CMakeFiles/Xarxa_Social.dir/Sources/3.operate_user.c.obj CMakeFiles/Xarxa_Social.dir/Sources/31.send_request.c.obj CMakeFiles/Xarxa_Social.dir/Sources/32.manage_requests.c.obj CMakeFiles/Xarxa_Social.dir/Sources/33.new_post.c.obj CMakeFiles/Xarxa_Social.dir/Sources/34.list_posts.c.obj
+build Xarxa_Social.exe: C_EXECUTABLE_LINKER__Xarxa_Social_Debug CMakeFiles/Xarxa_Social.dir/Sources/0.main.c.obj CMakeFiles/Xarxa_Social.dir/Sources/0.menu.c.obj CMakeFiles/Xarxa_Social.dir/Sources/option_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/sort_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/search_utils.c.obj CMakeFiles/Xarxa_Social.dir/Sources/network_file_control.c.obj CMakeFiles/Xarxa_Social.dir/Sources/1.new_user.c.obj CMakeFiles/Xarxa_Social.dir/Sources/2.list_users.c.obj CMakeFiles/Xarxa_Social.dir/Sources/network_data_control.c.obj CMakeFiles/Xarxa_Social.dir/Sources/3.operate_user.c.obj CMakeFiles/Xarxa_Social.dir/Sources/31.send_request.c.obj CMakeFiles/Xarxa_Social.dir/Sources/32.manage_requests.c.obj CMakeFiles/Xarxa_Social.dir/Sources/33.new_post.c.obj CMakeFiles/Xarxa_Social.dir/Sources/34.list_posts.c.obj CMakeFiles/Xarxa_Social.dir/Sources/decorations.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Xarxa_Social.dir

@@ -4,6 +4,15 @@
 
 #include "../Headers/1.new_user.h"
 
+int checkIsEmpty (char* attribute){
+    return strlen(attribute) == NULL_SIZE;
+}
+
+
+// Comprova que un atribut no estigui a la llista d'usuaris. 3 != (-1), llavors exiteix l'usuari.
+int checkIsFound (char* attribute, Network *net, int type){
+    return searchNetwork(attribute, net, type) != USER_NOT_FOUND;
+}
 
 /// Funcions per a la validació del correu de l'usuari.
 
@@ -54,38 +63,31 @@ int checkArroba(char* email) {
     return FALSE;
 }
 
-// Comprova que el correu no estigui a la llista d'usuaris.
-int checkNotFound (char* buffer, Network *net, int type){
-    if(searchNetwork(buffer, net, type) == USER_NOT_FOUND)
-        return TRUE;
-    return FALSE;
-}
-
 // Lectura del correu validat.
-int readEmail (char *buffer, Network *net, int type) {
+int readEmail (char *email, Network *net, int type) {
 
-    int isArroba = checkArroba(buffer);
+    int isArroba = checkArroba(email);
     if (isArroba == FALSE) printf("E-mail without arroba!\n");
 
-    int isDomain = checkDomain (buffer);
+    int isDomain = checkDomain (email);
     if (isDomain == FALSE) printf("Invalid domain!\n");
 
-    int isNotFound = checkNotFound (buffer,net,type);
-    if (isNotFound == FALSE) printf("Already registered e-mail!\n");
+    int isFound = checkIsFound(email, net, type);
+    if (isFound == TRUE) printf("Already registered e-mail!\n");
 
-    return isArroba && isDomain && isNotFound;
+    return isArroba && isDomain && !(isFound);
 }
 
 /// Funció per a la validació del nom de l'usuari.
 
-int readName (char *buffer, Network *net, int type){
+int readName (char *name, Network *net, int type){
 
-    if (strlen(buffer) == NULL_SIZE){
+    if (checkIsEmpty (name)){
         printf("The name must not be empty!\n");
         return FALSE;
     }
 
-    if (searchNetwork(buffer, net, type) != USER_NOT_FOUND){
+    if (checkIsFound(name,net,type)){
         printf("Already registered name!\n");
         return FALSE;
     }
@@ -94,16 +96,17 @@ int readName (char *buffer, Network *net, int type){
 
 /// Validació de l'edat de l'usuari.
 
-int readAge (char *buffer) {
+int readAge (char *age) {
 
-    if (strlen(buffer) == NULL_SIZE){
+    if (checkIsEmpty (age)){
         printf("The age must have a value!\n");
         return FALSE;
     }
 
+    // Valida que l'edat sigui numèrica.
     int i = 0;
-    while (buffer[i] != '\0'){
-        if ('0' > buffer[i] || '9' < buffer[i]) {
+    while (age[i] != '\0'){
+        if ('0' > age[i] || '9' < age[i]) {
             printf("Invalid age!\n");
             return FALSE;
         }
@@ -114,9 +117,9 @@ int readAge (char *buffer) {
 
 /// Validació de la residència de l'usuari.
 
-int readCity (char *buffer) {
+int readCity (char *city) {
 
-    if (strlen(buffer) == NULL_SIZE) {
+    if (checkIsEmpty (city)) {
         printf("The city must not be empty\n!");
         return FALSE;
     }
@@ -125,21 +128,21 @@ int readCity (char *buffer) {
 
 /// Validació del nom, l'edat, l'email i el lloc on viu de l'usuari (els hobbies els considerem opcionals).
 
-int check_input (Network *net, char buffer[], int type) {
+int checkAttribute (Network *net, char *attribute, int type) {
 
     switch (type) {
         case NAME:
             // No ha de ser buit i no ha d'estar a la llista d'usuaris.
-            return readName (buffer, net, type);
+            return readName (attribute, net, type);
         case AGE:
             // No ha d'estar buit i ha de ser numèric.
-            return readAge (buffer);
+            return readAge (attribute);
         case EMAIL:
             // Ha de tenir @, domini vàlid i no ha d'estar a la llista.
-            return readEmail (buffer,net,type);
+            return readEmail (attribute,net,type);
         case CITY:
             // No ha d'estar buit.
-            return readCity (buffer);
+            return readCity (attribute);
     }
     return TRUE;
 }
@@ -181,7 +184,7 @@ char** newUserData (Network net){
             print_inputMessages(i);
             attribute = readString();
 
-        } while (check_input(&net, attribute, i) == FALSE);
+        } while (checkAttribute(&net, attribute, i) == FALSE);
 
         data[i] = copyString(attribute);
     }
