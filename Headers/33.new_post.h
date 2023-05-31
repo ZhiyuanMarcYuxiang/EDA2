@@ -7,6 +7,6 @@
 
 #include "34.list_posts.h"
 
-void newPost (Network *net);
+void newPost (User *user);
 
 #endif //XARXA_SOCIAL_33_NEW_POST_H

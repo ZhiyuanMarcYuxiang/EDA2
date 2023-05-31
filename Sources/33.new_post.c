@@ -6,15 +6,13 @@
 
 // Es pot pensar de forma molt semblant a New Users.
 
-/* Exemple:
- * int last = user->posts_size;
+void newPost (User *user) {
+    int last = user->size_posts;
 
-    user->post = expandPost (net->user,net->size);
-    user->post[last] = readPost();
+    user->post = expandPosts(user->post, last);
 
-    user->post_size += INCREMENT_SIZE;
- */
+    printf("Write your new post:\n");
+    user->post[last] = readString();
 
-void newPost (Network *net){
-    ;
+    user->size_posts += INCREMENT_SIZE;
 }

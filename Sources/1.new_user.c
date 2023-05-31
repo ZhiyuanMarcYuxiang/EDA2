@@ -104,7 +104,7 @@ int readAge (char *buffer) {
     int i = 0;
     while (buffer[i] != '\0'){
         if ('0' > buffer[i] || '9' < buffer[i]) {
-            printf("Invlaid age!\n");
+            printf("Invalid age!\n");
             return FALSE;
         }
         i++;
@@ -129,12 +129,16 @@ int check_input (Network *net, char buffer[], int type) {
 
     switch (type) {
         case NAME:
+            // No ha de ser buit i no ha d'estar a la llista d'usuaris.
             return readName (buffer, net, type);
         case AGE:
+            // No ha d'estar buit i ha de ser numèric.
             return readAge (buffer);
         case EMAIL:
+            // Ha de tenir @, domini vàlid i no ha d'estar a la llista.
             return readEmail (buffer,net,type);
         case CITY:
+            // No ha d'estar buit.
             return readCity (buffer);
     }
     return TRUE;
@@ -175,7 +179,7 @@ char** newUserData (Network net){
     for (int i = 0; i < ATTRIBUTES; ++i) {
         do{
             print_inputMessages(i);
-            attribute = readAttribute();
+            attribute = readString();
 
         } while (check_input(&net, attribute, i) == FALSE);
 
@@ -194,11 +198,16 @@ void newUser (Network *net){
 
     int last = net->size;
 
-    net->user = expandUsers (net->user,net->size);
+    net->user = expandUsers (net->user,last);
+
     net->user[last].data = newUserData(*net);
+    net->user[last].post = initPosts();
+    net->user[last].size_posts = 0;
 
     net->size += INCREMENT_SIZE;
     net->order = NOT_ORDERED;
 
     appendFile (net->user[last],USERS_FILE);
+
+
 }
