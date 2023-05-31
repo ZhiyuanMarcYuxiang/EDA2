@@ -21,14 +21,16 @@ User* chooseUser (Network *net){
 
 void operateUserMenu (Network *net) {
 
-    User* choosed_user = chooseUser (net);
+    printf("\nWhich user do you want to operate with?\n");
 
-    if (choosed_user == NULL){
+    int i = searchNetwork (readString(), net, NAME);
+
+    if (i == USER_NOT_FOUND){
         printf("\nThe user was not found!\n");
         return;
     }
 
-    printf("\nProfile of user %s initialized!\n",choosed_user->data[NAME]);
+    printf("\nProfile of user %s initialized!\n",net->user[i].data[NAME]);
 
     int option = INVALID_OPTION;
 
@@ -48,10 +50,10 @@ void operateUserMenu (Network *net) {
             manageRequests (net);
         }
         else if(option == OPTION_NEW_POST){
-            newPost (choosed_user);
+            newPost (&net->user[i]);
         }
         else if(option == OPTION_LIST_POSTS){
-            listPosts (choosed_user->post,choosed_user->size_posts);
+            listPosts (&net->user[i]);
         }
 
         else if(option == OPTION_RETURN_MENU){

@@ -4,16 +4,16 @@
 
 #include "../Headers/network_file_control.h"
 
-void writeFile (User *user, int size, FILE *fp){
+void writeFile (User *user, int users_size, FILE *fp){
 
     fprintf(fp,"NAME,AGE,E-MAIL,HOME,HOBBY 1,HOBBY 2,HOBBY 3,HOBBY 4,HOBBY 5\n");
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < users_size; ++i) {
         for (int j = 0; j < ATTRIBUTES; ++j) {
             fputs(user[i].data[j], fp);
             if (j< HOBBY5)
                 fprintf(fp,",");
         }
-        if(i<size-1)
+        if(i<users_size-1)
             fprintf(fp,"\n");
     }
     fclose(fp);
@@ -43,15 +43,19 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
         }
         else{
             attribute[char_idx] = '\0';
-            data[attr_idx] = copyAttribute (attribute);
+            data[attr_idx] = copyString(attribute);
             attr_idx++; char_idx = RESET;
 
             if (c=='\n' || c==EOF){
 
-                jump_count++; if (jump_count == JUMP_BUG) break;
+                // Per a solucionar el bug que es produeix quan últimes files buides del fitxer.
+                jump_count++;if (jump_count == JUMP_BUG) break;
 
                 user = expandUsers (user, user_idx);
-                user[user_idx].data = copyData (data);
+                user[user_idx].data = copyStringArray(data, ATTRIBUTES);
+                user[user_idx].post = initPosts();
+                user[user_idx].posts_size = SET_ZERO;
+
                 user_idx++; attr_idx = RESET;
 
             }
@@ -59,8 +63,8 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
     } while (c!=EOF);
 
     net->user = user;
-    net->size = user_idx;
-    net->order = NOT_ORDERED;
+    net->users_size = user_idx;
+    net->users_order = NOT_ORDERED;
 }
 
 

@@ -183,7 +183,7 @@ char** newUserData (Network net){
 
         } while (check_input(&net, attribute, i) == FALSE);
 
-        data[i] = copyAttribute (attribute);
+        data[i] = copyString(attribute);
     }
 
     free(attribute);
@@ -196,18 +196,17 @@ char** newUserData (Network net){
 
 void newUser (Network *net){
 
-    int last = net->size;
+    int last = net->users_size;
 
     net->user = expandUsers (net->user,last);
 
     net->user[last].data = newUserData(*net);
-    net->user[last].post = initPosts();
-    net->user[last].size_posts = 0;
 
-    net->size += INCREMENT_SIZE;
-    net->order = NOT_ORDERED;
+    net->user[last].post = initPosts();
+    net->user[last].posts_size = SET_ZERO;
 
     appendFile (net->user[last],USERS_FILE);
 
-
+    net->users_size += INCREMENT_SIZE;
+    net->users_order = NOT_ORDERED;
 }

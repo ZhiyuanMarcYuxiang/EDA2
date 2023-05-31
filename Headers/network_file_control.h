@@ -9,10 +9,7 @@
 
 #define USERS_FILE "../Files/20users.csv"
 
-#define RESET 0
 #define JUMP_BUG 2
-
-#define SET_ZERO 0
 
 #define READING_PLUS_MODE "r+"
 #define READING_MODE "r"

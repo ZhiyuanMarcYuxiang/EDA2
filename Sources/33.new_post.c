@@ -4,15 +4,15 @@
 
 #include "../Headers/33.new_post.h"
 
-// Es pot pensar de forma molt semblant a New Users.
+// Funció molt similar a newUser.
 
 void newPost (User *user) {
-    int last = user->size_posts;
+    int last = user->posts_size;
 
     user->post = expandPosts(user->post, last);
 
-    printf("Write your new post:\n");
+    printf("\nWrite your new post:\n");
     user->post[last] = readString();
 
-    user->size_posts += INCREMENT_SIZE;
+    user->posts_size += INCREMENT_SIZE;
 }

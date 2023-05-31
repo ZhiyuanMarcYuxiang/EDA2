@@ -25,8 +25,8 @@ User* initUser (){
 Network* initNetwork (){
     // Inicialitza una llista dinàmica d'usuaris.
     Network *net = malloc(sizeof(Network));
-    net->size = NULL_SIZE;
-    net->order = NOT_ORDERED;
+    net->users_size = NULL_SIZE;
+    net->users_order = NOT_ORDERED;
     net->user = initUser();
     return net;
 }
@@ -56,35 +56,36 @@ char** expandPosts (char **post, int current_size){
 
 /// Funcions d'alliberament de dades.
 
-void clearAttribute (char* attribute){
-    free(attribute);
-}
+void clearStringArray (char** string_array, int size){
 
-void clearData (char** data){
-    for (int i = 0; i < ATTRIBUTES; ++i) {
-        clearAttribute(data[i]);
+    for (int i = 0; i < size; ++i) {
+        free(string_array[i]);
     }
-    free(data);
+
+    free(string_array);
 }
 
+void clearUsers (User *user, int users_size){
 
-void clearUsers (User *user, int quanity_users){
-    for (int i = 0; i < quanity_users; ++i) {
-        clearData(user[i].data);
+    for (int i = 0; i < users_size; ++i) {
+
+        clearStringArray (user[i].data, ATTRIBUTES);
+        clearStringArray (user[i].post, user[i].posts_size);
     }
     free(user);
 }
 
 void clearNetwork (Network *net){
-    clearUsers (net->user, net->size);
+
+    clearUsers (net->user, net->users_size);
     free(net);
 }
 
 /// Funcions de còpia de dades.
 
-char* copyAttribute (char *origin){
+char* copyString (char *origin){
 
-    int length = strlen(origin)+END_CHARACTER;
+    int length = strlen(origin) + END_CHARACTER;
 
     char *copy = initAttribute (length * sizeof(char));
     strcpy (copy, origin);
@@ -92,24 +93,25 @@ char* copyAttribute (char *origin){
 }
 
 
-char** copyData (char **origin){
+char** copyStringArray (char **origin, int size){
 
     char **copy = initData();
-    for (int i = 0; i < ATTRIBUTES; ++i) {
-        copy[i] = copyAttribute (origin[i]);
+
+    for (int i = 0; i < size; ++i) {
+        copy[i] = copyString(origin[i]);
     }
     return copy;
 }
 
 void copyUser (User* copy, User* origin){
-    copy->data = copyData (origin->data);
+
+    copy->data = copyStringArray(origin->data, ATTRIBUTES);
+
+    copy->post = copyStringArray(origin->post, origin->posts_size);
+    copy->posts_size = origin->posts_size;
 }
 
-/// Funcions de comparació de dades
 
-int compAttribute (User userA, User userB, int type){
-    return strcmp(userA.data[type], userB.data[type]);
-}
 
 
 /// Lectura d'strings mitjançant un buffer i inicialització dinàmica d'un atribut.
