@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/Usuari/Xarxa_Social/cmake-build-debug"
+			"value" : "c:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -431,7 +431,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Usuari/Xarxa_Social/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -503,7 +503,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/Usuari/Xarxa_Social"
+			"value" : "C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/PROGRA~1/JETBRA~1/CLION2~1.1/bin/ninja/win/ninja.exe"
+			"value" : "C:/Program Files/JetBrains/CLion 2022.3.1/bin/ninja/win/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1119,7 +1119,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Usuari/Xarxa_Social/cmake-build-debug"
+			"value" : "C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug"
 		},
 		{
 			"name" : "Xarxa_Social_IS_TOP_LEVEL",
@@ -1143,7 +1143,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Usuari/Xarxa_Social"
+			"value" : "C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
