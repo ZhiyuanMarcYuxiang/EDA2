@@ -4,6 +4,14 @@
 
 #include "../Headers/sort_utils.h"
 
+/// Funcions de comparació de dades
+
+int compAttribute (User userA, User userB, int type){
+    return strcmp(userA.data[type], userB.data[type]);
+}
+
+/// Combinació de dues subllistes d'usuaris.
+
 User* merge(User *userA, int sizeA, User *userB, int sizeB, int type){
 
     User *userC = initUser();
@@ -33,13 +41,14 @@ User* merge(User *userA, int sizeA, User *userB, int sizeB, int type){
         copyUser (&userC[c], &userB[b]);
         b++; c++;
     }
+
     return userC;
 }
 
 
 User* mergeSort(User *user, int size, int type){
 
-    if (size == ONE_USER)
+    if (size == ONE_SIZE)
         return user;
 
     int mid = size/2;
@@ -56,9 +65,9 @@ User* mergeSort(User *user, int size, int type){
 
 void sortNetwork (Network *net, int type){
 
-    if(net->size > ONE_USER)
-        if(type != net->order)
-            net->user = mergeSort (net->user, net->size, type);
-    net->order = type;
+    if(net->users_size > ONE_SIZE)
+        if(type != net->users_order)
+            net->user = mergeSort (net->user, net->users_size, type);
+    net->users_order = type;
 }
 

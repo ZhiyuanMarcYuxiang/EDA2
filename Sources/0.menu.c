@@ -30,7 +30,6 @@ void showMenu () {
 
         // Imprimim tots els usuaris.
         else if (option==OPTION_LIST_USERS){
-
             listUsers(*net);
         }
         // Inspeccionem la llista i mirem si hi ha l'usuari que busquem.

@@ -7,6 +7,6 @@
 
 #include "search_utils.h"
 
-void listPosts (char **posts, int size_posts);
+void listPosts (User *user);
 
 #endif //XARXA_SOCIAL_34_LIST_POSTS_H

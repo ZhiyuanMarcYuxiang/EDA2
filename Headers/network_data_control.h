@@ -18,6 +18,8 @@
 #define HOBBY5 (8)
 
 #define NULL_SIZE (0)
+#define ONE_SIZE (1)
+
 #define INCREMENT_SIZE (1)
 #define MULTIPLICATIVE_FACTOR (5)
 
@@ -25,6 +27,15 @@
 
 #define BUFFER_SIZE (1024)
 #define END_CHARACTER (1)
+
+#define RESET 0
+#define SET_ZERO 0
+
+
+#define LESSTHAN (-1)
+#define GREATERTHAN 1
+
+
 
 #include "option_utils.h"
 
@@ -35,7 +46,7 @@ typedef struct User{
     char** data;
 
     char** post;
-    int size_posts;
+    int posts_size;
 
     struct User* request;
     int old_requests;
@@ -50,10 +61,9 @@ typedef struct User{
 
 typedef struct {
     User* user;
-    int size;
-    int order;
+    int users_size;
+    int users_order;
 }Network;
-
 
 
 
@@ -71,13 +81,13 @@ User * expandUsers (User *user, int current_size);
 
 char ** expandPosts (char** post, int current_size);
 
-void clearAttribute(char *attribute);
+void clearUsers (User *user, int users_size);
 
 void clearNetwork (Network *network);
 
-char* copyAttribute (char *origin);
+char* copyString (char *origin);
 
-char** copyData (char **origin);
+char** copyStringArray (char **origin, int size);
 
 void copyUser (User* copy, User* origin);
 
