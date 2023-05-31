@@ -35,10 +35,7 @@
 #define LESSTHAN (-1)
 #define GREATERTHAN 1
 
-
-
 #include "option_utils.h"
-
 
 /// Estructura d'un usuari.
 

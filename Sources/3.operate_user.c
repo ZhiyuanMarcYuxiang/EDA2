@@ -5,20 +5,6 @@
 #include "../Headers/3.operate_user.h"
 
 
-User* chooseUser (Network *net){
-    printf("\nWhich user do you want to operate with?\n");
-
-    char * attribute = readString();
-
-    int idx = searchNetwork (attribute, net, NAME);
-
-    if(idx == USER_NOT_FOUND)
-        return NULL;
-    else
-        return &net->user[idx];
-}
-
-
 void operateUserMenu (Network *net) {
 
     printf("\nWhich user do you want to operate with?\n");
