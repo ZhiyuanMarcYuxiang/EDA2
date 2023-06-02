@@ -24,6 +24,6 @@ void listPosts (User *user) {
         printf("\nWe will list all the posts from newest to oldest.\n\n");
     }
 
-    for (int i = 0; i > size_posts; i++)
-        printf("%d. %s\n", i+1, post[(size_posts-1)+i]);
+    for (int i = 0; i < size_posts; i++)
+        printf("%d. %s\n", i+1, post[(size_posts-1)-i]);
 }

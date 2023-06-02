@@ -76,13 +76,91 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/yjian/Downloads/EDA2/main.c">
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/0.menu.h">
 			<Option target="Xarxa_Social"/>
 		</Unit>
-		<Unit filename="C:/Users/yjian/Downloads/EDA2/menu.c">
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/1.new_user.h">
 			<Option target="Xarxa_Social"/>
 		</Unit>
-		<Unit filename="C:/Users/yjian/Downloads/EDA2/menu.h">
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/2.list_users.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/3.operate_user.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/31.send_request.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/32.manage_requests.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/33.new_post.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/34.list_posts.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/decorations.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/network_data_control.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/network_file_control.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/option_utils.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/search_utils.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Headers/sort_utils.h">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/0.main.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/0.menu.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/1.new_user.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/2.list_users.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/3.operate_user.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/31.send_request.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/32.manage_requests.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/33.new_post.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/34.list_posts.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/decorations.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/network_data_control.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/network_file_control.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/option_utils.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/search_utils.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2/Sources/sort_utils.c">
 			<Option target="Xarxa_Social"/>
 		</Unit>
 		<Unit filename="C:/Users/yjian/Downloads/EDA2/CMakeLists.txt">

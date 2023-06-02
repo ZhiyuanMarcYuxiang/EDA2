@@ -1,3 +1,3 @@
-C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug/CMakeFiles/Xarxa_Social.dir
-C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Usuari/Desktop/Projectes CLion/EDA_II_Xarxa_Social/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/yjian/Downloads/EDA2/cmake-build-debug/CMakeFiles/Xarxa_Social.dir
+C:/Users/yjian/Downloads/EDA2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/yjian/Downloads/EDA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
