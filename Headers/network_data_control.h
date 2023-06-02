@@ -39,6 +39,17 @@
 
 /// Estructura d'un usuari.
 
+typedef struct{
+    char* key;
+    int value;
+} Element;
+
+typedef struct{
+    Element* elements;
+    int count;
+    int size;
+} Dict;
+
 typedef struct User{
     char** data;
 
@@ -60,6 +71,7 @@ typedef struct {
     User* user;
     int users_size;
     int users_order;
+    Dict* dictionary;
 }Network;
 
 
@@ -72,11 +84,16 @@ char** initPosts();
 
 User* initUser();
 
+Dict* init_dictionary();
+
 Network* initNetwork ();
+
 
 User * expandUsers (User *user, int current_size);
 
 char ** expandPosts (char** post, int current_size);
+
+Dict* expandElements (Dict *dict, int current_size);
 
 void clearUsers (User *user, int users_size);
 

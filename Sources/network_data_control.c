@@ -22,11 +22,25 @@ User* initUser (){
     return malloc(sizeof(User));
 }
 
+Dict* init_dictionary() {
+    Dict* dictionary = (Dict*) malloc(sizeof(Dict));
+    dictionary->count = SET_ZERO;
+    dictionary->size = 10;
+    dictionary->elements = (Element*) malloc(dictionary->size*sizeof(Element));
+    for (int i = 0; i<dictionary->size; i++) {
+        dictionary->elements[i].key = "";
+        dictionary->elements->value = 0;
+    }
+    return dictionary;
+}
+
+
 Network* initNetwork (){
     // Inicialitza una llista dinàmica d'usuaris.
     Network *net = malloc(sizeof(Network));
     net->users_size = NULL_SIZE;
     net->users_order = NOT_ORDERED;
+    net->dictionary  = init_dictionary();
     net->user = initUser();
     return net;
 }
@@ -42,6 +56,21 @@ User* expandUsers (User *user, int current_size){
         user = realloc(user, real_size * sizeof(User));
     }
     return user;
+}
+
+Dict* expandElements (Dict *dict, int current_size){
+
+    // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem.
+    if ((current_size % (MULTIPLICATIVE_FACTOR*2)) == 0) {
+        int real_size = current_size + (MULTIPLICATIVE_FACTOR*2);
+        dict->size = real_size;
+        dict->elements = realloc(dict->elements, real_size * sizeof(Element));
+    }
+    for (int i = current_size; i<dict->size; i++) {
+        dict->elements[i].key = "";
+        dict->elements->value = 0;
+    }
+    return dict;
 }
 
 char** expandPosts (char **post, int current_size){

@@ -36,7 +36,7 @@ void operateUserMenu (Network *net) {
             manageRequests (net);
         }
         else if(option == OPTION_NEW_POST){
-            newPost (&net->user[i]);
+            newPost (net, i);
         }
         else if(option == OPTION_LIST_POSTS){
             listPosts (&net->user[i]);
