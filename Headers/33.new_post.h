@@ -17,7 +17,9 @@ int eliminate_value(char* key, Dict* our_dictionary);
 
 void print_dictionary_elements(Dict* dictionary);
 
-void word_count(Dict* dictionary, char* post);
+void read_words(Dict* dictionary, char* post);
+
+void count_words(Dict* dictionary, char* post);
 
 void newPost (Network* net, int idx);
 

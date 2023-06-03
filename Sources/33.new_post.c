@@ -57,7 +57,7 @@ int eliminate_value(char* key, Dict* our_dictionary) {
 
 void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
-    while (idx<10 && dictionary->count>=10 || idx<dictionary->count) {
+    while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
         if (search_value(dictionary->elements[idx].key, dictionary) != 0) {
             printf("%d %s %d\n", idx, dictionary->elements[idx].key, dictionary->elements[idx].value);
         }
@@ -65,7 +65,7 @@ void print_dictionary_elements(Dict* dictionary) {
     }
 }
 
-void word_count(Dict* dictionary, char* post) {
+void count_words(Dict* dictionary, char* post) {
 
     int value;
     if (search_value(post, dictionary) == -1) {
@@ -75,18 +75,45 @@ void word_count(Dict* dictionary, char* post) {
             value = search_value(post, dictionary);
             add_value(value + 1, post, dictionary);
     }
-    print_dictionary_elements(dictionary);
 }
 
 // Funció molt similar a newUser.
 
+void read_words(Dict *dictionary, char* post) {
+    int idx = 0;
+    char* buffer = malloc(BUFFER_SIZE*sizeof(char));
+    count_words(dictionary, "");
+    for(int i = 0; i<strlen(post); i++) {
+        if(post[i] != ' ' && post[i] != '!' && post[i] != '?' && post[i] != '.' &&
+           post[i] != ',' && post[i] != ':' && post[i] != ';' && i!= strlen(post)-1) {
+            buffer[idx] = tolower(post[i]);
+            idx++;
+        }
+        else if(post[i] == ' ' || post[i] == '!' || post[i] == '?' || post[i] == '.' ||
+                post[i] == ',' || post[i] == ':' || post[i] == ';') {
+            buffer[idx] = '\0';
+            count_words(dictionary, buffer);
+            buffer = NULL;
+            buffer = malloc(BUFFER_SIZE*sizeof(char));
+            idx = 0;
+        }
+        else if(i == strlen(post)-1) {
+            if (post[i] != ' ' && post[i] != '!' && post[i] != '?' && post[i] != '.' ||
+                post[i] != ',' && post[i] != ':' && post[i] != ';'){
+                buffer[idx] = post[i];
+                buffer[idx+1] = '\0';
+            }
+            count_words(dictionary, buffer);
+        }
+        dictionary = expandElements(dictionary, dictionary->count);
+    }
+}
+
 void newPost (Network *net, int idx) {
     int last = net->user->posts_size;
     net->user->post = expandPosts(net->user->post, last);
-    net->dictionary = expandElements(net->dictionary, net->dictionary->count);
-    printf("dict_size: %d %d", net->dictionary->count, net->dictionary->size);
     printf("\nWrite your new post:\n");
     net->user[idx].post[last] = readString();
-    word_count(net->dictionary, net->user[idx].post[last]);
+    read_words(net->dictionary, net->user[idx].post[last]);
     net->user[idx].posts_size += INCREMENT_SIZE;
 }
