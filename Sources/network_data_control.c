@@ -34,7 +34,6 @@ Dict* init_dictionary() {
     return dictionary;
 }
 
-
 Network* initNetwork (){
     // Inicialitza una llista dinàmica d'usuaris.
     Network *net = malloc(sizeof(Network));
@@ -42,6 +41,8 @@ Network* initNetwork (){
     net->users_order = NOT_ORDERED;
     net->dictionary  = init_dictionary();
     net->user = initUser();
+    // Tant el post com el banned_user son una llista de string
+    net->banned_user = initPosts();
     return net;
 }
 
@@ -102,6 +103,11 @@ void clearUsers (User *user, int users_size){
         clearStringArray (user[i].post, user[i].posts_size);
     }
     free(user);
+}
+
+void clearDictionary (Dict* dictionary) {
+    free(dictionary->elements);
+    free(dictionary);
 }
 
 void clearNetwork (Network *net){

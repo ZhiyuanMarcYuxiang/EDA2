@@ -8,6 +8,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
     int i = 0;
     while (i<our_dictionary->size && our_dictionary->count != 0) {
         if (strcmp(key, our_dictionary->elements[i].key) == 0) {
+            // substituïm el nou valor pel valor vell
             our_dictionary->elements[i].value = value;
             return;
         }
@@ -18,7 +19,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
         printf("Dictionary is full");
         return;
     }
-
+    // Si arriba a aquesta part, vol dir que la key no existeix i el diccionari no està ple
     our_dictionary->elements[our_dictionary->count].key = key;
     our_dictionary->elements[our_dictionary->count].value = value;
     our_dictionary->count++;
@@ -28,6 +29,7 @@ int search_index_with_key(char* key, Dict* our_dictionary) {
     int i = 0;
     while (i<our_dictionary->size && our_dictionary->count != 0) {
         if (strcmp(key,our_dictionary->elements[i].key) == 0) {
+            // retorna el index on està situat l’element (clau i valor)
             return i;
         }
         i++;
@@ -36,30 +38,22 @@ int search_index_with_key(char* key, Dict* our_dictionary) {
 }
 
 int search_value(char* key, Dict* our_dictionary) {
+    // aprofitar la funció definida abans
     if (search_index_with_key(key, our_dictionary) == -1) {
         return -1;
     }
+
     int idx = search_index_with_key(key, our_dictionary);
     return our_dictionary->elements[idx].value;
 
 }
 
-int eliminate_value(char* key, Dict* our_dictionary) {
-    if (search_index_with_key(key, our_dictionary) == -1) {
-        return -1;
-    }
-    int idx = search_index_with_key(key, our_dictionary);
-    our_dictionary->elements[idx].key = NULL;
-    our_dictionary->elements[idx].value = 0;
-    our_dictionary->count--;
-}
-
-
 void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
+    printf("\n");
     while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
         if (search_value(dictionary->elements[idx].key, dictionary) != 0) {
-            printf("%d %s %d\n", idx, dictionary->elements[idx].key, dictionary->elements[idx].value);
+            printf("%d. WORD:%s USED:%d\n", idx+1, dictionary->elements[idx].key, dictionary->elements[idx].value);
         }
         idx++;
     }

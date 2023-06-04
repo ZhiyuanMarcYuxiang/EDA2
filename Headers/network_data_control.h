@@ -72,6 +72,7 @@ typedef struct {
     int users_size;
     int users_order;
     Dict* dictionary;
+    char **banned_user;
 }Network;
 
 
@@ -96,6 +97,8 @@ char ** expandPosts (char** post, int current_size);
 Dict* expandElements (Dict *dict, int current_size);
 
 void clearUsers (User *user, int users_size);
+
+void clearDictionary (Dict* dictionary);
 
 void clearNetwork (Network *network);
 

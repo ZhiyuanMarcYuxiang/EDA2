@@ -27,19 +27,20 @@ void operateUserMenu (Network *net) {
     printf("\nWhich user do you want to operate with?\n");
     char *name = readString();
     if (strcmp(name, "CEO") == 0) {
-        while(option != OPTION_RETURN_MENU) {
-            printf("%d. Search most frequent words used.\n", OPTION_SEARCH_MOST_USED);
+        while(TRUE) {
+            printf("\n%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
+            printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
             option = readInt("Choose your option:\n");
-            if (option == OPTION_SEARCH_MOST_USED) {
+            if (option == OPTION_MOST_USED_WORDS) {
                 net->dictionary->elements[0].value = 0;
                 selectiveSort(net->dictionary);
                 print_dictionary_elements(net->dictionary);
             }
             else if(option == OPTION_RETURN_MENU){
-                ;//DO NOTHING
+                return; //DO NOTHING
             }
             else {
-                printf("\nInvalid option\n");
+                printf("\nInvalid option!\n");
             }
         }
     }

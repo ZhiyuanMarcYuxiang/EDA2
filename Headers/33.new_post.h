@@ -13,8 +13,6 @@ int search_index_with_key(char* key, Dict* our_dictionary);
 
 int search_value(char* key, Dict* our_dictionary);
 
-int eliminate_value(char* key, Dict* our_dictionary);
-
 void print_dictionary_elements(Dict* dictionary);
 
 void read_words(Dict* dictionary, char* post);
