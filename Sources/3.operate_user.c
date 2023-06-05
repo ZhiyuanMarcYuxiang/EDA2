@@ -11,12 +11,18 @@ void operateUserMenu (Network *net) {
     if (strcmp(name, "CEO") == 0) {
         while(TRUE) {
             printf("\n%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
+            printf("%d. Ban user.\n", OPTION_BAN_USER);
             printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
             option = readInt("Choose your option:\n");
             if (option == OPTION_MOST_USED_WORDS) {
                 net->dictionary->elements[0].value = 0;
                 selectiveSort(net->dictionary);
                 print_dictionary_elements(net->dictionary);
+            }
+            else if(option == OPTION_BAN_USER) {
+                printf("\nWhich user do you want to ban?\n");
+                name = readString();
+                ban_user(net, name);
             }
             else if(option == OPTION_RETURN_MENU){
                 return; //DO NOTHING
@@ -32,7 +38,12 @@ void operateUserMenu (Network *net) {
         printf("\nThe user was not found!\n");
         return;
     }
-
+    if (search_banned_user(net, net->user[i].data[NAME]) == TRUE) {
+        printf("\nYour account has been disabled for violating our terms.\n");
+        printf("Learn how you may be able to restore your account entering:\n");
+        printf("https://www.youtube.com/watch?v=dQw4w9WgXcQ\n");
+        return;
+    }
     printf("\nProfile of user %s initialized!\n",net->user[i].data[NAME]);
 
     while(option != OPTION_RETURN_MENU){

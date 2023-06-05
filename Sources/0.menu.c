@@ -23,7 +23,7 @@ void showMenu () {
         printf("%d. Quit.\n",OPTION_QUIT);
         option = readInt("Choose your option:\n");
 
-        system("cls");
+
         // Afegim un nou usuari.
         if (option==OPTION_NEW_USER){
             newUser(net);

@@ -133,6 +133,9 @@
 		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/3.operate_user.c">
 			<Option target="Xarxa_Social"/>
 		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/30.ban_user.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
 		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/31.send_request.c">
 			<Option target="Xarxa_Social"/>
 		</Unit>
@@ -146,6 +149,9 @@
 			<Option target="Xarxa_Social"/>
 		</Unit>
 		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/decorations.c">
+			<Option target="Xarxa_Social"/>
+		</Unit>
+		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/dictionary_utils.c">
 			<Option target="Xarxa_Social"/>
 		</Unit>
 		<Unit filename="C:/Users/yjian/Downloads/EDA2_1/Sources/network_data_control.c">

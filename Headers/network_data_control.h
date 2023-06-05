@@ -76,6 +76,7 @@ typedef struct {
     int users_order;
     Dict* dictionary;
     char **banned_user;
+    int banned_users_size;
 }Network;
 
 

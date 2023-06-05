@@ -15,7 +15,6 @@
 #define FONT_RED "\e[31m"
 #define FONT_ORANGE "\e[33m"
 #define FONT_BLUE "\e[34m"
-#define RESET "\e[0m"
 
 #define UPPER_LEFT_CORNER "\xDA"                                         // "┏"
 #define UPPER_RIGHT_CORNER "\xBF"                                        // "┓"

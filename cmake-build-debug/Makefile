@@ -248,6 +248,30 @@ Sources/3.operate_user.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/3.operate_user.c.s
 .PHONY : Sources/3.operate_user.c.s
 
+Sources/30.ban_user.obj: Sources/30.ban_user.c.obj
+.PHONY : Sources/30.ban_user.obj
+
+# target to build an object file
+Sources/30.ban_user.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.obj
+.PHONY : Sources/30.ban_user.c.obj
+
+Sources/30.ban_user.i: Sources/30.ban_user.c.i
+.PHONY : Sources/30.ban_user.i
+
+# target to preprocess a source file
+Sources/30.ban_user.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.i
+.PHONY : Sources/30.ban_user.c.i
+
+Sources/30.ban_user.s: Sources/30.ban_user.c.s
+.PHONY : Sources/30.ban_user.s
+
+# target to generate assembly for a file
+Sources/30.ban_user.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.s
+.PHONY : Sources/30.ban_user.c.s
+
 Sources/31.send_request.obj: Sources/31.send_request.c.obj
 .PHONY : Sources/31.send_request.obj
 
@@ -367,6 +391,30 @@ Sources/decorations.s: Sources/decorations.c.s
 Sources/decorations.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/decorations.c.s
 .PHONY : Sources/decorations.c.s
+
+Sources/dictionary_utils.obj: Sources/dictionary_utils.c.obj
+.PHONY : Sources/dictionary_utils.obj
+
+# target to build an object file
+Sources/dictionary_utils.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/dictionary_utils.c.obj
+.PHONY : Sources/dictionary_utils.c.obj
+
+Sources/dictionary_utils.i: Sources/dictionary_utils.c.i
+.PHONY : Sources/dictionary_utils.i
+
+# target to preprocess a source file
+Sources/dictionary_utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/dictionary_utils.c.i
+.PHONY : Sources/dictionary_utils.c.i
+
+Sources/dictionary_utils.s: Sources/dictionary_utils.c.s
+.PHONY : Sources/dictionary_utils.s
+
+# target to generate assembly for a file
+Sources/dictionary_utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/dictionary_utils.c.s
+.PHONY : Sources/dictionary_utils.c.s
 
 Sources/network_data_control.obj: Sources/network_data_control.c.obj
 .PHONY : Sources/network_data_control.obj
@@ -512,6 +560,9 @@ help:
 	@echo ... Sources/3.operate_user.obj
 	@echo ... Sources/3.operate_user.i
 	@echo ... Sources/3.operate_user.s
+	@echo ... Sources/30.ban_user.obj
+	@echo ... Sources/30.ban_user.i
+	@echo ... Sources/30.ban_user.s
 	@echo ... Sources/31.send_request.obj
 	@echo ... Sources/31.send_request.i
 	@echo ... Sources/31.send_request.s
@@ -527,6 +578,9 @@ help:
 	@echo ... Sources/decorations.obj
 	@echo ... Sources/decorations.i
 	@echo ... Sources/decorations.s
+	@echo ... Sources/dictionary_utils.obj
+	@echo ... Sources/dictionary_utils.i
+	@echo ... Sources/dictionary_utils.s
 	@echo ... Sources/network_data_control.obj
 	@echo ... Sources/network_data_control.i
 	@echo ... Sources/network_data_control.s
