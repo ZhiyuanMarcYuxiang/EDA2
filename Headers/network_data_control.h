@@ -61,7 +61,7 @@ typedef struct User{
     int new_size;
 
     struct User* friend;
-    int size_firends;
+    int size_friends;
 }User;
 
 
