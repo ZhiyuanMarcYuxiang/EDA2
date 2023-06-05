@@ -35,6 +35,9 @@
 #define LESSTHAN (-1)
 #define GREATERTHAN 1
 
+#define ACCEPT (1)
+#define NOTACCEPT (-1)
+
 #include "option_utils.h"
 
 /// Estructura d'un usuari.
