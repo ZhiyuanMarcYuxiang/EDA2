@@ -71,3 +71,20 @@ void sortNetwork (Network *net, int type){
     net->users_order = type;
 }
 
+void selectiveSort (Dict* dictionary) {
+    Element temp;
+    for(int j = 0; j<10; j++) {
+        int idx_max = j;
+        for (int i = j+1; i<dictionary->count; i++) {
+            if (dictionary->elements[i].value> dictionary->elements[idx_max].value) {
+                idx_max = i;
+            }
+        }
+        if(idx_max != j) {
+            temp = dictionary->elements[j];
+            dictionary->elements[j] = dictionary->elements[idx_max];
+            dictionary->elements[idx_max] = temp;
+        }
+    }
+    return;
+}

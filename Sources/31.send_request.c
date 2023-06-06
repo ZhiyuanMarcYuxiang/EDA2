@@ -15,3 +15,48 @@
 void sendRequest (Network *net){
     ;
 }
+void printFriendRequests(User* user) {
+    if (user == NULL) {
+        printf("Invalid user.\n");
+        return;
+    }
+    if (user->old_requests == user->new_size) {
+        printf("No new friend requests.\n");
+        return;
+    }
+    printf("New friend requests:\n");
+    for (int i = user->old_requests; i < user->new_size; i++) {
+        printf("%s\n", user->request[i].data[0]);  // Assuming the first element in data is username
+    }
+}
+
+
+User* sendFriendRequest(User* currentUser, Network* network, const char* friendName) {
+    if (currentUser == NULL || network == NULL || friendName == NULL) {
+        printf("Invalid input.\n");
+        return NULL;
+    }
+
+    User* friend = NULL;
+    for (int i = 0; i < network->users_size; i++) {
+        if (strcmp(network->user[i].data[0], friendName) == 0) {
+            friend = &network->user[i];
+            break;
+        }
+    }
+    if (friend == NULL) {
+        printf("User not found.\n");
+        return NULL;
+    }
+
+    friend->request = realloc(friend->request, (friend->new_size + 1) * sizeof(User));
+    if (friend->request == NULL) {
+        printf("Memory allocation failed.\n");
+        return NULL;
+    }
+    friend->request[friend->new_size++] = *currentUser;
+    printf("Friend request sent to %s.\n", friendName);
+    return friend;
+}
+
+
