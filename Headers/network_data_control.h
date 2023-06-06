@@ -92,7 +92,7 @@ Network* initNetwork ();
 
 User * expandUsers (User *user, int current_size);
 
-char ** expandStringArray (char** post, int current_size);
+char ** expandStringArray (char** stringArray, int current_size);
 
 Dict* expandElements (Dict *dict, int current_size);
 

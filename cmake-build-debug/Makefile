@@ -248,29 +248,29 @@ Sources/3.operate_user.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/3.operate_user.c.s
 .PHONY : Sources/3.operate_user.c.s
 
-Sources/30.ban_user.obj: Sources/30.ban_user.c.obj
-.PHONY : Sources/30.ban_user.obj
+Sources/30.ceo_utils.obj: Sources/30.ceo_utils.c.obj
+.PHONY : Sources/30.ceo_utils.obj
 
 # target to build an object file
-Sources/30.ban_user.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.obj
-.PHONY : Sources/30.ban_user.c.obj
+Sources/30.ceo_utils.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ceo_utils.c.obj
+.PHONY : Sources/30.ceo_utils.c.obj
 
-Sources/30.ban_user.i: Sources/30.ban_user.c.i
-.PHONY : Sources/30.ban_user.i
+Sources/30.ceo_utils.i: Sources/30.ceo_utils.c.i
+.PHONY : Sources/30.ceo_utils.i
 
 # target to preprocess a source file
-Sources/30.ban_user.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.i
-.PHONY : Sources/30.ban_user.c.i
+Sources/30.ceo_utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ceo_utils.c.i
+.PHONY : Sources/30.ceo_utils.c.i
 
-Sources/30.ban_user.s: Sources/30.ban_user.c.s
-.PHONY : Sources/30.ban_user.s
+Sources/30.ceo_utils.s: Sources/30.ceo_utils.c.s
+.PHONY : Sources/30.ceo_utils.s
 
 # target to generate assembly for a file
-Sources/30.ban_user.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ban_user.c.s
-.PHONY : Sources/30.ban_user.c.s
+Sources/30.ceo_utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Xarxa_Social.dir\build.make CMakeFiles/Xarxa_Social.dir/Sources/30.ceo_utils.c.s
+.PHONY : Sources/30.ceo_utils.c.s
 
 Sources/31.send_request.obj: Sources/31.send_request.c.obj
 .PHONY : Sources/31.send_request.obj
@@ -560,9 +560,9 @@ help:
 	@echo ... Sources/3.operate_user.obj
 	@echo ... Sources/3.operate_user.i
 	@echo ... Sources/3.operate_user.s
-	@echo ... Sources/30.ban_user.obj
-	@echo ... Sources/30.ban_user.i
-	@echo ... Sources/30.ban_user.s
+	@echo ... Sources/30.ceo_utils.obj
+	@echo ... Sources/30.ceo_utils.i
+	@echo ... Sources/30.ceo_utils.s
 	@echo ... Sources/31.send_request.obj
 	@echo ... Sources/31.send_request.i
 	@echo ... Sources/31.send_request.s

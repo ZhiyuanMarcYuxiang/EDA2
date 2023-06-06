@@ -37,9 +37,8 @@ void acceptUser (Network* net, User *operating_user, char* request_user) {
 
     int last = operating_user->size_friends;
 
-    operating_user->friend[last] = copyString(request_user);
-
     operating_user->friend = expandStringArray (operating_user->friend,last);
+    operating_user->friend[last] = copyString(request_user);
     operating_user->size_friends += INCREMENT_SIZE;
 
     /// X has you as new friend, too. L'usuari que ens envia la sol·licitud sempre sabem que estarà a la llista.
@@ -48,7 +47,9 @@ void acceptUser (Network* net, User *operating_user, char* request_user) {
 
     int last2 = net->user[request_user_idx].size_friends;
 
+    net->user[request_user_idx].friend = expandStringArray (net->user[request_user_idx].friend,last);
     net->user[request_user_idx].friend[last2] = copyString(operating_user->data[NAME]);
+    net->user[request_user_idx].size_friends += INCREMENT_SIZE;
 
     printf("Request accepted. You have %s as new friend.\n",operating_user->friend[last]);
 }
@@ -73,7 +74,7 @@ void manageRequests  (Network* net, User *operating_user) {
     // Triem si acceptar o no les sol·licituds.
     for (int i=0; i < size_requests; i++){
 
-        printf("Hi I'm %s! Do you want to be my friend?",request[i]);
+        printf("Hi I'm %d: %s! Do you want to be my friend?\n",i, request[i]);
 
         option = readInt ("\n");
 

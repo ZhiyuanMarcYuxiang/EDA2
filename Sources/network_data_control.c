@@ -41,6 +41,7 @@ Network* initNetwork (){
     // Tant el post com el banned_user son una llista de string
     net->banned_user = initStringArray(ONE_SIZE);
     net->banned_users_size = NULL_SIZE;
+
     return net;
 }
 

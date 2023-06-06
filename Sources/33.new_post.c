@@ -5,7 +5,7 @@
 #include "../Headers/33.new_post.h"
 
 void newPost (Network *net, int idx) {
-    int last = net->user->posts_size;
+    int last = net->user[idx].posts_size;
     net->user->post = expandStringArray(net->user->post, last);
     printf("\nWrite your new post:\n");
     net->user[idx].post[last] = readString();
