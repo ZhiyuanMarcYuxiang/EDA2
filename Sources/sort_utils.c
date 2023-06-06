@@ -72,6 +72,7 @@ void sortNetwork (Network *net, int type){
 }
 
 void selectiveSort (Dict* dictionary) {
+
     Element temp;
     for(int j = 0; j<10; j++) {
         int idx_max = j;

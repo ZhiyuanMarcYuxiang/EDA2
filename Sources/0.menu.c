@@ -11,7 +11,7 @@ void showMenu () {
 
     Network *net = initNetwork ();
 
-    readFile (net,USERS_FILE);
+    readUsersFile(net, USERS_FILE);
 
     int option = INVALID_OPTION;
 

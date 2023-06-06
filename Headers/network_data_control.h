@@ -93,12 +93,13 @@ Dict* init_dictionary();
 
 Network* initNetwork ();
 
-
 User * expandUsers (User *user, int current_size);
 
-char ** expandPosts (char** post, int current_size);
+char ** expandStringArray (char** post, int current_size);
 
 Dict* expandElements (Dict *dict, int current_size);
+
+void deleteString_InArray(char **string_array, int position_to_delete, int current_size);
 
 void clearUsers (User *user, int users_size);
 

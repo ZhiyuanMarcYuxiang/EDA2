@@ -39,6 +39,7 @@ Network* initNetwork (){
     Network *net = malloc(sizeof(Network));
     net->users_size = NULL_SIZE;
     net->users_order = NOT_ORDERED;
+    // Inicialitzem el diccionari per a fer el top de paraules.
     net->dictionary  = init_dictionary();
     net->user = initUser();
     // Tant el post com el banned_user son una llista de string
@@ -70,20 +71,30 @@ Dict* expandElements (Dict *dict, int current_size){
     }
     for (int i = current_size; i<dict->size; i++) {
         dict->elements[i].key = "";
-        dict->elements->value = 0;
+        dict->elements->value = SET_ZERO;
     }
     return dict;
 }
 
-char** expandPosts (char **post, int current_size){
+char** expandStringArray (char **stringArray, int current_size){
 
     if ((current_size % MULTIPLICATIVE_FACTOR) == 0) {
 
         int real_size = current_size + MULTIPLICATIVE_FACTOR;
-        post = realloc(post, real_size * sizeof(char *));
+        stringArray = realloc(stringArray, real_size * sizeof(char *));
     }
-    return post;
+    return stringArray;
 }
+
+/// Esborrar un element.
+
+void deleteString_InArray(char **string_array, int position_to_delete, int current_size){
+
+    for (int i = position_to_delete; i < current_size-1; ++i) {
+        string_array[i] = copyString(string_array[i + 1]);
+    }
+}
+
 
 /// Funcions d'alliberament de dades.
 
@@ -148,8 +159,6 @@ void copyUser (User* copy, User* origin){
 }
 
 
-
-
 /// Lectura d'strings mitjançant un buffer i inicialització dinàmica d'un atribut.
 
 char* readString() {
@@ -166,4 +175,5 @@ char* readString() {
 
     return string;
 }
+
 

@@ -208,7 +208,7 @@ void newUser (Network *net){
     net->user[last].post = initPosts();
     net->user[last].posts_size = SET_ZERO;
 
-    appendFile (net->user[last],USERS_FILE);
+    appendUsersFile(net->user[last], USERS_FILE);
 
     net->users_size += INCREMENT_SIZE;
     net->users_order = NOT_ORDERED;

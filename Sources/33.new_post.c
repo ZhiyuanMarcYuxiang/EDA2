@@ -6,7 +6,7 @@
 
 void newPost (Network *net, int idx) {
     int last = net->user->posts_size;
-    net->user->post = expandPosts(net->user->post, last);
+    net->user->post = expandStringArray(net->user->post, last);
     printf("\nWrite your new post:\n");
     net->user[idx].post[last] = readString();
     read_words(net->dictionary, net->user[idx].post[last]);
