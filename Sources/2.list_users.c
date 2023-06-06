@@ -34,7 +34,7 @@ int maxAttributesLengths(User *user,int size, int type){
 int * array_maxAttributesLength (Network* net, int max_attributes_lengths[], char titles[][MAX_LENGTH]){
 
     for (int i = 0; i < ATTRIBUTES; ++i) {
-        max_attributes_lengths[i] = maxAttributesLengths (net->user, net->users_size, i);
+        max_attributes_lengths[i] = maxAttributesLengths (net->user, net->size_users, i);
         if (i<TITLES){
             int length = strlen(titles[i]);
             if (length > max_attributes_lengths[i] ){
@@ -74,7 +74,7 @@ void printUser (User user, int *max_attributes_lengths){
 
 void listUsers (Network net){
 
-    printf("\nRegistered users: %d\n\n",net.users_size);
+    printf("\nRegistered users: %d\n\n",net.size_users);
 
     char titles[TITLES][MAX_LENGTH];
     createArrayTitles(titles);
@@ -84,7 +84,7 @@ void listUsers (Network net){
 
     printTitles(titles, max_attributes_lengths);
 
-    for(int i=0; i<net.users_size; i++)
+    for(int i=0; i<net.size_users; i++)
         printUser (net.user[i], max_attributes_lengths);
 
 }

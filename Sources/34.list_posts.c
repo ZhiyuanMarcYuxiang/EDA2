@@ -11,10 +11,10 @@
 void listPosts (User *user) {
 
     char **post = user->post;
-    int size_posts = user->posts_size;
+    int size_posts = user->size_posts;
 
     if (size_posts == NULL_SIZE){
-        printf("\nYou don't have any post");
+        printf("\nYou don't have any post.\n");
     return;
     }
 

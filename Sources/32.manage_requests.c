@@ -12,8 +12,6 @@
 // 1) que l'usuari accepti la sol·licitud, la qual cosa significa actualitzar la llista d'user->friends i buidar la d'user->requests
 // 2) que no l'accepti, que simplement no farem i passarem a analitzar la següent sol·licitud.
 
-
-
 #define FIRST 0
 
 void listRequests (char **request,int size_request) {

@@ -7,19 +7,19 @@ void unbanUser(Network *net){
     printf("\nWhich user do you want to unban?\n");
     char *name = readString();
 
-    int banned_idx = searchInStringArray (net->banned_user, net->banned_users_size, name);
+    int banned_idx = searchInStringArray (net->banned_user, net->size_banned_users, name);
 
     if (banned_idx == STRING_NOT_FOUND){
         printf("\nThe banned user was not found!\n");
         return;
     }
 
-    int size = net->banned_users_size;
+    int size = net->size_banned_users;
 
     // En cas de trobar l'usuari banejat, ens el borra de la llista dels banejats.
     deleteString_InArray(net->banned_user, banned_idx, size);
 
-    net->banned_users_size += (-INCREMENT_SIZE);
+    net->size_banned_users += (-INCREMENT_SIZE);
 }
 
 void banUser(Network *net){
@@ -33,7 +33,7 @@ void banUser(Network *net){
         return;
     }
 
-    int last = net->banned_users_size;
+    int last = net->size_banned_users;
 
     // Expandim la llista d'strings dels usuaris banejats.
     net->banned_user = expandStringArray(net->banned_user, last);
@@ -44,7 +44,7 @@ void banUser(Network *net){
 
     printf("\n%s has been banned from the Social Network!\n", name);
 
-    net->banned_users_size += INCREMENT_SIZE;
+    net->size_banned_users += INCREMENT_SIZE;
 }
 
 
@@ -87,7 +87,7 @@ void ceoMenu (Network *net){
             unbanUser(net);
         }
         else if(option == OPTION_LIST_BANNED){
-            listBannedUsers(net->banned_user,net->banned_users_size);
+            listBannedUsers(net->banned_user,net->size_banned_users);
         }
         else if(option == OPTION_RETURN_MENU){
             // Go to principal menu.

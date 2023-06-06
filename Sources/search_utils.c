@@ -43,7 +43,7 @@ int searchNetwork (char* attribute, Network *net, int type){
     sortNetwork (net,type);
 
     User * user = net->user;
-    int size = net->users_size;
+    int size = net->size_users;
 
     if (size > NULL_SIZE){
         if(fencedAttribute (attribute, user, size, type) == TRUE){

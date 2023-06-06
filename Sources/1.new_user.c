@@ -199,14 +199,14 @@ char** newUserData (Network net){
 
 void newUser (Network *net){
 
-    int last = net->users_size;
+    int last = net->size_users;
 
     net->user = expandUsers (net->user,last);
 
     net->user[last].data = newUserData(*net);
 
     net->user[last].post = initStringArray(ONE_SIZE);
-    net->user[last].posts_size = SET_ZERO;
+    net->user[last].size_posts = SET_ZERO;
 
     net->user[last].friend = initStringArray(ONE_SIZE);
     net->user[last].size_friends = SET_ZERO;
@@ -216,6 +216,6 @@ void newUser (Network *net){
 
     appendUsersFile(net->user[last], USERS_FILE);
 
-    net->users_size += INCREMENT_SIZE;
-    net->users_order = NOT_ORDERED;
+    net->size_users += INCREMENT_SIZE;
+    net->order_users = NOT_ORDERED;
 }
