@@ -30,7 +30,8 @@ void respondToFriendRequest(User* currentUser, Network* network, int index, int 
             printf("Memory allocation failed.\n");
             return;
         }
-        currentUser->friend[currentUser->size_friends++] = *requester;
+        currentUser->size_friends++;
+        currentUser->friend[currentUser->size_friends] = *requester;
         printf("Accepted friend request from %s.\n", requester->data[0]);
 
         // Also add the current user to the requester's friend list
@@ -41,7 +42,8 @@ void respondToFriendRequest(User* currentUser, Network* network, int index, int 
                     printf("Memory allocation failed.\n");
                     return;
                 }
-                network->user[i].friend[network->user[i].size_friends++] = *currentUser;
+                network->user[i].size_friends++;
+                network->user[i].friend[network->user[i].size_friends] = *currentUser;
                 break;
             }
         }
@@ -58,11 +60,11 @@ void respondToFriendRequest(User* currentUser, Network* network, int index, int 
 
 void handleFriendRequest(User* currentUser, Network* network, int index) {
     int accept = 0;
-    printf("Do you accept the friend request? (1 for yes, -1 for no)\n");
+    printf("Hi I'm %s! Do you want to be my friend? (1 for YES, -1 for NO)\n", currentUser->request[index].data[0]);
     scanf("%d", &accept);
 
     while (accept != ACCEPT && accept != NOTACCEPT) {
-        printf("Invalid option. Please enter 1 to accept the friend request, or -1 to reject it.\n");
+        printf("Invalid option. Please enter 1 to accept the friend request or -1 to reject it.\n");
         scanf("%d", &accept);
     }
 

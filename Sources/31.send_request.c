@@ -15,6 +15,7 @@
 void sendRequest (Network *net){
     ;
 }
+
 void printFriendRequests(User* user) {
     if (user == NULL) {
         printf("Invalid user.\n");
@@ -26,7 +27,7 @@ void printFriendRequests(User* user) {
     }
     printf("New friend requests:\n");
     for (int i = user->old_requests; i < user->new_size; i++) {
-        printf("%s\n", user->request[i].data[0]);  // Assuming the first element in data is username
+        printf("Request from %s\n", user->request[i].data[0]);  // Assuming the first element in data is username
     }
 }
 
@@ -36,7 +37,12 @@ User* sendFriendRequest(User* currentUser, Network* network, const char* friendN
         printf("Invalid input.\n");
         return NULL;
     }
-
+    for (int j = 0; j < currentUser->size_friends; j++) {
+        if (strcmp(currentUser->friend[j].data[0], friendName) == 0) {
+            printf("You already are his friend!");
+            return NULL;
+        }
+    }
     User* friend = NULL;
     for (int i = 0; i < network->users_size; i++) {
         if (strcmp(network->user[i].data[0], friendName) == 0) {

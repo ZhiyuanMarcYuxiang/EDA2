@@ -56,10 +56,27 @@ void operateUserMenu (Network *net) {
         option = readInt("Choose your option:\n");
 
         if(option == OPTION_SEND_REQUEST){
-            sendRequest (net);
+            printf("\nIntroduce the name of the friend that you want to send request.\n");
+            char *string = readString();
+            if (strcmp(string, net->user[i].data[0]) == 0) {
+                printf("\nYou can't send friend request to yourself!\n");
+            }
+            else if (searchNetwork (name, net, NAME) != USER_NOT_FOUND) {
+
+                sendFriendRequest(&net->user[i], net, string);
+
+            }
+            else {
+                printf("This user does not exist!");
+            }
         }
         else if(option == OPTION_MANAGE_REQUESTS){
-            manageRequests (net);
+            printFriendRequests(&net->user[i]);
+            printf("SIZE:%d\n", net->user[i].new_size);
+            for (int k=0; k < net->user[i].new_size; k++){
+                printf("%d %s",k, net->user[i].request[k].data[0]);
+                handleFriendRequest(&net->user[i], net, k);
+            }
         }
         else if(option == OPTION_NEW_POST){
             newPost (net, i);
