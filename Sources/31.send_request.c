@@ -48,13 +48,15 @@ void sendFriendRequest (Network* net, User *operating_user) {
 
     // Si tot es compleix:
 
+    printf("AAA: %d\n", net->user[idx_requested_user].size_requests);
     int last = net->user[idx_requested_user].size_requests;
 
     net->user[idx_requested_user].request = expandStringArray (net->user[idx_requested_user].request,last);
-    net->user[idx_requested_user].size_requests += INCREMENT_SIZE;
-
     // La llista de sol·licituds de l'usuari que volem enviar sol·licitud <-- la informació nostra.
     net->user[idx_requested_user].request[last] = copyString(operating_user_name);
+    net->user[idx_requested_user].size_requests += INCREMENT_SIZE;
+
+
 
     printf("You have send a friend request to %s successfully.\n", net->user[idx_requested_user].data[NAME]);
 }
