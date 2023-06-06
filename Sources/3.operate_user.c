@@ -55,7 +55,7 @@ void operateUserMenu (Network *net) {
         }
 
         else if(option == OPTION_NEW_POST){
-            newPost (net, operating_user); /////////////////
+            newPost (net, operating_user);
         }
         else if(option == OPTION_LIST_POSTS){
             listPosts (&net->user[operating_user]);

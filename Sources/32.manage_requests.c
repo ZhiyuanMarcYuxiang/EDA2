@@ -65,14 +65,14 @@ void manageRequests  (Network* net, User *operating_user) {
     listRequests (request, size_requests);
 
     printf("\nWe are going to manage the requests.\n");
-    printf("[1 for YES, 0 for NO]\n\n");
+    printf("[1 for YES, 0 for NO]\n");
 
     int option = INVALID_OPTION;
 
     // Triem si acceptar o no les sol·licituds.
     for (int i=0; i < size_requests; i++){
 
-        printf("Hi I'm %s! Do you want to be my friend?\n", request[0]);
+        printf("\nHi I'm %s! Do you want to be my friend?", request[0]);
 
         option = readInt ("\n");
 
@@ -110,6 +110,6 @@ void removeFriend(User *operating_user){
     // En cas de trobar l'usuari banejat, ens el borra de la llista dels banejats.
     deleteString_InArray(operating_user->friend, friend_idx, size);
 
-    operating_user->size_friends += (-INCREMENT_SIZE);
+    operating_user->size_friends -= (INCREMENT_SIZE);
 }
 

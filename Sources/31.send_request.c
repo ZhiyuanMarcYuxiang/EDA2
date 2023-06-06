@@ -26,7 +26,7 @@ void sendFriendRequest (Network* net, User *operating_user) {
 
     // 1) Mirem que no coindeixi aquest nom d'usuari a sol·licitar amistat amb el teu propi nom.
     if (strcmp(requested_user_name, operating_user_name) == 0) {
-        printf("\nYou can't send friend request to yourself!\n");
+        printf("You can't send friend request to yourself!\n");
         return;
     }
 
@@ -41,14 +41,13 @@ void sendFriendRequest (Network* net, User *operating_user) {
     // 3) Mirem que l'usuari no estigui a la llista d'amics teus. Fem una cerca seqüencial.
     for (int i = 0; i < size_friends; i++) {
         if (strcmp(requested_user_name, operating_user->friend[i]) == 0) {
-            printf("%s and you are already friends!",requested_user_name);
+            printf("%s and you are already friends!\n",requested_user_name);
             return;
         }
     }
 
     // Si tot es compleix:
 
-    printf("AAA: %d\n", net->user[idx_requested_user].size_requests);
     int last = net->user[idx_requested_user].size_requests;
 
     net->user[idx_requested_user].request = expandStringArray (net->user[idx_requested_user].request,last);
