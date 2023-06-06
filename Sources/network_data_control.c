@@ -6,7 +6,7 @@
 
 /// Funcions per a inicialitzar dades.
 
-char* initAttribute (int size){
+char* initString (int size){
     return malloc(size * sizeof(char));
 }
 
@@ -130,7 +130,7 @@ char* copyString (char *origin){
 
     int length = strlen(origin) + END_CHARACTER;
 
-    char *copy = initAttribute (length * sizeof(char));
+    char *copy = initString(length * sizeof(char));
     strcpy (copy, origin);
     return copy;
 }

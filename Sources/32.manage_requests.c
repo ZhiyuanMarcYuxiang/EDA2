@@ -91,8 +91,6 @@ void manageRequests  (Network* net, User *operating_user) {
 }
 
 
-
-
 void removeFriend(User *operating_user){
 
     // Triem l'usuari a desbanejar pel seu nom. Mirem que existeixi a la llista.

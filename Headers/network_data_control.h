@@ -80,7 +80,7 @@ typedef struct {
 
 
 
-char* initAttribute (int size);
+char* initString (int size);
 
 char** initStringArray (int size);
 

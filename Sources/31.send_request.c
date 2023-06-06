@@ -48,9 +48,7 @@ void sendFriendRequest (Network* net, User *operating_user) {
 
     // Si tot es compleix:
 
-
     int last = net->user[idx_requested_user].size_requests;
-    printf("%d",last);
 
     net->user[idx_requested_user].request = expandStringArray (net->user[idx_requested_user].request,last);
     net->user[idx_requested_user].size_requests += INCREMENT_SIZE;
