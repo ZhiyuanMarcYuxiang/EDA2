@@ -25,7 +25,7 @@ void operateUserMenu (Network *net) {
     }
 
     // Si aquest usuari de la llista està banejat, sortim del menú, indicant que està banejat.
-    if (searchInStringArray (net->banned_user, net->banned_users_size, net->user[operating_user].data[NAME]) != STRING_NOT_FOUND) {
+    if (searchInStringArray (net->banned_user, net->size_banned_users, net->user[operating_user].data[NAME]) != STRING_NOT_FOUND) {
         printIsBannedMessage ();
         return;
     }

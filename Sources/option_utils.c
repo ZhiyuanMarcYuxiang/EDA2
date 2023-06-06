@@ -13,7 +13,6 @@ void flushInput (){
 }
 
 
-
 int readInt (const char* message){
     int num, matched;
     printf("%s",message);

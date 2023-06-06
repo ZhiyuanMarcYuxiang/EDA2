@@ -55,7 +55,7 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
                 user[user_idx].data = copyStringArray(data, ATTRIBUTES);
 
                 user[user_idx].post = initStringArray(ONE_SIZE);
-                user[user_idx].posts_size = SET_ZERO;
+                user[user_idx].size_posts = SET_ZERO;
 
                 user[user_idx].friend = initStringArray(ONE_SIZE);
                 user[user_idx].size_friends = SET_ZERO;
@@ -70,8 +70,8 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
     } while (c!=EOF);
 
     net->user = user;
-    net->users_size = user_idx;
-    net->users_order = NOT_ORDERED;
+    net->size_users = user_idx;
+    net->order_users = NOT_ORDERED;
 }
 
 
