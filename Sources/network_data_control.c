@@ -10,12 +10,8 @@ char* initAttribute (int size){
     return malloc(size * sizeof(char));
 }
 
-char** initPosts (){
-    return malloc(sizeof(char *));
-}
-
-char** initData (){
-    return malloc(ATTRIBUTES * sizeof(char *));
+char** initStringArray (int size){
+    return malloc(size *  sizeof(char*) );
 }
 
 User* initUser (){
@@ -43,7 +39,7 @@ Network* initNetwork (){
     net->dictionary  = init_dictionary();
     net->user = initUser();
     // Tant el post com el banned_user son una llista de string
-    net->banned_user = initPosts();
+    net->banned_user = initStringArray(ONE_SIZE);
     net->banned_users_size = NULL_SIZE;
     return net;
 }
@@ -142,7 +138,7 @@ char* copyString (char *origin){
 
 char** copyStringArray (char **origin, int size){
 
-    char **copy = initData();
+    char **copy = initStringArray(size);
 
     for (int i = 0; i < size; ++i) {
         copy[i] = copyString(origin[i]);
@@ -156,6 +152,13 @@ void copyUser (User* copy, User* origin){
 
     copy->post = copyStringArray(origin->post, origin->posts_size);
     copy->posts_size = origin->posts_size;
+
+    copy->request = copyStringArray(origin->request, origin->size_requests);
+    copy->size_requests = origin->size_requests;
+
+    copy->friend = copyStringArray(origin->friend, origin->size_friends);
+    copy->size_friends = origin->size_friends;
+
 }
 
 

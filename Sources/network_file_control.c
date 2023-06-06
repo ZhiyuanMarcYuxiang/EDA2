@@ -28,7 +28,7 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
 
     char c;
     User *user = initUser();
-    char **data = initData();
+    char **data = initStringArray(ATTRIBUTES);
     int user_idx = SET_ZERO;
     int attr_idx = SET_ZERO;
     int char_idx = SET_ZERO;
@@ -53,8 +53,15 @@ void Read_Users_Lines (Network *net, char* attribute, FILE *fp){
 
                 user = expandUsers (user, user_idx);
                 user[user_idx].data = copyStringArray(data, ATTRIBUTES);
-                user[user_idx].post = initPosts();
+
+                user[user_idx].post = initStringArray(ONE_SIZE);
                 user[user_idx].posts_size = SET_ZERO;
+
+                user[user_idx].friend = initStringArray(ONE_SIZE);
+                user[user_idx].size_friends = SET_ZERO;
+
+                user[user_idx].request = initStringArray(ONE_SIZE);
+                user[user_idx].size_requests = SET_ZERO;
 
                 user_idx++; attr_idx = RESET;
 

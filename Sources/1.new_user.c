@@ -176,7 +176,7 @@ void print_inputMessages(int type){
 
 char** newUserData (Network net){
 
-    char** data = initData();
+    char** data = initStringArray (ATTRIBUTES);
     char* attribute;
 
     for (int i = 0; i < ATTRIBUTES; ++i) {
@@ -205,8 +205,14 @@ void newUser (Network *net){
 
     net->user[last].data = newUserData(*net);
 
-    net->user[last].post = initPosts();
+    net->user[last].post = initStringArray(ONE_SIZE);
     net->user[last].posts_size = SET_ZERO;
+
+    net->user[last].friend = initStringArray(ONE_SIZE);
+    net->user[last].size_friends = SET_ZERO;
+
+    net->user[last].request = initStringArray(ONE_SIZE);
+    net->user[last].size_requests = SET_ZERO;
 
     appendUsersFile(net->user[last], USERS_FILE);
 

@@ -7,9 +7,9 @@ void unbanUser(Network *net){
     printf("\nWhich user do you want to unban?\n");
     char *name = readString();
 
-    int banned_idx = searchIfUserIsBanned (net, name);
+    int banned_idx = searchInStringArray (net->banned_user, net->banned_users_size, name);
 
-    if (banned_idx == BANNED_NOT_FOUND){
+    if (banned_idx == STRING_NOT_FOUND){
         printf("\nThe banned user was not found!\n");
         return;
     }
@@ -47,19 +47,6 @@ void banUser(Network *net){
     net->banned_users_size += INCREMENT_SIZE;
 }
 
-// Funció de cerca lineal. Suposem que la quanitat d'usuaris banejats no serà excessivament gran.
-
-int searchIfUserIsBanned(Network *net, char* name) {
-
-    for (int idx = 0; idx<net->banned_users_size; idx++)
-
-        // Retornem l'índex d'aquell usuari banejat dins l'estructura dels banejats si el troba.
-        if (strcmp(net->banned_user[idx], name) == 0)
-            return idx;
-
-    // Constant retornada de (-1) si no hem trobat l'usuari banejat.
-    return BANNED_NOT_FOUND;
-}
 
 void printIsBannedMessage(){
     printf("\nYour account has been disabled for violating our terms.\n");
@@ -85,6 +72,8 @@ void ceoMenu (Network *net){
         printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
 
         option = readInt("Choose your option:\n");
+
+        system("cls");
 
         if (option == OPTION_MOST_USED_WORDS) {
             net->dictionary->elements[0].value = 0;

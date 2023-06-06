@@ -87,5 +87,4 @@ void selectiveSort (Dict* dictionary) {
             dictionary->elements[idx_max] = temp;
         }
     }
-    return;
 }

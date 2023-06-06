@@ -59,11 +59,10 @@ typedef struct User{
     char** post;
     int posts_size;
 
-    struct User* request;
-    int old_requests;
-    int new_size;
+    char** request;
+    int size_requests;
 
-    struct User* friend;
+    char** friend;
     int size_friends;
 }User;
 
@@ -83,9 +82,7 @@ typedef struct {
 
 char* initAttribute (int size);
 
-char** initData();
-
-char** initPosts();
+char** initStringArray (int size);
 
 User* initUser();
 

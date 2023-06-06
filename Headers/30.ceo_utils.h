@@ -13,10 +13,7 @@
 #define OPTION_LIST_BANNED (4)
 #define OPTION_RETURN_MENU (0)
 
-#define BANNED_NOT_FOUND (-1)
 
-
-int searchIfUserIsBanned(Network *net, char* name);
 
 void printIsBannedMessage();
 
