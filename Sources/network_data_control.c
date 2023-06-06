@@ -11,7 +11,7 @@ char* initAttribute (int size){
 }
 
 char** initStringArray (int size){
-    return malloc(size *  sizeof(char*) );
+    return malloc(size *  sizeof(char *) );
 }
 
 User* initUser (){

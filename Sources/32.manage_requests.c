@@ -74,12 +74,12 @@ void manageRequests  (Network* net, User *operating_user) {
     // Triem si acceptar o no les sol·licituds.
     for (int i=0; i < size_requests; i++){
 
-        printf("Hi I'm %d: %s! Do you want to be my friend?\n",i, request[i]);
+        printf("Hi I'm %s! Do you want to be my friend?\n", request[0]);
 
         option = readInt ("\n");
 
         if (option == ACCEPT){
-            acceptUser(net,operating_user,request[i]);
+            acceptUser(net,operating_user,request[0]);
 
         }else{
             printf("Request denied\n");
@@ -87,7 +87,8 @@ void manageRequests  (Network* net, User *operating_user) {
 
         // Esborrem la primera sol·licitud, ja que és una cua. Request Deleted.
         deleteString_InArray(operating_user->request,FIRST,operating_user->size_requests);
-        operating_user->size_requests += (-INCREMENT_SIZE);
+        operating_user->size_requests -= (INCREMENT_SIZE);
+
     }
 }
 
