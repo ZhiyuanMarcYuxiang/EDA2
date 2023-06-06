@@ -19,9 +19,9 @@
 
 
 // Es llegeix els usuaris del fitxer en mode lectura.
-void readFile (Network *net, const char *fileName);
+void readUsersFile (Network *net, const char *fileName);
 
-void appendFile (User user, const char *fileName);
+void appendUsersFile (User user, const char *fileName);
 
 #endif //XARXA_SOCIAL_FILE_CONTROL_H
 

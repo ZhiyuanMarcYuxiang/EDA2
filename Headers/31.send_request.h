@@ -8,5 +8,7 @@
 #include "32.manage_requests.h"
 
 void sendRequest (Network *net);
+void printFriendRequests(User* user);
+void sendFriendRequest(Network* net, User *operating_user);
 
 #endif //XARXA_SOCIAL_31_SEND_REQUEST_H

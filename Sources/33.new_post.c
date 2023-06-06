@@ -4,15 +4,11 @@
 
 #include "../Headers/33.new_post.h"
 
-// Funció molt similar a newUser.
-
-void newPost (User *user) {
-    int last = user->posts_size;
-
-    user->post = expandPosts(user->post, last);
-
+void newPost (Network *net, int idx) {
+    int last = net->user[idx].posts_size;
+    net->user->post = expandStringArray(net->user->post, last);
     printf("\nWrite your new post:\n");
-    user->post[last] = readString();
-
-    user->posts_size += INCREMENT_SIZE;
+    net->user[idx].post[last] = readString();
+    read_words(net->dictionary, net->user[idx].post[last]);
+    net->user[idx].posts_size += INCREMENT_SIZE;
 }

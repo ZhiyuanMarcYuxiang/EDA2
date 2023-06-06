@@ -35,9 +35,23 @@
 #define LESSTHAN (-1)
 #define GREATERTHAN 1
 
+#define ACCEPT (1)
+#define NOTACCEPT (-1)
+
 #include "option_utils.h"
 
 /// Estructura d'un usuari.
+
+typedef struct{
+    char* key;
+    int value;
+} Element;
+
+typedef struct{
+    Element* elements;
+    int count;
+    int size;
+} Dict;
 
 typedef struct User{
     char** data;
@@ -45,12 +59,11 @@ typedef struct User{
     char** post;
     int posts_size;
 
-    struct User* request;
-    int old_requests;
-    int new_size;
+    char** request;
+    int size_requests;
 
-    struct User* friend;
-    int size_firends;
+    char** friend;
+    int size_friends;
 }User;
 
 
@@ -60,25 +73,34 @@ typedef struct {
     User* user;
     int users_size;
     int users_order;
+    Dict* dictionary;
+    char **banned_user;
+    int banned_users_size;
 }Network;
 
 
 
 char* initAttribute (int size);
 
-char** initData();
-
-char** initPosts();
+char** initStringArray (int size);
 
 User* initUser();
+
+Dict* init_dictionary();
 
 Network* initNetwork ();
 
 User * expandUsers (User *user, int current_size);
 
-char ** expandPosts (char** post, int current_size);
+char ** expandStringArray (char** stringArray, int current_size);
+
+Dict* expandElements (Dict *dict, int current_size);
+
+void deleteString_InArray(char **string_array, int position_to_delete, int current_size);
 
 void clearUsers (User *user, int users_size);
+
+void clearDictionary (Dict* dictionary);
 
 void clearNetwork (Network *network);
 

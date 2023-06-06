@@ -14,6 +14,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include <ctype.h>
 
 // Funcions per a llegir enters i validar-los.
 int readInt(const char *message);

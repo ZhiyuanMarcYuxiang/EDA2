@@ -5,8 +5,8 @@
 #ifndef XARXA_SOCIAL_33_NEW_POST_H
 #define XARXA_SOCIAL_33_NEW_POST_H
 
-#include "34.list_posts.h"
+#include "dictionary_utils.h"
 
-void newPost (User *user);
+void newPost (Network* net, int idx);
 
 #endif //XARXA_SOCIAL_33_NEW_POST_H

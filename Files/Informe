@@ -53,7 +53,7 @@ Mentre el caràcter no sigui End Of File (OxFFFFFFFF).
 Actualitzem a la llista d'usuaris.
 Actualitzem el tamany de la xarxa.
 
-readFile()
+readUsersFile()
 
 @param net: Xarxa d'usuaris inicialitzada.
 @param fileName: Nom d'un fitxer .csv existent amb la primera línia emprada per títols i la resta per amb els
