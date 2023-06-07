@@ -111,5 +111,6 @@ void removeFriend(User *operating_user){
     deleteString_InArray(operating_user->friend, friend_idx, size);
 
     operating_user->size_friends -= (INCREMENT_SIZE);
+    printf("%s has been removed from your friend list!\n", name);
 }
 

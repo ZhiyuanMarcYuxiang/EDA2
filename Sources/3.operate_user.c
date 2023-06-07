@@ -42,6 +42,8 @@ void operateUserMenu (Network *net) {
         printf("%d. Manage the pending requests.\n", OPTION_MANAGE_REQUESTS);
         printf("%d. Make a new post.\n", OPTION_NEW_POST);
         printf("%d. List all of the user posts.\n", OPTION_LIST_POSTS);
+        printf("%d. Remove friend.\n", OPTION_REMOVE_FRIEND);
+        printf("%d. See friend's posts.\n", OPTION_FRIEND_POST);
         printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
         option = readInt("Choose your option:\n");
 
@@ -58,9 +60,14 @@ void operateUserMenu (Network *net) {
             newPost (net, operating_user);
         }
         else if(option == OPTION_LIST_POSTS){
-            listPosts (&net->user[operating_user]);
+            listPosts (&net->user[operating_user], 0);
         }
-
+        else if(option == OPTION_REMOVE_FRIEND) {
+            removeFriend(&net->user[operating_user]);
+        }
+        else if(option == OPTION_FRIEND_POST) {
+            listfriendPosts(net, &net->user[operating_user]);
+        }
         else if(option == OPTION_RETURN_MENU){
             ;//DO NOTHING
         }

@@ -7,6 +7,10 @@
 
 #include "search_utils.h"
 
-void listPosts (User *user);
+#define USER_FRIEND (1)
+
+void listPosts (User *user, int who);
+
+void listfriendPosts (Network* net, User *operating_user);
 
 #endif //XARXA_SOCIAL_34_LIST_POSTS_H
