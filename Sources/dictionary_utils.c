@@ -3,7 +3,7 @@
 
 void add_value(int value, char* key, Dict* our_dictionary) {
     int i = 0;
-    while (i<our_dictionary->size && our_dictionary->count != 0) {
+    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
         if (strcmp(key, our_dictionary->elements[i].key) == 0) {
             // substituïm el nou valor pel valor vell
             our_dictionary->elements[i].value = value;
@@ -12,7 +12,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
         i++;
     }
 
-    if(our_dictionary->count == our_dictionary->size) {
+    if(our_dictionary->count == our_dictionary->size_elements) {
         printf("Dictionary is full");
         return;
     }
@@ -24,7 +24,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
 
 int search_index_with_key(char* key, Dict* our_dictionary) {
     int i = 0;
-    while (i<our_dictionary->size && our_dictionary->count != 0) {
+    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
         if (strcmp(key,our_dictionary->elements[i].key) == 0) {
             // retorna el index on està situat l’element (clau i valor)
             return i;

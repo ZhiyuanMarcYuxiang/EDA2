@@ -43,7 +43,7 @@ int searchNetwork (char* attribute, Network *net, int type){
     sortNetwork (net,type);
 
     User * user = net->user;
-    int size = net->users_size;
+    int size = net->size_users;
 
     if (size > NULL_SIZE){
         if(fencedAttribute (attribute, user, size, type) == TRUE){
@@ -51,4 +51,18 @@ int searchNetwork (char* attribute, Network *net, int type){
         }
     }
     return USER_NOT_FOUND;
+}
+
+// Funció de cerca lineal. Suposem que la quanitat d'usuaris banejats no serà excessivament gran.
+
+int searchInStringArray(char** StringArray, int size, char* String) {
+
+    for (int idx = 0; idx<size; idx++)
+
+        // Retornem l'índex d'aquell usuari banejat dins l'estructura dels banejats si el troba.
+        if (strcmp(StringArray[idx], String) == 0)
+            return idx;
+
+    // Constant retornada de (-1) si no hem trobat l'usuari banejat.
+    return STRING_NOT_FOUND;
 }

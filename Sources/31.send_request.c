@@ -7,62 +7,57 @@
 // Aquí el que podria fer seria, en primer lloc, aplicar un algoritme de cerca per a mirar si l'usuari que volem buscar
 // existeix. Per exemple, podríem aplicar "chooseUser".
 
-// Si l'usuari existeix, accedim a user->request d'aquell usuari i hi col·loquem la informació de l'usuari
-// d'on volem enviar la sol·licitud.
+// Si l'usuari existeix, accedim a user->request d'aquell usuari i hi col·loquem la informació nostra.
 
 // Hem d'anar fent real·locacions per a ampliar els requests d'aquell usuari en particular.
 
-void sendRequest (Network *net){
-    ;
-}
 
-void printFriendRequests(User* user) {
-    if (user == NULL) {
-        printf("Invalid user.\n");
+void sendFriendRequest (Network* net, User *operating_user) {
+
+    // Mida dels nostres amics i el nostre nom.
+    int size_friends = operating_user->size_friends;
+    char *operating_user_name = operating_user->data[NAME];
+
+    // Missatge per a enviar la sol·licitud.
+    printf("\nIntroduce the name of the user that you want to send a friend request.\n");
+    char *requested_user_name = readString();
+
+    // Condicions per enviar la sol·licitud:
+
+    // 1) Mirem que no coindeixi aquest nom d'usuari a sol·licitar amistat amb el teu propi nom.
+    if (strcmp(requested_user_name, operating_user_name) == 0) {
+        printf("You can't send friend request to yourself!\n");
         return;
     }
-    if (user->old_requests == user->new_size) {
-        printf("No new friend requests.\n");
+
+    // 2) Mirem que aquest usuari existeixi a la llista d'usuaris.
+    int idx_requested_user = searchNetwork(requested_user_name,net,NAME);
+
+    if (idx_requested_user == USER_NOT_FOUND){
+        printf("\nThe user was not found!\n");
         return;
     }
-    printf("New friend requests:\n");
-    for (int i = user->old_requests; i < user->new_size; i++) {
-        printf("Request from %s\n", user->request[i].data[0]);  // Assuming the first element in data is username
-    }
-}
 
-
-User* sendFriendRequest(User* currentUser, Network* network, const char* friendName) {
-    if (currentUser == NULL || network == NULL || friendName == NULL) {
-        printf("Invalid input.\n");
-        return NULL;
-    }
-    for (int j = 0; j < currentUser->size_friends; j++) {
-        if (strcmp(currentUser->friend[j].data[0], friendName) == 0) {
-            printf("You already are his friend!");
-            return NULL;
+    // 3) Mirem que l'usuari no estigui a la llista d'amics teus. Fem una cerca seqüencial.
+    for (int i = 0; i < size_friends; i++) {
+        if (strcmp(requested_user_name, operating_user->friend[i]) == 0) {
+            printf("%s and you are already friends!\n",requested_user_name);
+            return;
         }
     }
-    User* friend = NULL;
-    for (int i = 0; i < network->users_size; i++) {
-        if (strcmp(network->user[i].data[0], friendName) == 0) {
-            friend = &network->user[i];
-            break;
-        }
-    }
-    if (friend == NULL) {
-        printf("User not found.\n");
-        return NULL;
-    }
 
-    friend->request = realloc(friend->request, (friend->new_size + 1) * sizeof(User));
-    if (friend->request == NULL) {
-        printf("Memory allocation failed.\n");
-        return NULL;
-    }
-    friend->request[friend->new_size++] = *currentUser;
-    printf("Friend request sent to %s.\n", friendName);
-    return friend;
+    // Si tot es compleix:
+
+    int last = net->user[idx_requested_user].size_requests;
+
+    net->user[idx_requested_user].request = expandStringArray (net->user[idx_requested_user].request,last);
+    // La llista de sol·licituds de l'usuari que volem enviar sol·licitud <-- la informació nostra.
+    net->user[idx_requested_user].request[last] = copyString(operating_user_name);
+    net->user[idx_requested_user].size_requests += INCREMENT_SIZE;
+
+
+
+    printf("You have send a friend request to %s successfully.\n", net->user[idx_requested_user].data[NAME]);
 }
 
 

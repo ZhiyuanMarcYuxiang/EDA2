@@ -5,46 +5,36 @@
 #include "../Headers/3.operate_user.h"
 
 void operateUserMenu (Network *net) {
-    int option = INVALID_OPTION;
+
+    // Lectura d'un usuari.
     printf("\nWhich user do you want to operate with?\n");
     char *name = readString();
-    if (strcmp(name, "CEO") == 0) {
-        while(TRUE) {
-            printf("\n%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
-            printf("%d. Ban user.\n", OPTION_BAN_USER);
-            printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
-            option = readInt("Choose your option:\n");
-            if (option == OPTION_MOST_USED_WORDS) {
-                net->dictionary->elements[0].value = 0;
-                selectiveSort(net->dictionary);
-                print_dictionary_elements(net->dictionary);
-            }
-            else if(option == OPTION_BAN_USER) {
-                printf("\nWhich user do you want to ban?\n");
-                name = readString();
-                ban_user(net, name);
-            }
-            else if(option == OPTION_RETURN_MENU){
-                return; //DO NOTHING
-            }
-            else {
-                printf("\nInvalid option!\n");
-            }
-        }
-    }
-    int i = searchNetwork (name, net, NAME);
 
-    if (i == USER_NOT_FOUND){
+    // Si el nom és CEO, entrem en mode de desenvolupador. Després, sortim directament al menú principal.
+    if ( strcmp(name, "CEO") == 0){
+        ceoMenu(net);
+        return;
+    }
+
+    // En cas contrari, mirem si l'usuari està a la llista. En cas de no ser trobat, sortim al menú principal.
+    int operating_user = searchNetwork (name, net, NAME);
+
+    if (operating_user == USER_NOT_FOUND){
         printf("\nThe user was not found!\n");
         return;
     }
-    if (search_banned_user(net, net->user[i].data[NAME]) == TRUE) {
-        printf("\nYour account has been disabled for violating our terms.\n");
-        printf("Learn how you may be able to restore your account entering:\n");
-        printf("https://www.youtube.com/watch?v=dQw4w9WgXcQ\n");
+
+    // Si aquest usuari de la llista està banejat, sortim del menú, indicant que està banejat.
+    if (searchInStringArray (net->banned_user, net->size_banned_users, net->user[operating_user].data[NAME]) != STRING_NOT_FOUND) {
+        printIsBannedMessage ();
         return;
     }
-    printf("\nProfile of user %s initialized!\n",net->user[i].data[NAME]);
+
+    // Si tot és correcte (i el nom no és "CEO" ni està banejat), entrem a operar amb un usuari en concret.
+
+    printf("\nProfile of user %s initialized!\n",net->user[operating_user].data[NAME]);
+
+    int option = INVALID_OPTION;
 
     while(option != OPTION_RETURN_MENU){
 
@@ -52,44 +42,38 @@ void operateUserMenu (Network *net) {
         printf("%d. Manage the pending requests.\n", OPTION_MANAGE_REQUESTS);
         printf("%d. Make a new post.\n", OPTION_NEW_POST);
         printf("%d. List all of the user posts.\n", OPTION_LIST_POSTS);
+        printf("%d. Remove friend.\n", OPTION_REMOVE_FRIEND);
+        printf("%d. See friend's posts.\n", OPTION_FRIEND_POST);
         printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
         option = readInt("Choose your option:\n");
 
+        system("cls");
+
         if(option == OPTION_SEND_REQUEST){
-            printf("\nIntroduce the name of the friend that you want to send request.\n");
-            char *string = readString();
-            if (strcmp(string, net->user[i].data[0]) == 0) {
-                printf("\nYou can't send friend request to yourself!\n");
-            }
-            else if (searchNetwork (name, net, NAME) != USER_NOT_FOUND) {
-
-                sendFriendRequest(&net->user[i], net, string);
-
-            }
-            else {
-                printf("This user does not exist!");
-            }
+            sendFriendRequest(net,&net->user[operating_user]);
         }
         else if(option == OPTION_MANAGE_REQUESTS){
-            printFriendRequests(&net->user[i]);
-            printf("SIZE:%d\n", net->user[i].new_size);
-            for (int k=0; k < net->user[i].new_size; k++){
-                printf("%d %s",k, net->user[i].request[k].data[0]);
-                handleFriendRequest(&net->user[i], net, k);
-            }
-        }
-        else if(option == OPTION_NEW_POST){
-            newPost (net, i);
-        }
-        else if(option == OPTION_LIST_POSTS){
-            listPosts (&net->user[i]);
+            manageRequests  (net, &net->user[operating_user]);
         }
 
+        else if(option == OPTION_NEW_POST){
+            newPost (net, operating_user);
+        }
+        else if(option == OPTION_LIST_POSTS){
+            listPosts (&net->user[operating_user], 0);
+        }
+        else if(option == OPTION_REMOVE_FRIEND) {
+            removeFriend(&net->user[operating_user]);
+        }
+        else if(option == OPTION_FRIEND_POST) {
+            listfriendPosts(net, &net->user[operating_user]);
+        }
         else if(option == OPTION_RETURN_MENU){
             ;//DO NOTHING
         }
         else{
             printf("\nInvalid option!\n");
         }
+
     }
 }

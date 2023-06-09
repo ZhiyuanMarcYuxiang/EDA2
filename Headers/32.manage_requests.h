@@ -7,10 +7,10 @@
 
 #include "33.new_post.h"
 
-void manageRequests (Network *net);
-void respondToFriendRequest(User* currentUser, Network* network, int index, int accept);
-void handleFriendRequest(User* currentUser, Network* network, int index);
-void removeFriend(User* currentUser, User* friendToRemove);
+void manageRequests (Network* net, User *operating_user);
+
+void removeFriend(User *operating_user);
+
 
 // Imprimeixes els amics
 // Imprimeixes els nous amics

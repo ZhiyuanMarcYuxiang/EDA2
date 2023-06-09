@@ -22,8 +22,8 @@ Usuari:
 
 Network:
 - user: Array dinàmica dels usuaris.
-- users_size: Quantitat d'usuaris.
-- users_order: La forma d'ordenació de la llista (per nom, edat, correu, etc.).
+- size_users: Quantitat d'usuaris.
+- order_users: La forma d'ordenació de la llista (per nom, edat, correu, etc.).
 
 
 2. MÒDUL DEL CONTROL DEL FITXER DELS USUARIS
@@ -53,7 +53,7 @@ Mentre el caràcter no sigui End Of File (OxFFFFFFFF).
 Actualitzem a la llista d'usuaris.
 Actualitzem el tamany de la xarxa.
 
-readFile()
+readUsersFile()
 
 @param net: Xarxa d'usuaris inicialitzada.
 @param fileName: Nom d'un fitxer .csv existent amb la primera línia emprada per títols i la resta per amb els
@@ -72,7 +72,7 @@ Resultat:
 Paràmetres:
 - attribute: Un atribut a cercar a la llista.
 - user: Llista d'usuaris inicialitzada i ordenada alfabèticament segons un tipus.
-- users_size: Mida de la llista d'usuaris (no negatiu).
+- size_users: Mida de la llista d'usuaris (no negatiu).
 - type: Tipus d'atribut de l'usuari: NAME, AGE, EMAIL, etc.
 
 Inicialitzem els tres índexs i també un enter de comparació.
@@ -142,7 +142,7 @@ Retornem la llista combinada.
 mergeSort()
 
 @param user: Usuari inicialitzat amb valors per als seus atributs.
-@param users_size: Mida de la llista d'usuaris.
+@param size_users: Mida de la llista d'usuaris.
 @param type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
 @return Retornem una nova llista d'usuaris ordenada ascendentment a partir de l'atribut del nom.
 "Merge Sort" és un ordenament de recursiu a partir de trossejar i combinar la llista.
@@ -204,7 +204,7 @@ Resutlat: De cada columna d'atributs, mirem quina és l'string que té longitud 
 
 Paràmetres:
 - user: Llista d'usuaris inicialitzada.
-- users_size: Mida de la llista d'usuaris.
+- size_users: Mida de la llista d'usuaris.
 - type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
 
 

@@ -7,12 +7,10 @@
 #define FALSE 0
 
 
-
 void flushInput (){
     char c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
-
 
 
 int readInt (const char* message){
@@ -32,7 +30,3 @@ int readInt (const char* message){
     flushInput();
     return num;
 }
-
-
-
-

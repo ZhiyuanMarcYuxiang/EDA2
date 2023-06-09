@@ -40,7 +40,7 @@
 
 #include "option_utils.h"
 
-/// Estructura d'un usuari.
+/// Estructura del diccionari.
 
 typedef struct{
     char* key;
@@ -50,20 +50,25 @@ typedef struct{
 typedef struct{
     Element* elements;
     int count;
-    int size;
+    int size_elements;
 } Dict;
 
+/// Estructura dels usuaris.
+
 typedef struct User{
+    // Les seves dades: nom, edat, email, etc.
     char** data;
 
+    // Les seves publicacions (textos).
     char** post;
-    int posts_size;
+    int size_posts;
 
-    struct User* request;
-    int old_requests;
-    int new_size;
+    // Les sol·licituds d'amistat rebudes per part d'altres usuaris.
+    char** request;
+    int size_requests;
 
-    struct User* friend;
+    // Els amics de l'usuari.
+    char** friend;
     int size_friends;
 }User;
 
@@ -71,21 +76,24 @@ typedef struct User{
 /// Estructura de la xarxa.
 
 typedef struct {
+    // Array dinàmica d'usuaris.
     User* user;
-    int users_size;
-    int users_order;
-    Dict* dictionary;
+    int size_users;
+    int order_users;
+
+    // Usuaris banejats (s'hi conté el seu nom).
     char **banned_user;
-    int banned_users_size;
+    int size_banned_users;
+
+    // Diccionari per a comptar les paraules més utilitzades.
+    Dict* dictionary;
 }Network;
 
 
 
-char* initAttribute (int size);
+char* initString (int size);
 
-char** initData();
-
-char** initPosts();
+char** initStringArray (int size);
 
 User* initUser();
 
@@ -93,12 +101,13 @@ Dict* init_dictionary();
 
 Network* initNetwork ();
 
-
 User * expandUsers (User *user, int current_size);
 
-char ** expandPosts (char** post, int current_size);
+char ** expandStringArray (char** stringArray, int current_size);
 
 Dict* expandElements (Dict *dict, int current_size);
+
+void deleteString_InArray(char **string_array, int position_to_delete, int current_size);
 
 void clearUsers (User *user, int users_size);
 

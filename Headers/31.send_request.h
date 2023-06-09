@@ -9,6 +9,6 @@
 
 void sendRequest (Network *net);
 void printFriendRequests(User* user);
-User* sendFriendRequest(User* currentUser, Network* network, const char* friendName);
+void sendFriendRequest(Network* net, User *operating_user);
 
 #endif //XARXA_SOCIAL_31_SEND_REQUEST_H
