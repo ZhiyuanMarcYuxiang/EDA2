@@ -9,6 +9,7 @@
 
 void sendRequest (Network *net);
 void printFriendRequests(User* user);
-void sendFriendRequest(Network* net, User *operating_user);
+void sendFriendRequest(Network* net, User *operating_user, int random_user_idx);
+void searchRandomUser(Network* net, User* operating_user);
 
 #endif //XARXA_SOCIAL_31_SEND_REQUEST_H

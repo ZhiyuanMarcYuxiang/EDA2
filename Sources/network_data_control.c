@@ -18,6 +18,12 @@ User* initUser (){
     return malloc(sizeof(User));
 }
 
+Stack* initStack() {
+    Stack* stack = (Stack*) malloc(sizeof(Stack));
+    stack->top = 0;
+    return stack;
+}
+
 Dict* init_dictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
     dictionary->count = SET_ZERO;
@@ -115,8 +121,15 @@ void clearUsers (User *user, int users_size){
     free(user);
 }
 
-void clearDictionary (Dict* dictionary) {
+void clearElements(Dict* dictionary) {
+    for (int i = 0; i<dictionary->size_elements; i++) {
+        if (dictionary->elements[i].key != NULL) {
+            free(dictionary->elements[i].key);
+        }
+    }
+}
 
+void clearDictionary (Dict* dictionary) {
     free(dictionary);
 }
 
@@ -181,4 +194,9 @@ char* readString() {
     return string;
 }
 
-
+void printSpaces (char previous_string[], int max_length){
+    int spaces = max_length - strlen(previous_string);
+    for (int j = 0; j < spaces; ++j) {
+        printf(" ");
+    }
+}

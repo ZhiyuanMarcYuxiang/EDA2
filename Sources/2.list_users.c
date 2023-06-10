@@ -12,13 +12,6 @@ void createArrayTitles (char titles[TITLES][MAX_LENGTH]){
     strcpy(titles[HOBBY1],"HOBBIES");
 }
 
-void printSpaces (char previous_string[], int max_length){
-    int spaces = max_length - strlen(previous_string);
-    for (int j = 0; j < spaces; ++j) {
-        printf(" ");
-    }
-}
-
 int maxAttributesLengths(User *user,int size, int type){
     int max = 0;
     int length;
@@ -44,7 +37,6 @@ int * array_maxAttributesLength (Network* net, int max_attributes_lengths[], cha
     }
     return max_attributes_lengths;
 }
-
 
 void printTitles (char titles[][MAX_LENGTH], int *max_attributes_lengths){
     // Imprimim els títols.

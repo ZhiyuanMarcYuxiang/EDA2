@@ -16,7 +16,7 @@ void listPosts (User *user, int who) {
     // La variable who s'utilitza per saber si els post son del l'usuari que hem inicialitzat
     // o dels seus amics
 
-    if (size_posts == NULL_SIZE && who != USER_FRIEND){
+    if (size_posts == NULL_SIZE && who != FRIEND){
         printf("\nYou don't have any post.\n");
         return;
     }
@@ -25,7 +25,7 @@ void listPosts (User *user, int who) {
         return;
     }
 
-    if (who != USER_FRIEND) {
+    if (who != FRIEND) {
         printf("\nYou have %d post.\n", size_posts);
     }
     else{
@@ -40,7 +40,7 @@ void listPosts (User *user, int who) {
 }
 
 void listfriendPosts (Network* net, User *operating_user) {
-    printf("\nSearch posts from which friend?\n");
+    printf("\nSearch for which friend's post?\n");
     char *name = readString();
 
     int friend_idx = searchInStringArray (operating_user->friend, operating_user->size_friends, name);
@@ -51,5 +51,15 @@ void listfriendPosts (Network* net, User *operating_user) {
     }
     int idx = searchNetwork(name, net, NAME);
 
-    listPosts(&net->user[idx], USER_FRIEND);
+    listPosts(&net->user[idx], FRIEND);
+}
+
+void listFriends(User* operating_user) {
+    if (operating_user->size_friends == 0) {
+        printf("\nYou don't have any friend!\n");
+        return;
+    }
+    for (int i = 0; i<operating_user->size_friends; i++) {
+        printf("Friend: %s\n", operating_user->friend[i]);
+    }
 }

@@ -51,7 +51,7 @@ void banUser(Network *net){
 void printIsBannedMessage(){
     printf("\nYour account has been disabled for violating our terms.\n");
     printf("Learn how you may be able to restore your account entering\n");
-    printf("in our file Network_Social_Terms.\n");
+    printf("in our Social_Network_Terms file.\n");
 }
 
 void listBannedUsers(char** banned_user, int size){

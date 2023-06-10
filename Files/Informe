@@ -206,7 +206,7 @@ Paràmetres:
 - user: Llista d'usuaris inicialitzada.
 - size_users: Mida de la llista d'usuaris.
 - type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
-
+***********************
 
 printUser
 

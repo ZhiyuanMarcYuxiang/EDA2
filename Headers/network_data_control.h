@@ -40,6 +40,11 @@
 
 #include "option_utils.h"
 
+typedef struct {
+    int array[3];
+    int top;
+}Stack;
+
 /// Estructura del diccionari.
 
 typedef struct{
@@ -97,6 +102,8 @@ char** initStringArray (int size);
 
 User* initUser();
 
+Stack* initStack();
+
 Dict* init_dictionary();
 
 Network* initNetwork ();
@@ -110,6 +117,8 @@ Dict* expandElements (Dict *dict, int current_size);
 void deleteString_InArray(char **string_array, int position_to_delete, int current_size);
 
 void clearUsers (User *user, int users_size);
+
+void clearElements(Dict* dictionary);
 
 void clearDictionary (Dict* dictionary);
 
@@ -125,4 +134,5 @@ int compAttribute (User userA, User userB, int type);
 
 char* readString();
 
+void printSpaces (char previous_string[], int max_length);
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H
