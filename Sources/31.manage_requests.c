@@ -16,7 +16,7 @@
 #define FIRST 0
 
 
-/// Funcions per a afegir o eliminar elements en una cua de sol·licituds d'un usuari.
+/// Funcions per a afegir o eliminar element en una cua de sol·licituds d'un usuari.
 
 void enqueueRequest (Network* net, char* operating_user_name, int idx_requested_user) {
 

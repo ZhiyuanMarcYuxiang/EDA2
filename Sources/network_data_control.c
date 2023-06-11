@@ -12,7 +12,6 @@ Stack* initStack() {
     return stack;
 }
 
-
 char* initString (int size){
     return malloc(size * sizeof(char));
 }
@@ -27,11 +26,11 @@ User* initUser (){
 
 Dict* init_dictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
-    dictionary->current_elements = SET_ZERO;
-    dictionary->elements = (Element*) malloc(MAX_DICTIONARY_ELEMENTS * sizeof(Element));
+    dictionary->current_element = SET_ZERO;
+    dictionary->element = (Element*) malloc(MAX_DICTIONARY_ELEMENTS * sizeof(Element));
     for (int i = 0; i < MAX_DICTIONARY_ELEMENTS; ++i) {
-        dictionary->elements[i].key = "";
-        dictionary->elements[i].value = SET_ZERO;
+        dictionary->element[i].key = "";
+        dictionary->element[i].value = SET_ZERO;
     }
 
     return dictionary;
@@ -53,6 +52,7 @@ Network* initNetwork (){
 
     return net;
 }
+
 
 /// Funcions d'expansió de dades.
 
@@ -76,6 +76,7 @@ char** expandStringArray (char **stringArray, int current_size){
     }
     return stringArray;
 }
+
 
 /// Esborrar un element.
 
@@ -108,15 +109,15 @@ void clearUsers (User *user, int users_size){
     free(user);
 }
 
-void clearElements(Element* elements, int current_elements) {
+void clearElements(Element* element, int current_elements) {
     for (int i = 0; i<current_elements; i++) {
-        free(elements[i].key);
+        free(element[i].key);
     }
-    free(elements);
+    free(element);
 }
 
 void clearDictionary (Dict* dictionary) {
-    clearElements(dictionary->elements, dictionary->current_elements);
+    clearElements(dictionary->element, dictionary->current_element);
     free(dictionary);
 }
 
