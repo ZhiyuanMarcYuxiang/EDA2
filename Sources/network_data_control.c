@@ -6,6 +6,13 @@
 
 /// Funcions per a inicialitzar dades.
 
+Stack* initStack() {
+    Stack* stack = (Stack*) malloc(sizeof(Stack));
+    stack->top = 0;
+    return stack;
+}
+
+
 char* initString (int size){
     return malloc(size * sizeof(char));
 }
@@ -18,21 +25,15 @@ User* initUser (){
     return malloc(sizeof(User));
 }
 
-Stack* initStack() {
-    Stack* stack = (Stack*) malloc(sizeof(Stack));
-    stack->top = 0;
-    return stack;
-}
-
 Dict* init_dictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
-    dictionary->count = SET_ZERO;
-    dictionary->size_elements = 10;
-    dictionary->elements = (Element*) malloc(dictionary->size_elements * sizeof(Element));
-    for (int i = 0; i<dictionary->size_elements; i++) {
+    dictionary->current_elements = SET_ZERO;
+    dictionary->elements = (Element*) malloc(MAX_DICTIONARY_ELEMENTS * sizeof(Element));
+    for (int i = 0; i < MAX_DICTIONARY_ELEMENTS; ++i) {
         dictionary->elements[i].key = "";
-        dictionary->elements->value = 0;
+        dictionary->elements[i].value = SET_ZERO;
     }
+
     return dictionary;
 }
 
@@ -41,9 +42,11 @@ Network* initNetwork (){
     Network *net = malloc(sizeof(Network));
     net->size_users = NULL_SIZE;
     net->order_users = NOT_ORDERED;
+
     // Inicialitzem el diccionari per a fer el top de paraules.
     net->dictionary  = init_dictionary();
     net->user = initUser();
+
     // Tant el post com el banned_user son una llista de string
     net->banned_user = initStringArray(ONE_SIZE);
     net->size_banned_users = NULL_SIZE;
@@ -64,21 +67,6 @@ User* expandUsers (User *user, int current_size){
     return user;
 }
 
-Dict* expandElements (Dict *dict, int current_size){
-
-    // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem.
-    if ((current_size % (MULTIPLICATIVE_FACTOR*2)) == 0) {
-        int real_size = current_size + (MULTIPLICATIVE_FACTOR*2);
-        dict->size_elements = real_size;
-        dict->elements = realloc(dict->elements, real_size * sizeof(Element));
-    }
-    for (int i = current_size; i<dict->size_elements; i++) {
-        dict->elements[i].key = "";
-        dict->elements->value = SET_ZERO;
-    }
-    return dict;
-}
-
 char** expandStringArray (char **stringArray, int current_size){
 
     if ((current_size % MULTIPLICATIVE_FACTOR) == 0) {
@@ -91,9 +79,9 @@ char** expandStringArray (char **stringArray, int current_size){
 
 /// Esborrar un element.
 
-void deleteString_InArray(char **string_array, int position_to_delete, int current_size){
+void deleteString_InArray(char **string_array, int size, int position_to_delete){
 
-    for (int i = position_to_delete; i < current_size-1; ++i) {
+    for (int i = position_to_delete; i < size-1; ++i) {
         string_array[i] = copyString(string_array[i + 1]);
     }
 }
@@ -106,7 +94,6 @@ void clearStringArray (char** string_array, int size){
     for (int i = 0; i < size; ++i) {
         free(string_array[i]);
     }
-
     free(string_array);
 }
 
@@ -121,15 +108,15 @@ void clearUsers (User *user, int users_size){
     free(user);
 }
 
-void clearElements(Dict* dictionary) {
-    for (int i = 0; i<dictionary->size_elements; i++) {
-        if (dictionary->elements[i].key != NULL) {
-            free(dictionary->elements[i].key);
-        }
+void clearElements(Element* elements, int current_elements) {
+    for (int i = 0; i<current_elements; i++) {
+        free(elements[i].key);
     }
+    free(elements);
 }
 
 void clearDictionary (Dict* dictionary) {
+    clearElements(dictionary->elements, dictionary->current_elements);
     free(dictionary);
 }
 
@@ -199,4 +186,20 @@ void printSpaces (char previous_string[], int max_length){
     for (int j = 0; j < spaces; ++j) {
         printf(" ");
     }
+}
+
+/// Funcions específiques d'una pila.
+
+
+void push (Stack* stack, int random_user_idx) {
+    stack->array[stack->top] = random_user_idx;
+    stack->top += INCREMENT_SIZE;
+}
+
+void pop (Stack* stack) {
+    stack->top += DECREMENT_SIZE;
+}
+
+int top (Stack* stack) {
+    return stack->array[stack->top-1];
 }

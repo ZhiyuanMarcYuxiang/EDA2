@@ -55,9 +55,9 @@ int searchNetwork (char* attribute, Network *net, int type){
 
 // Funció de cerca lineal. Suposem que la quanitat d'usuaris banejats no serà excessivament gran.
 
-int searchInStringArray(char** StringArray, int size, char* String) {
+int searchInStringArray(char* String, char** StringArray, int ArraySize) {
 
-    for (int idx = 0; idx<size; idx++)
+    for (int idx = 0; idx < ArraySize; idx++)
 
         // Retornem l'índex d'aquell usuari banejat dins l'estructura dels banejats si el troba.
         if (strcmp(StringArray[idx], String) == 0)
@@ -65,4 +65,13 @@ int searchInStringArray(char** StringArray, int size, char* String) {
 
     // Constant retornada de (-1) si no hem trobat l'usuari banejat.
     return STRING_NOT_FOUND;
+}
+
+int searchInIntArray (int integer, int *array, int array_size){
+    for (int i=0; i<array_size; i++){
+        if(integer == array[i]){
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
