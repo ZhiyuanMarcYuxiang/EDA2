@@ -84,19 +84,44 @@ int top (Stack* stack) {
     return stack->array[stack->top-1];
 }
 
+void freeStack(Stack* stack) {
+    while (stack->top != 0) {
+        pop(stack);
+    }
+}
+
+// Evitar que dos users aleatoris coincideixin
+int idxInStack(Stack* stack, int idx) {
+    int i = 0;
+    while (i<stack->top) {
+        if (stack->array[i] == idx) {
+            return TRUE;
+        }
+        i++;
+    }
+    return FALSE;
+}
 Stack* fullStack (Network* net, User* operating_user) {
     Stack* stack = initStack();
     int friend_idx;
-    int random_idx;
+    int random_idx = 0;
+    int time = 0;
     User random_user;
     for (int i = 0; i<3; i++) {
         friend_idx = 0;
-        printf("\nSearching...\n");
-        while (friend_idx != STRING_NOT_FOUND) {
+        printf("Searching...");
+        while (friend_idx != STRING_NOT_FOUND && time<50) {
             random_idx = (rand()%net->size_users);
             random_user = net->user[random_idx];
-            friend_idx = searchInStringArray(operating_user->friend, operating_user->size_friends,
-                                             random_user.data[NAME]);
+            if (strcmp(operating_user->data[NAME],random_user.data[NAME]) != 0) {
+                friend_idx = searchInStringArray(operating_user->friend, operating_user->size_friends,
+                                                 random_user.data[NAME]);
+            }
+            if (idxInStack(stack, random_idx) == TRUE) {
+                printf("Hello");
+                friend_idx = 0;
+            }
+            time++;
         }
         printf("IDX: %d", random_idx);
         push(stack, random_idx);
@@ -107,12 +132,15 @@ Stack* fullStack (Network* net, User* operating_user) {
 // Funció que implementa una pila i simula Tinder
 void searchRandomUser(Network* net, User* operating_user) {
     Stack* stack = fullStack(net, operating_user);
-    int i = 0;
     int exit = FALSE;
     int random_user_idx;
     int option;
-
-    while (i<3 && exit == FALSE) {
+    if (stack->top == 0) {
+        printf("Not random user found!\n");
+        freeStack(stack);
+        return;
+    }
+    while (stack->top>0 && exit == FALSE) {
         printf("\nHello %d!\n", stack->top);
         random_user_idx = top(stack);
         printf("%s is not your friend. Do you want to send him/her a friend request?", net->user[random_user_idx].data[NAME]);
@@ -121,6 +149,7 @@ void searchRandomUser(Network* net, User* operating_user) {
         option = readInt("\n") ;
 
         if (option == -1) {
+            free(stack);
             return;
         }
         else if (option == ACCEPT){
@@ -129,7 +158,6 @@ void searchRandomUser(Network* net, User* operating_user) {
             printf("Operation canceled!\n");
         }
         pop(stack);
-        i++;
     }
 }
 
