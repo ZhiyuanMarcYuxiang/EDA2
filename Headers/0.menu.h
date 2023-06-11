@@ -14,7 +14,6 @@
 
 
 #include "1.new_user.h"
-#include "decorations.h"
 
 // Funció principal amb el primer menú.
 //      a) Nou usuari

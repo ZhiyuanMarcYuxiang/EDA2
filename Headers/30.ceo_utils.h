@@ -5,15 +5,14 @@
 #ifndef XARXA_SOCIAL_30_CEO_UTILS_H
 #define XARXA_SOCIAL_30_CEO_UTILS_H
 
-#include "31.send_request.h"
+#include "31.manage_requests.h"
 
 #define OPTION_MOST_USED_WORDS (1)
 #define OPTION_BAN_USER (2)
 #define OPTION_UNBAN_USER (3)
 #define OPTION_LIST_BANNED (4)
+
 #define OPTION_RETURN_MENU (0)
-
-
 
 void printIsBannedMessage();
 

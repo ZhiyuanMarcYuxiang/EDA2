@@ -11,8 +11,9 @@
 #include "sort_utils.h"
 
 
+int searchInIntArray (int integer, int *array, int array_size);
 
-int searchInStringArray(char** StringArray, int size, char* String);
+int searchInStringArray(char* String, char** StringArray, int ArraySize);
 
 // Ens busca binàriament un usuari a la llista d'usuaris.
 

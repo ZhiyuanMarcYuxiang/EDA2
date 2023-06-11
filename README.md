@@ -320,13 +320,13 @@ Paràmetres:
 - user: Usuari inicialitzat amb valors.
 - maximums: Llista que conté les longituds de les strings més llargues de cada columna d'atributs.
 
-// Iterem per cada columna.
-// Per a NAME, AGE, EMAIL I CITY.
-// Imiprimim l'atribut i omplim amb espais proporcionals.
-// Per als 4 primers hobbies.
-// Els imprimim separant-los amb punt i coma.
-// Per a l'últim hobby.
-// L'imprimim amb un caràcter de salt de línia.
+Iterem per cada columna.
+Per a NAME, AGE, EMAIL I CITY.
+Imiprimim l'atribut i omplim amb espais proporcionals.
+Per als 4 primers hobbies.
+Els imprimim separant-los amb punt i coma.
+Per a l'últim hobby.
+L'imprimim amb un caràcter de salt de línia.
 
 listUsers
 

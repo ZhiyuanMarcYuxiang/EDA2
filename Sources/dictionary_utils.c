@@ -1,32 +1,36 @@
 
 #include "../Headers/dictionary_utils.h"
 
-void add_value(int value, char* key, Dict* our_dictionary) {
+void add_value(int value, char* key, Dict* dictionary) {
+
+    // Diccionari ple.
+    if(dictionary->current_elements == MAX_DICTIONARY_ELEMENTS) {
+        printf("Dictionary is full");
+        return;
+    }
+
+    // Diccionari no buit amb clau existent.
     int i = 0;
-    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
-        if (strcmp(key, our_dictionary->elements[i].key) == 0) {
-            // substituïm el nou valor pel valor vell
-            our_dictionary->elements[i].value = value;
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
+        if (strcmp(key, dictionary->elements[i].key) == 0) {
+            // Substituïm el nou valor pel valor vell
+            dictionary->elements[i].value = value;
             return;
         }
         i++;
     }
 
-    if(our_dictionary->count == our_dictionary->size_elements) {
-        printf("Dictionary is full");
-        return;
-    }
-    // Si arriba a aquesta part, vol dir que la key no existeix i el diccionari no està ple
-    our_dictionary->elements[our_dictionary->count].key = key;
-    our_dictionary->elements[our_dictionary->count].value = value;
-    our_dictionary->count++;
+    // Si arriba a aquesta part, vol dir que la clau no existeix i el diccionari no està ple
+    dictionary->elements[dictionary->current_elements].key = copyString(key);
+    dictionary->elements[dictionary->current_elements].value = value;
+    dictionary->current_elements += INCREMENT_SIZE;
 }
 
-int search_index_with_key(char* key, Dict* our_dictionary) {
+int search_index_with_key(char* key, Dict* dictionary) {
     int i = 0;
-    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
-        if (strcmp(key,our_dictionary->elements[i].key) == 0) {
-            // retorna el index on està situat l’element (clau i valor)
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
+        if (strcmp(key, dictionary->elements[i].key) == 0) {
+            // retorna l'índex on està situat l’element (clau i valor)
             return i;
         }
         i++;
@@ -49,7 +53,10 @@ int maxWordlength (Dict* dictionary) {
     int idx = 0;
     int max = 0;
     int length;
-    while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
+
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
+
         length = strlen(dictionary->elements[idx].key);
         if(max < length) {
             max = length;
@@ -62,7 +69,10 @@ int maxWordlength (Dict* dictionary) {
 void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
     printf("\n");
-    while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
+
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
+
         if (search_value(dictionary->elements[idx].key, dictionary) != 0) {
             printf("WORD:%s ", dictionary->elements[idx].key);
             printSpaces(dictionary->elements[idx].key, maxWordlength(dictionary));
@@ -110,6 +120,5 @@ void read_words(Dict *dictionary, char* post) {
             }
             count_words(dictionary, buffer);
         }
-        dictionary = expandElements(dictionary, dictionary->count);
     }
 }
