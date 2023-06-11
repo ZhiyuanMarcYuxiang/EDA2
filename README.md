@@ -7,9 +7,12 @@ Zhiyuan, Marc, Yuxiang
 
 Constants:
 - ATTRIBUTES: Quanitat de dades d'un usuari.
+- MAX_DICTIONARY_ELEMENTS: Elements màxims del diccionari
 - NAME, AGE, EMAIL, (...): Són els índex per a accedir als atributs de les dades de l'usuari.
-- NULL_SIZE: Mida d'una array buida.
+- NULL_SIZE: Mida d'una array buida (0).
+- ONE_SIZE: Mida d'una array amb un element (1).
 - INCREMENT_SIZE: Per a incrementar la mida d'una array d'un en un.
+- DECREMENET SIZE: El mateix que increment però al revés.
 - MULTIPLICATIVE_FACTOR: Per a incrementar una array en varis element.
 - NOT_ORDERED: La llista no té cap tipus d'ordenació.
 - BUFFER_SIZE: Un nombre molt gran, per a un buffer de caràcters (2^10 bytes)

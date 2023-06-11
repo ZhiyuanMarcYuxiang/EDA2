@@ -6,7 +6,7 @@
 
 
 void showMenu () {
-    printf("\nWelcome to ZhiYuMarc Network!\n");
+    printf("\nWelcome to ZHIYUMARC Network!\n");
     printf("What do you want to do?\n");
 
     Network *net = initNetwork ();
