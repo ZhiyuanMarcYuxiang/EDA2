@@ -61,9 +61,9 @@ typedef struct{
 
 typedef struct{
     // Elements del diccionari.
-    Element* elements;
+    Element* element;
     // Elements actuals del diccionari (com a màxim en poden ser 10).
-    int current_elements;
+    int current_element;
 } Dict;
 
 /// Estructura dels usuaris.

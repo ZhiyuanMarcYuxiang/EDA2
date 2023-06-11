@@ -99,7 +99,7 @@ void ceoMenu (Network *net){
         //system("cls");
 
         if (option == OPTION_MOST_USED_WORDS) {
-            net->dictionary->elements[0].value = 0;
+            net->dictionary->element[0].value = 0;
             selectiveSort(net->dictionary);
             print_dictionary_elements(net->dictionary);
         }
