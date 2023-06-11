@@ -4,14 +4,14 @@
 void add_value(int value, char* key, Dict* dictionary) {
 
     // Diccionari ple.
-    if(dictionary->current_element == MAX_DICTIONARY_ELEMENTS) {
+    if(dictionary->current_elements == MAX_DICTIONARY_ELEMENTS) {
         printf("Dictionary is full");
         return;
     }
 
     // Diccionari no buit amb clau existent.
     int i = 0;
-    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_element != 0) {
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
         if (strcmp(key, dictionary->element[i].key) == 0) {
             // Substituïm el nou valor pel valor vell
             dictionary->element[i].value = value;
@@ -21,14 +21,14 @@ void add_value(int value, char* key, Dict* dictionary) {
     }
 
     // Si arriba a aquesta part, vol dir que la clau no existeix i el diccionari no està ple
-    dictionary->element[dictionary->current_element].key = copyString(key);
-    dictionary->element[dictionary->current_element].value = value;
-    dictionary->current_element += INCREMENT_SIZE;
+    dictionary->element[dictionary->current_elements].key = copyString(key);
+    dictionary->element[dictionary->current_elements].value = value;
+    dictionary->current_elements += INCREMENT_SIZE;
 }
 
 int search_index_with_key(char* key, Dict* dictionary) {
     int i = 0;
-    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_element != 0) {
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
         if (strcmp(key, dictionary->element[i].key) == 0) {
             // retorna l'índex on està situat l’element (clau i valor)
             return i;
@@ -54,8 +54,8 @@ int maxWordlength (Dict* dictionary) {
     int max = 0;
     int length;
 
-    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_element >= MAX_DICTIONARY_ELEMENTS ||
-    idx < dictionary->current_element && dictionary->current_element < MAX_DICTIONARY_ELEMENTS) {
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
 
         length = strlen(dictionary->element[idx].key);
         if(max < length) {
@@ -70,8 +70,8 @@ void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
     printf("\n");
 
-    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_element >= MAX_DICTIONARY_ELEMENTS ||
-    idx < dictionary->current_element && dictionary->current_element < MAX_DICTIONARY_ELEMENTS) {
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
 
         if (search_value(dictionary->element[idx].key, dictionary) != 0) {
             printf("WORD:%s ", dictionary->element[idx].key);

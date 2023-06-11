@@ -110,11 +110,15 @@ Constants:
 - NAME, AGE, EMAIL, (...): Són els índex per a accedir als atributs de les dades de l'usuari.
 - NULL_SIZE: Mida d'una array buida (0).
 - ONE_SIZE: Mida d'una array amb un element (1).
-- INCREMENT_SIZE: Per a incrementar la mida d'una array d'un en un.
-- DECREMENET SIZE: El mateix que increment però al revés.
+- INCREMENT_SIZE, DECREMENT_SIZE: Incrementar o decrementar la mida d'una array.
 - MULTIPLICATIVE_FACTOR: Per a incrementar una array en varis element.
 - NOT_ORDERED: La llista no té cap tipus d'ordenació.
 - BUFFER_SIZE: Un nombre molt gran, per a un buffer de caràcters (2^10 bytes)
+- END_CHARACTER: Per a aturar una string llegida per consola.
+- RESET: Per a tornar a 0 una variable.
+- SET_ZERO: Inicialitzar una variable a 0.
+- LESSTHAN, GREATHERTHAN, EQUAL: Per a la comparació d'strings.
+- ACCEPT, DENY: Per a acceptar o denegar sol·licituds.
 
 Estructures de Dedes:
 
@@ -127,10 +131,17 @@ Usuari:
 - post: Array que conté les publicions d'un usuari (format de text).
 - size_requests: Quantitat de publicacions.
 
+Dict:
+- element: Elements del diccionari
+- current_elements: Q
+
 Network:
 - user: Array dinàmica dels usuaris.
 - size_users: Quantitat d'usuaris.
 - order_users: La forma d'ordenació de la llista (per nom, edat, correu, etc.).
+- dictionary: Diccionari que compta de el Top 10 de paraules.
+- banned_user: Array els noms dels usuaris banejats.
+- size_banned_users: Quantitat de banejats.
 
 
 2. MÒDUL DEL CONTROL DEL FITXER DELS USUARIS

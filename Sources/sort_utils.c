@@ -76,7 +76,7 @@ void selectiveSort (Dict* dictionary) {
     Element temp;
     for(int j = 0; j<10; j++) {
         int idx_max = j;
-        for (int i = j+1; i<dictionary->current_element; i++) {
+        for (int i = j+1; i<dictionary->current_elements; i++) {
             if (dictionary->element[i].value > dictionary->element[idx_max].value) {
                 idx_max = i;
             }
