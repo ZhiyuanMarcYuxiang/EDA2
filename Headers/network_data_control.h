@@ -40,7 +40,12 @@
 
 #include "option_utils.h"
 
-/// Estructura d'un usuari.
+typedef struct {
+    int array[3];
+    int top;
+}Stack;
+
+/// Estructura del diccionari.
 
 typedef struct{
     char* key;
@@ -50,18 +55,24 @@ typedef struct{
 typedef struct{
     Element* elements;
     int count;
-    int size;
+    int size_elements;
 } Dict;
 
+/// Estructura dels usuaris.
+
 typedef struct User{
+    // Les seves dades: nom, edat, email, etc.
     char** data;
 
+    // Les seves publicacions (textos).
     char** post;
-    int posts_size;
+    int size_posts;
 
+    // Les sol·licituds d'amistat rebudes per part d'altres usuaris.
     char** request;
     int size_requests;
 
+    // Els amics de l'usuari.
     char** friend;
     int size_friends;
 }User;
@@ -70,21 +81,28 @@ typedef struct User{
 /// Estructura de la xarxa.
 
 typedef struct {
+    // Array dinàmica d'usuaris.
     User* user;
-    int users_size;
-    int users_order;
-    Dict* dictionary;
+    int size_users;
+    int order_users;
+
+    // Usuaris banejats (s'hi conté el seu nom).
     char **banned_user;
-    int banned_users_size;
+    int size_banned_users;
+
+    // Diccionari per a comptar les paraules més utilitzades.
+    Dict* dictionary;
 }Network;
 
 
 
-char* initAttribute (int size);
+char* initString (int size);
 
 char** initStringArray (int size);
 
 User* initUser();
+
+Stack* initStack();
 
 Dict* init_dictionary();
 
@@ -100,6 +118,8 @@ void deleteString_InArray(char **string_array, int position_to_delete, int curre
 
 void clearUsers (User *user, int users_size);
 
+void clearElements(Dict* dictionary);
+
 void clearDictionary (Dict* dictionary);
 
 void clearNetwork (Network *network);
@@ -114,4 +134,5 @@ int compAttribute (User userA, User userB, int type);
 
 char* readString();
 
+void printSpaces (char previous_string[], int max_length);
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H

@@ -12,8 +12,6 @@
 // 1) que l'usuari accepti la sol·licitud, la qual cosa significa actualitzar la llista d'user->friends i buidar la d'user->requests
 // 2) que no l'accepti, que simplement no farem i passarem a analitzar la següent sol·licitud.
 
-
-
 #define FIRST 0
 
 void listRequests (char **request,int size_request) {
@@ -67,19 +65,19 @@ void manageRequests  (Network* net, User *operating_user) {
     listRequests (request, size_requests);
 
     printf("\nWe are going to manage the requests.\n");
-    printf("[1 for YES, 0 for NO]\n\n");
+    printf("[1 for YES, 0 for NO]\n");
 
     int option = INVALID_OPTION;
 
     // Triem si acceptar o no les sol·licituds.
     for (int i=0; i < size_requests; i++){
 
-        printf("Hi I'm %d: %s! Do you want to be my friend?\n",i, request[i]);
+        printf("\nHi I'm %s! Do you want to be my friend?", request[0]);
 
         option = readInt ("\n");
 
         if (option == ACCEPT){
-            acceptUser(net,operating_user,request[i]);
+            acceptUser(net,operating_user,request[0]);
 
         }else{
             printf("Request denied\n");
@@ -87,11 +85,10 @@ void manageRequests  (Network* net, User *operating_user) {
 
         // Esborrem la primera sol·licitud, ja que és una cua. Request Deleted.
         deleteString_InArray(operating_user->request,FIRST,operating_user->size_requests);
-        operating_user->size_requests += (-INCREMENT_SIZE);
+        operating_user->size_requests -= (INCREMENT_SIZE);
+
     }
 }
-
-
 
 
 void removeFriend(User *operating_user){
@@ -113,6 +110,7 @@ void removeFriend(User *operating_user){
     // En cas de trobar l'usuari banejat, ens el borra de la llista dels banejats.
     deleteString_InArray(operating_user->friend, friend_idx, size);
 
-    operating_user->size_friends += (-INCREMENT_SIZE);
+    operating_user->size_friends -= (INCREMENT_SIZE);
+    printf("%s has been removed from your friend list!\n", name);
 }
 

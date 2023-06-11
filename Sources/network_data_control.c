@@ -6,24 +6,30 @@
 
 /// Funcions per a inicialitzar dades.
 
-char* initAttribute (int size){
+char* initString (int size){
     return malloc(size * sizeof(char));
 }
 
 char** initStringArray (int size){
-    return malloc(size *  sizeof(char*) );
+    return malloc(size *  sizeof(char *) );
 }
 
 User* initUser (){
     return malloc(sizeof(User));
 }
 
+Stack* initStack() {
+    Stack* stack = (Stack*) malloc(sizeof(Stack));
+    stack->top = 0;
+    return stack;
+}
+
 Dict* init_dictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
     dictionary->count = SET_ZERO;
-    dictionary->size = 10;
-    dictionary->elements = (Element*) malloc(dictionary->size*sizeof(Element));
-    for (int i = 0; i<dictionary->size; i++) {
+    dictionary->size_elements = 10;
+    dictionary->elements = (Element*) malloc(dictionary->size_elements * sizeof(Element));
+    for (int i = 0; i<dictionary->size_elements; i++) {
         dictionary->elements[i].key = "";
         dictionary->elements->value = 0;
     }
@@ -33,14 +39,14 @@ Dict* init_dictionary() {
 Network* initNetwork (){
     // Inicialitza una llista dinàmica d'usuaris.
     Network *net = malloc(sizeof(Network));
-    net->users_size = NULL_SIZE;
-    net->users_order = NOT_ORDERED;
+    net->size_users = NULL_SIZE;
+    net->order_users = NOT_ORDERED;
     // Inicialitzem el diccionari per a fer el top de paraules.
     net->dictionary  = init_dictionary();
     net->user = initUser();
     // Tant el post com el banned_user son una llista de string
     net->banned_user = initStringArray(ONE_SIZE);
-    net->banned_users_size = NULL_SIZE;
+    net->size_banned_users = NULL_SIZE;
 
     return net;
 }
@@ -63,10 +69,10 @@ Dict* expandElements (Dict *dict, int current_size){
     // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem.
     if ((current_size % (MULTIPLICATIVE_FACTOR*2)) == 0) {
         int real_size = current_size + (MULTIPLICATIVE_FACTOR*2);
-        dict->size = real_size;
+        dict->size_elements = real_size;
         dict->elements = realloc(dict->elements, real_size * sizeof(Element));
     }
-    for (int i = current_size; i<dict->size; i++) {
+    for (int i = current_size; i<dict->size_elements; i++) {
         dict->elements[i].key = "";
         dict->elements->value = SET_ZERO;
     }
@@ -107,21 +113,29 @@ void clearStringArray (char** string_array, int size){
 void clearUsers (User *user, int users_size){
 
     for (int i = 0; i < users_size; ++i) {
-
         clearStringArray (user[i].data, ATTRIBUTES);
-        clearStringArray (user[i].post, user[i].posts_size);
+        clearStringArray (user[i].post, user[i].size_posts);
+        clearStringArray (user[i].friend,user[i].size_friends);
+        clearStringArray (user[i].request,user[i].size_requests);
     }
     free(user);
 }
 
+void clearElements(Dict* dictionary) {
+    for (int i = 0; i<dictionary->size_elements; i++) {
+        if (dictionary->elements[i].key != NULL) {
+            free(dictionary->elements[i].key);
+        }
+    }
+}
+
 void clearDictionary (Dict* dictionary) {
-    free(dictionary->elements);
     free(dictionary);
 }
 
 void clearNetwork (Network *net){
-
-    clearUsers (net->user, net->users_size);
+    clearDictionary (net->dictionary);
+    clearUsers (net->user, net->size_users);
     free(net);
 }
 
@@ -131,7 +145,7 @@ char* copyString (char *origin){
 
     int length = strlen(origin) + END_CHARACTER;
 
-    char *copy = initAttribute (length * sizeof(char));
+    char *copy = initString(length * sizeof(char));
     strcpy (copy, origin);
     return copy;
 }
@@ -151,8 +165,8 @@ void copyUser (User* copy, User* origin){
 
     copy->data = copyStringArray(origin->data, ATTRIBUTES);
 
-    copy->post = copyStringArray(origin->post, origin->posts_size);
-    copy->posts_size = origin->posts_size;
+    copy->post = copyStringArray(origin->post, origin->size_posts);
+    copy->size_posts = origin->size_posts;
 
     copy->request = copyStringArray(origin->request, origin->size_requests);
     copy->size_requests = origin->size_requests;
@@ -180,4 +194,9 @@ char* readString() {
     return string;
 }
 
-
+void printSpaces (char previous_string[], int max_length){
+    int spaces = max_length - strlen(previous_string);
+    for (int j = 0; j < spaces; ++j) {
+        printf(" ");
+    }
+}

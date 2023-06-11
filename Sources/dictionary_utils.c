@@ -3,7 +3,7 @@
 
 void add_value(int value, char* key, Dict* our_dictionary) {
     int i = 0;
-    while (i<our_dictionary->size && our_dictionary->count != 0) {
+    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
         if (strcmp(key, our_dictionary->elements[i].key) == 0) {
             // substituïm el nou valor pel valor vell
             our_dictionary->elements[i].value = value;
@@ -12,7 +12,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
         i++;
     }
 
-    if(our_dictionary->count == our_dictionary->size) {
+    if(our_dictionary->count == our_dictionary->size_elements) {
         printf("Dictionary is full");
         return;
     }
@@ -24,7 +24,7 @@ void add_value(int value, char* key, Dict* our_dictionary) {
 
 int search_index_with_key(char* key, Dict* our_dictionary) {
     int i = 0;
-    while (i<our_dictionary->size && our_dictionary->count != 0) {
+    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
         if (strcmp(key,our_dictionary->elements[i].key) == 0) {
             // retorna el index on està situat l’element (clau i valor)
             return i;
@@ -45,12 +45,28 @@ int search_value(char* key, Dict* our_dictionary) {
 
 }
 
+int maxWordlength (Dict* dictionary) {
+    int idx = 0;
+    int max = 0;
+    int length;
+    while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
+        length = strlen(dictionary->elements[idx].key);
+        if(max < length) {
+            max = length;
+        }
+        idx++;
+    }
+    return max;
+}
+
 void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
     printf("\n");
     while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
         if (search_value(dictionary->elements[idx].key, dictionary) != 0) {
-            printf("%d. WORD:%s USED:%d\n", idx+1, dictionary->elements[idx].key, dictionary->elements[idx].value);
+            printf("WORD:%s ", dictionary->elements[idx].key);
+            printSpaces(dictionary->elements[idx].key, maxWordlength(dictionary));
+            printf("USED:%d\n", dictionary->elements[idx].value);
         }
         idx++;
     }
@@ -67,8 +83,6 @@ void count_words(Dict* dictionary, char* post) {
         add_value(value + 1, post, dictionary);
     }
 }
-
-// Funció molt similar a newUser.
 
 void read_words(Dict *dictionary, char* post) {
     int idx = 0;
@@ -91,7 +105,7 @@ void read_words(Dict *dictionary, char* post) {
         else if(i == strlen(post)-1) {
             if (post[i] != ' ' && post[i] != '!' && post[i] != '?' && post[i] != '.' ||
                 post[i] != ',' && post[i] != ':' && post[i] != ';'){
-                buffer[idx] = post[i];
+                buffer[idx] = tolower(post[i]);
                 buffer[idx+1] = '\0';
             }
             count_words(dictionary, buffer);

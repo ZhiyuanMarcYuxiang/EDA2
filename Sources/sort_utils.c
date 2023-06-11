@@ -65,10 +65,10 @@ User* mergeSort(User *user, int size, int type){
 
 void sortNetwork (Network *net, int type){
 
-    if(net->users_size > ONE_SIZE)
-        if(type != net->users_order)
-            net->user = mergeSort (net->user, net->users_size, type);
-    net->users_order = type;
+    if(net->size_users > ONE_SIZE)
+        if(type != net->order_users)
+            net->user = mergeSort (net->user, net->size_users, type);
+    net->order_users = type;
 }
 
 void selectiveSort (Dict* dictionary) {

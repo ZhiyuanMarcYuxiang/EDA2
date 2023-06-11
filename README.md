@@ -1,3 +1,8 @@
+# EDA2
+Projecte per a fer una Xarxa Social.
+
+Zhiyuan, Marc, Yuxiang
+
 1. MÒDUL DEL CONTROL DE LES ESTRUCTURES DE LA XARXA
 
 Constants:
@@ -206,7 +211,7 @@ Paràmetres:
 - user: Llista d'usuaris inicialitzada.
 - size_users: Mida de la llista d'usuaris.
 - type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
-***********************
+
 
 printUser
 

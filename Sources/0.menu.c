@@ -46,6 +46,7 @@ void showMenu () {
 
 
     }
+    clearElements(net->dictionary);
     clearDictionary(net->dictionary);
     clearNetwork (net);
 }

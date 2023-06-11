@@ -7,6 +7,7 @@
 
 #include "../Headers/network_file_control.h"
 
+
 // Ens ordena ascendentment una llista d'usuaris a partir de l'ordenació combinada i recursiva (merge sort).
 void sortNetwork (Network *net, int type);
 void selectiveSort (Dict* dictionary);
