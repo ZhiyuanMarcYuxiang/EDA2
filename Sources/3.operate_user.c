@@ -4,69 +4,72 @@
 
 #include "../Headers/3.operate_user.h"
 
-void operateUserMenu (Network *net) {
+int chooseOperatingUser(Network *net){
 
     // Lectura d'un usuari.
     printf("\nWhich user do you want to operate with?\n");
     char *name = readString();
 
-    // Si el nom és CEO, entrem en mode de desenvolupador. Després, sortim directament al menú principal.
-    if ( strcmp(name, "CEO") == 0){
+    // 1) Si el nom és CEO, entrem en mode de desenvolupador. Després, sortim directament al menú principal.
+    if (strcmp(name, "CEO") == 0){
         ceoMenu(net);
-        return;
+        return EXIT;
     }
 
-    // En cas contrari, mirem si l'usuari està a la llista. En cas de no ser trobat, sortim al menú principal.
-    int operating_user = searchNetwork (name, net, NAME);
+    // 2) En cas contrari, mirem si l'usuari està a la llista. En cas de no ser trobat, sortim al menú principal.
+    int idx_operating_user = searchNetwork (name, net, NAME);
 
-    if (operating_user == USER_NOT_FOUND){
+    if (idx_operating_user == USER_NOT_FOUND){
         printf("\nThe user was not found!\n");
-        return;
+        return EXIT;
     }
 
-    // Si aquest usuari de la llista està banejat, sortim del menú, indicant que està banejat.
-    if (searchInStringArray (net->banned_user, net->size_banned_users, net->user[operating_user].data[NAME]) != STRING_NOT_FOUND) {
+    // L'usuari ha estat trobat i obtenim el seu nom.
+    char *operating_user_name = net->user[idx_operating_user].data[NAME];
+
+    // 3) Si aquest usuari de la llista està banejat, sortim del menú, indicant que està banejat.
+    if (searchInStringArray (operating_user_name, net->banned_user, net->size_banned_users) != STRING_NOT_FOUND) {
         printIsBannedMessage ();
-        return;
+        return EXIT;
     }
 
-    // Si tot és correcte (i el nom no és "CEO" ni està banejat), entrem a operar amb un usuari en concret.
+    // 4) Si tot és correcte (i el nom no és "CEO" ni està banejat), entrem a operar amb un usuari en concret.
 
-    printf("\nProfile of user %s initialized!\n",net->user[operating_user].data[NAME]);
+    printf("\nProfile of user %s initialized!\n",operating_user_name);
+
+    return idx_operating_user;
+}
+
+void operateUserMenu (Network *net) {
+
+    int idx_operating_user = chooseOperatingUser(net);
+
+    if (idx_operating_user == EXIT)
+        return;
 
     int option = INVALID_OPTION;
 
     while(option != OPTION_RETURN_MENU){
 
-        printf("\n%d. Send friend request.\n", OPTION_SEND_REQUEST);
-        printf("%d. Manage the pending requests.\n", OPTION_MANAGE_REQUESTS);
-        printf("%d. Make a new post.\n", OPTION_NEW_POST);
-        printf("%d. List all of the user posts.\n", OPTION_LIST_POSTS);
-        printf("%d. Remove friend.\n", OPTION_REMOVE_FRIEND);
-        printf("%d. See friend's posts.\n", OPTION_FRIEND_POST);
+        printf("\nOPERATE USER MENU\n\n");
+
+        printf("%d. Manage friend requests.\n", OPTION_MANAGE_REQUESTS);
+        printf("%d. Manage friends.\n", OPTION_MANAGE_FRIENDS);
+        printf("%d. Manage posts.\n", OPTION_MANAGE_POSTS);
+
         printf("%d. Return to principal menu.\n",OPTION_RETURN_MENU);
         option = readInt("Choose your option:\n");
 
-        system("cls");
+        //system("cls");
 
-        if(option == OPTION_SEND_REQUEST){
-            sendFriendRequest(net,&net->user[operating_user]);
+        if (option == OPTION_MANAGE_REQUESTS){
+            manageRequestsMenu (net,idx_operating_user);
         }
-        else if(option == OPTION_MANAGE_REQUESTS){
-            manageRequests  (net, &net->user[operating_user]);
+        else if (option == OPTION_MANAGE_FRIENDS){
+            manageFriendsMenu (net,idx_operating_user);
         }
-
-        else if(option == OPTION_NEW_POST){
-            newPost (net, operating_user);
-        }
-        else if(option == OPTION_LIST_POSTS){
-            listPosts (&net->user[operating_user], 0);
-        }
-        else if(option == OPTION_REMOVE_FRIEND) {
-            removeFriend(&net->user[operating_user]);
-        }
-        else if(option == OPTION_FRIEND_POST) {
-            listfriendPosts(net, &net->user[operating_user]);
+        else if (option == OPTION_MANAGE_POSTS){
+            managePostsMenu (net,idx_operating_user);
         }
         else if(option == OPTION_RETURN_MENU){
             ;//DO NOTHING

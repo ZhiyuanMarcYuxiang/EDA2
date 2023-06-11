@@ -6,7 +6,7 @@
 
 
 void showMenu () {
-    printf("\nWelcome to our social Network!\n");
+    printf("\nWelcome to ZHIYUMARC Network!\n");
     printf("What do you want to do?\n");
 
     Network *net = initNetwork ();
@@ -17,13 +17,15 @@ void showMenu () {
 
     while (option != OPTION_QUIT){
 
-        printf("\n%d. Insert new user.\n",OPTION_NEW_USER);
+        printf("\nPRINCIPAL MENU\n\n");
+
+        printf("%d. Insert new user.\n",OPTION_NEW_USER);
         printf("%d. List all existing users.\n",OPTION_LIST_USERS);
         printf("%d. Operate over an specific user.\n",OPTION_OPERATE_USER);
         printf("%d. Quit.\n",OPTION_QUIT);
         option = readInt("Choose your option:\n");
 
-        system("cls");
+        // system("cls");
         // Afegim un nou usuari.
         if (option==OPTION_NEW_USER){
             newUser(net);
@@ -43,8 +45,6 @@ void showMenu () {
 
         else
             printf("\nInvalid option!\n");
-
-
     }
     clearNetwork (net);
 }

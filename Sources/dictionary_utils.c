@@ -1,32 +1,36 @@
 
 #include "../Headers/dictionary_utils.h"
 
-void add_value(int value, char* key, Dict* our_dictionary) {
+void add_value(int value, char* key, Dict* dictionary) {
+
+    // Diccionari ple.
+    if(dictionary->current_element == MAX_DICTIONARY_ELEMENTS) {
+        printf("Dictionary is full");
+        return;
+    }
+
+    // Diccionari no buit amb clau existent.
     int i = 0;
-    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
-        if (strcmp(key, our_dictionary->elements[i].key) == 0) {
-            // substituïm el nou valor pel valor vell
-            our_dictionary->elements[i].value = value;
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_element != 0) {
+        if (strcmp(key, dictionary->element[i].key) == 0) {
+            // Substituïm el nou valor pel valor vell
+            dictionary->element[i].value = value;
             return;
         }
         i++;
     }
 
-    if(our_dictionary->count == our_dictionary->size_elements) {
-        printf("Dictionary is full");
-        return;
-    }
-    // Si arriba a aquesta part, vol dir que la key no existeix i el diccionari no està ple
-    our_dictionary->elements[our_dictionary->count].key = key;
-    our_dictionary->elements[our_dictionary->count].value = value;
-    our_dictionary->count++;
+    // Si arriba a aquesta part, vol dir que la clau no existeix i el diccionari no està ple
+    dictionary->element[dictionary->current_element].key = copyString(key);
+    dictionary->element[dictionary->current_element].value = value;
+    dictionary->current_element += INCREMENT_SIZE;
 }
 
-int search_index_with_key(char* key, Dict* our_dictionary) {
+int search_index_with_key(char* key, Dict* dictionary) {
     int i = 0;
-    while (i<our_dictionary->size_elements && our_dictionary->count != 0) {
-        if (strcmp(key,our_dictionary->elements[i].key) == 0) {
-            // retorna el index on està situat l’element (clau i valor)
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_element != 0) {
+        if (strcmp(key, dictionary->element[i].key) == 0) {
+            // retorna l'índex on està situat l’element (clau i valor)
             return i;
         }
         i++;
@@ -41,16 +45,38 @@ int search_value(char* key, Dict* our_dictionary) {
     }
 
     int idx = search_index_with_key(key, our_dictionary);
-    return our_dictionary->elements[idx].value;
+    return our_dictionary->element[idx].value;
 
+}
+
+int maxWordlength (Dict* dictionary) {
+    int idx = 0;
+    int max = 0;
+    int length;
+
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_element >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_element && dictionary->current_element < MAX_DICTIONARY_ELEMENTS) {
+
+        length = strlen(dictionary->element[idx].key);
+        if(max < length) {
+            max = length;
+        }
+        idx++;
+    }
+    return max;
 }
 
 void print_dictionary_elements(Dict* dictionary) {
     int idx = 0;
     printf("\n");
-    while (idx<10 && dictionary->count>=10 || idx<dictionary->count && dictionary->count<10) {
-        if (search_value(dictionary->elements[idx].key, dictionary) != 0) {
-            printf("%d. WORD:%s USED:%d\n", idx+1, dictionary->elements[idx].key, dictionary->elements[idx].value);
+
+    while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_element >= MAX_DICTIONARY_ELEMENTS ||
+    idx < dictionary->current_element && dictionary->current_element < MAX_DICTIONARY_ELEMENTS) {
+
+        if (search_value(dictionary->element[idx].key, dictionary) != 0) {
+            printf("WORD:%s ", dictionary->element[idx].key);
+            printSpaces(dictionary->element[idx].key, maxWordlength(dictionary));
+            printf("USED:%d\n", dictionary->element[idx].value);
         }
         idx++;
     }
@@ -67,8 +93,6 @@ void count_words(Dict* dictionary, char* post) {
         add_value(value + 1, post, dictionary);
     }
 }
-
-// Funció molt similar a newUser.
 
 void read_words(Dict *dictionary, char* post) {
     int idx = 0;
@@ -91,11 +115,10 @@ void read_words(Dict *dictionary, char* post) {
         else if(i == strlen(post)-1) {
             if (post[i] != ' ' && post[i] != '!' && post[i] != '?' && post[i] != '.' ||
                 post[i] != ',' && post[i] != ':' && post[i] != ';'){
-                buffer[idx] = post[i];
+                buffer[idx] = tolower(post[i]);
                 buffer[idx+1] = '\0';
             }
             count_words(dictionary, buffer);
         }
-        dictionary = expandElements(dictionary, dictionary->count);
     }
 }

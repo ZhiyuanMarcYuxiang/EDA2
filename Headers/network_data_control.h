@@ -6,6 +6,7 @@
 #define XARXA_SOCIAL_MEMORY_UTILS_H
 
 #define ATTRIBUTES (9)
+#define MAX_DICTIONARY_ELEMENTS (10)
 
 #define NAME (0)
 #define AGE (1)
@@ -21,6 +22,7 @@
 #define ONE_SIZE (1)
 
 #define INCREMENT_SIZE (1)
+#define DECREMENT_SIZE (-1)
 #define MULTIPLICATIVE_FACTOR (5)
 
 #define NOT_ORDERED (-1)
@@ -34,23 +36,34 @@
 
 #define LESSTHAN (-1)
 #define GREATERTHAN 1
+#define EQUAL 0
 
 #define ACCEPT (1)
-#define NOTACCEPT (-1)
+#define DENY (0)
 
 #include "option_utils.h"
+
+typedef struct {
+    // Pila de tres usuaris aleatoris.
+    int array[3];
+    // Mida de la pila.
+    int top;
+}Stack;
 
 /// Estructura del diccionari.
 
 typedef struct{
+    // Paraules dels posts dels ususaris.
     char* key;
+    // Quantitat de repeticions
     int value;
 } Element;
 
 typedef struct{
-    Element* elements;
-    int count;
-    int size_elements;
+    // Elements del diccionari.
+    Element* element;
+    // Elements actuals del diccionari (com a màxim en poden ser 10).
+    int current_element;
 } Dict;
 
 /// Estructura dels usuaris.
@@ -59,10 +72,6 @@ typedef struct User{
     // Les seves dades: nom, edat, email, etc.
     char** data;
 
-    // Les seves publicacions (textos).
-    char** post;
-    int size_posts;
-
     // Les sol·licituds d'amistat rebudes per part d'altres usuaris.
     char** request;
     int size_requests;
@@ -70,6 +79,11 @@ typedef struct User{
     // Els amics de l'usuari.
     char** friend;
     int size_friends;
+
+    // Les seves publicacions (textos).
+    char** post;
+    int size_posts;
+
 }User;
 
 
@@ -90,6 +104,7 @@ typedef struct {
 }Network;
 
 
+Stack* initStack();
 
 char* initString (int size);
 
@@ -111,7 +126,6 @@ void deleteString_InArray(char **string_array, int position_to_delete, int curre
 
 void clearUsers (User *user, int users_size);
 
-void clearDictionary (Dict* dictionary);
 
 void clearNetwork (Network *network);
 
@@ -124,5 +138,16 @@ void copyUser (User* copy, User* origin);
 int compAttribute (User userA, User userB, int type);
 
 char* readString();
+
+void printSpaces (char previous_string[], int max_length);
+
+
+
+void push (Stack* stack, int random_user_idx);
+
+void pop (Stack* stack);
+
+int top (Stack* stack);
+
 
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H

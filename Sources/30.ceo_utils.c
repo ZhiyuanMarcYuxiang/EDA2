@@ -7,10 +7,10 @@ void unbanUser(Network *net){
     printf("\nWhich user do you want to unban?\n");
     char *name = readString();
 
-    int banned_idx = searchInStringArray (net->banned_user, net->size_banned_users, name);
+    int banned_idx = searchInStringArray (name, net->banned_user, net->size_banned_users);
 
     if (banned_idx == STRING_NOT_FOUND){
-        printf("\nThe banned user was not found!\n");
+        printf("\nThis user is not banned!\n");
         return;
     }
 
@@ -19,7 +19,9 @@ void unbanUser(Network *net){
     // En cas de trobar l'usuari banejat, ens el borra de la llista dels banejats.
     deleteString_InArray(net->banned_user, banned_idx, size);
 
-    net->size_banned_users += (-INCREMENT_SIZE);
+    net->size_banned_users += DECREMENT_SIZE;
+
+    printf("Now, this user is not banned from ZhiYuMarc Network.\n");
 }
 
 void banUser(Network *net){
@@ -42,16 +44,35 @@ void banUser(Network *net){
 
     net->banned_user[last] = name;
 
-    printf("\n%s has been banned from the Social Network!\n", name);
-
     net->size_banned_users += INCREMENT_SIZE;
+
+    printf("\n%s has been banned from the Social Network!\n", name);
 }
 
+#define SEE_TERMS_OF_USE 1
 
 void printIsBannedMessage(){
     printf("\nYour account has been disabled for violating our terms.\n");
     printf("Learn how you may be able to restore your account entering\n");
-    printf("in our file Network_Social_Terms.\n");
+    printf("in our Social Network Terms of Use.\n");
+
+    int option = readInt("If you want to see our Terms of Use, click 1.\n");
+
+    if (option != SEE_TERMS_OF_USE)
+        return;
+
+    // Imprimeix el fitxer amb les condicions de la xarxa.
+    FILE *fp = fopen ("../Files/Social_Network_Terms.txt",READING_MODE);
+
+    printf("%d",fp == NULL);
+    char c;
+    do{
+        c = fgetc(fp);
+        printf("%c",c);
+    } while (c != EOF);
+
+    printf("\n");
+    fclose(fp);
 }
 
 void listBannedUsers(char** banned_user, int size){
@@ -65,7 +86,9 @@ void ceoMenu (Network *net){
 
     while(option != OPTION_RETURN_MENU) {
 
-        printf("\n%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
+        printf("\nDEVELOPER MENU\n\n");
+
+        printf("%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
         printf("%d. Ban user.\n", OPTION_BAN_USER);
         printf("%d. Unban user.\n",OPTION_UNBAN_USER);
         printf("%d. List banned users.\n",OPTION_LIST_BANNED);
@@ -73,10 +96,10 @@ void ceoMenu (Network *net){
 
         option = readInt("Choose your option:\n");
 
-        system("cls");
+        //system("cls");
 
         if (option == OPTION_MOST_USED_WORDS) {
-            net->dictionary->elements[0].value = 0;
+            net->dictionary->element[0].value = 0;
             selectiveSort(net->dictionary);
             print_dictionary_elements(net->dictionary);
         }

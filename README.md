@@ -7,10 +7,13 @@ Zhiyuan, Marc, Yuxiang
 
 Constants:
 - ATTRIBUTES: Quanitat de dades d'un usuari.
+- MAX_DICTIONARY_ELEMENTS: Elements màxims del diccionari
 - NAME, AGE, EMAIL, (...): Són els índex per a accedir als atributs de les dades de l'usuari.
-- NULL_SIZE: Mida d'una array buida.
+- NULL_SIZE: Mida d'una array buida (0).
+- ONE_SIZE: Mida d'una array amb un element (1).
 - INCREMENT_SIZE: Per a incrementar la mida d'una array d'un en un.
-- MULTIPLICATIVE_FACTOR: Per a incrementar una array en varis elements.
+- DECREMENET SIZE: El mateix que increment però al revés.
+- MULTIPLICATIVE_FACTOR: Per a incrementar una array en varis element.
 - NOT_ORDERED: La llista no té cap tipus d'ordenació.
 - BUFFER_SIZE: Un nombre molt gran, per a un buffer de caràcters (2^10 bytes)
 
@@ -137,11 +140,11 @@ merge()
 @return Retornem una nova llista d'usuaris, userC, que és la combinació ordenada de les llistes userA i userB.
 
 Reservem memòria per a una nova llista d'usuaris anomenada "C".
-Afegim els elements de la llista "A" i la "B" de forma ordenada a la "C".
+Afegim els element de la llista "A" i la "B" de forma ordenada a la "C".
 Si l'atribut d'un usuari de "A" és més petit que "B", el copiem a "C".
 En aquest punt, alguna de les dues llistes, "A" o "B", està buida.
-Afegim els elements que falten de "A" a la llista "C".
-Afegim els elements que falten de "B" a la llista "C".
+Afegim els element que falten de "A" a la llista "C".
+Afegim els element que falten de "B" a la llista "C".
 Retornem la llista combinada.
 
 mergeSort()
@@ -221,13 +224,13 @@ Paràmetres:
 - user: Usuari inicialitzat amb valors.
 - maximums: Llista que conté les longituds de les strings més llargues de cada columna d'atributs.
 
-// Iterem per cada columna.
-// Per a NAME, AGE, EMAIL I CITY.
-// Imiprimim l'atribut i omplim amb espais proporcionals.
-// Per als 4 primers hobbies.
-// Els imprimim separant-los amb punt i coma.
-// Per a l'últim hobby.
-// L'imprimim amb un caràcter de salt de línia.
+Iterem per cada columna.
+Per a NAME, AGE, EMAIL I CITY.
+Imiprimim l'atribut i omplim amb espais proporcionals.
+Per als 4 primers hobbies.
+Els imprimim separant-los amb punt i coma.
+Per a l'últim hobby.
+L'imprimim amb un caràcter de salt de línia.
 
 listUsers
 
