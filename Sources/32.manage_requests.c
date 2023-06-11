@@ -52,7 +52,7 @@ void acceptUser (Network* net, User *operating_user, char* request_user) {
     printf("Request accepted. You have %s as new friend.\n",operating_user->friend[last]);
 }
 
-void manageRequests  (Network* net, User *operating_user) {
+void manageRequests (Network* net, User *operating_user) {
 
     int size_requests = operating_user->size_requests;
     char ** request = operating_user->request;

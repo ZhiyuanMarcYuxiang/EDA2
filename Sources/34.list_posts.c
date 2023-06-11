@@ -13,8 +13,8 @@ void listPosts (User *user, int who) {
     char **post = user->post;
     int size_posts = user->size_posts;
 
-    // La variable who s'utilitza per saber si els post son del l'usuari que hem inicialitzat
-    // o dels seus amics
+    // La variable who s'utilitza per saber si els post son de l'usuari que hem inicialitzat
+    // o dels seus amics.
 
     if (size_posts == NULL_SIZE && who != FRIEND){
         printf("\nYou don't have any post.\n");
