@@ -63,7 +63,7 @@ typedef struct{
     // Elements del diccionari.
     Element* element;
     // Elements actuals del diccionari (com a màxim en poden ser 10).
-    int current_element;
+    int current_elements;
 } Dict;
 
 /// Estructura dels usuaris.
@@ -83,7 +83,6 @@ typedef struct User{
     // Les seves publicacions (textos).
     char** post;
     int size_posts;
-
 }User;
 
 

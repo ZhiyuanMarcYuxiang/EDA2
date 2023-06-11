@@ -26,7 +26,7 @@ User* initUser (){
 
 Dict* init_dictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
-    dictionary->current_element = SET_ZERO;
+    dictionary->current_elements = SET_ZERO;
     dictionary->element = (Element*) malloc(MAX_DICTIONARY_ELEMENTS * sizeof(Element));
     for (int i = 0; i < MAX_DICTIONARY_ELEMENTS; ++i) {
         dictionary->element[i].key = "";
@@ -117,7 +117,7 @@ void clearElements(Element* element, int current_elements) {
 }
 
 void clearDictionary (Dict* dictionary) {
-    clearElements(dictionary->element, dictionary->current_element);
+    clearElements(dictionary->element, dictionary->current_elements);
     free(dictionary);
 }
 
