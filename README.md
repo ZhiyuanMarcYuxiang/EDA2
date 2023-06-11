@@ -294,14 +294,14 @@ caràcter de '\n' de la lectura per consola.
 // Elimina també el caràcter '\n' en clicar ENTER després d'introduir l'enter.
 // Repetim l'entrada de l'enter.
 
-6. MÒDUL DEL MENÚ PRINCIPAL
+### 6. MÒDUL DEL MENÚ PRINCIPAL
 
 showMenu()
 
 Menú principal del programa. Inicialitzem l'estructura de la xarxa i llegim informació del fitxer dels 20 usuaris.
 Tenim tres opcions al menú: afegir un nou usuari, enllistar tots els usuaris o operar amb un d'ells.
 
-7. MÒDUL DE L'USUARI NOU
+### 7. MÒDUL DE L'USUARI NOU
 
 newUserData()
 
@@ -314,7 +314,7 @@ Bàsicament, expandeix la llista d'usuaris i afegeix les noves dades per a l'úl
 Afegim el nou usuari en el fitxer.
 
 
-8. MÒDUL D'ENLLISTAR ELS USUARIS
+### 8. MÒDUL D'ENLLISTAR ELS USUARIS
 
 maxAttributesLengths
 
@@ -352,7 +352,7 @@ Paràmetre net: Llista d'usuaris inicialitzada.
 // Creem una llista amb les màximes longituds de les strings dels atributs.
 // Imprimim usuari a usuari.
 
-9. MÒDUL D'OPERAR AMB UN USUARI
+### 9. MÒDUL D'OPERAR AMB UN USUARI
 
 operateUserMenu
 
