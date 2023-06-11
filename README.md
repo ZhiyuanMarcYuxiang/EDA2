@@ -63,7 +63,7 @@ Fer una publicació nova(objectiu obligatori): Es demanarà a l’usuari introdu
 
 Llistar els posts de l’usuari específic(objectiu obligatori): S’informarà l’usuari si té alguna publicació o no. Si té publicacions, s’imprimirà per pantalla les publicacions de més recent a més antic. Les variables que hem utilitzat son int i llista de string. La variable who (int) s’utilitza per saber si les publicacions que volem imprimir son de l’usuari especific que hem inicialitzat o són publicacions dels seus amics. Tenim una funció que és llistar les publicacions dels amics(objectiu desitjable), per aquesta raó és necessari la variable who. La estructura de dada que hem utilitzat és el User. Les funcions es troben principalment en el 33.manage_post.c.
 
-Suprimir una publicació(objectiu lliure): L’usuari podrà triar la publicació que vol eliminar introduïnt el número de la publicació. Si no té cap publicacions o la publicació que vol eliminar no existeix, s’informarà a l’usuari per la consola. La variable utilitzat és una llista de string on conté les publicacions. Les funcions es troben principalment en el 33.manage_post.c*****************************************************************************
+Suprimir una publicació(objectiu lliure): L’usuari podrà triar la publicació que vol eliminar introduïnt el número de la publicació. Si no té cap publicacions o la publicació que vol eliminar no existeix, s’informarà a l’usuari per la consola. La variable utilitzat és una llista de string on conté les publicacions. Les funcions es troben principalment en el 33.manage_post.c
 
 
 
