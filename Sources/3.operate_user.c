@@ -11,7 +11,7 @@ void operateUserMenu (Network *net) {
     char *name = readString();
 
     // Si el nom és CEO, entrem en mode de desenvolupador. Després, sortim directament al menú principal.
-    if ( strcmp(name, "CEO") == 0){
+    if (strcmp(name, "CEO") == 0){
         ceoMenu(net);
         return;
     }
