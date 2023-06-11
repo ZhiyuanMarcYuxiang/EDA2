@@ -1,9 +1,77 @@
-# EDA2
-Projecte per a fer una Xarxa Social.
+## INTRODUCCIÓ
 
-Zhiyuan, Marc, Yuxiang
+El projecte d’aquest trimestre era un repte desafiant on requeria implementar molts conceptes treballats en les classes de teoria. El projecte consistia en dissenyar un prototip d’una xarxa social funcional en grup. Cada grup estava format per tres integrants i durant les classes de laboratori i fora d'aquestes classes havíem d’anar treballant. Ens vam inspirar amb les xarxes socials populars que hi ha avui en dia com Twitter, Instagram…
 
-1. MÒDUL DEL CONTROL DE LES ESTRUCTURES DE LA XARXA
+La guía de práctica de l’Aula Global va ser de gran ajuda, va definir el nostre punt de partida i què haviem de fer durant el trimestre. També ens va ajudar a organitzar-nos.
+
+Un cop llegit la introducció i la Sessió 1 de la guía de práctica, vam emprendre amb el projecte.
+
+El primer pas va ser definir un menú principal amb les funcions principals que havia de tenir una xarxa social, permetre afegir usuaris, operar com a un usuari específic i permetre aquest usuari específic interactuar amb altres usuaris, etc.
+
+A partir d’aquí hem anat desenvolupant i modificant. En alguns casos, amb cada nou repte/funcionalitat havíem de fer alguns canvis petits en les funcions que prèviament haviem definit perquè tot tingués sentit.
+
+## Objectius obligatoris, desitjables i lliures
+
+Crec que hem assolit tots els objectius obligatoris:
+
+Les Llistes hem implementat moltes al llarg del treball, tenim una estructura que es diu Network i dins d’aquesta tenim una llista d’usuaris. Cada nou usuari que  s’inserta, s’afegirà a la llista d’usuaris.
+
+La Pila hem implementat en una de les funcions que es mostra quan operas com a usuari específic (Send friend request to random user), aquesta funció l’explicarem més tard, és un dels objectius desitjables.
+
+La Cola l’hem implementat per la llista de sol·licituds de cada usuari. Les funcions que es mostra quan operas com a usuari específic (Send friend request i Manage friend request) utilitzen la llista de sol·licituds, aquestes dues funcions l’explicarem més endavant, formen part dels objectius obligatoris.
+
+
+El Diccionari l’hem implementat perquè com a CEO de la nostra xarxa social, ens interessa saber quins son els temes més parlats entre els nostres usuaris i volem contar quantes vegades s’ha utilitzat cada paraula.
+
+Hem implementat els dos algoritmes de recerca, Linear Search i Binary Search. En el nostre projecte hem fet servir moltes llistes de string, un exemple és la llista d’amics. Abans d’enviar sol·licitud d’amistat a algú, primer recorrem la llista d’amics(Linear Search) per veure si ja era amic teu. Tenim una funció (searchNetwork) que donat un nom o qualsevol altra atribut, busca en la llista d’usuaris del Network(Binary Search) si existeix algun usuari amb aquell atribut.
+
+Els algoritmes d’ordenament que hem empleat són MergeSort i SelectiveSort. El MergeSort el fem servir per ordenar la llista d’usuaris del Network (sortNetwork). Podem ordenar la llista d’usuaris del Network pel nom o per qualsevol altra atribut (alfabèticament o numèricament). El SelectiveSort el fem servir per ordenar el diccionari, ens interessa les 10 paraules més utilitzades i no cal ordenar tot el diccionari, només ordenar els 10 primers elements.
+
+Insertar usuari(objectiu obligatori): Demanar un nom, un edat, un email, una ciutat i cinc hobbies. El nom, l'edat, l’email i la ciutat han de cumplir una sèrie de requisits per ser vàlids, si no és vàlid, el programa demanarà que es torni a introduir. Si tots els atributs són vàlids,  el nou usuari s’afegirà a la llista d’usuaris (Llista dinámica) i també quedará guardada en un fitxer extern CSV  (objectiu desitjable). Les variables utilitzats són strings principalment perquè els atributs (nom, edat, email…) són strings. Les estructures de dades utilitzades són Network i User. Les funcions es troben principalment en el fitxer 1.new_user.c, hi ha algunes funcions auxiliars com expandUser(realloc) es troben en els fitxers network_data_control.c i network_file_control.c.
+
+Llistar usuaris(objectiu obligatori): Llegir dades d’un fitxer extern (objectiu desitjable) que en aquest cas és un CSV. Imprimir els usuaris per pantalla, la manera com s’imprimeix per pantalla és especial, té un format semblant a una taula. Les variables utilitzats són ints. Les estructures de dades utilitzades són Network i User. Les funcions es troben principalment en el fitxer 2.list_users.c, hi ha algunes funcions auxiliars com readUsersFile es troben en el fitxer network_file_control.c.
+
+
+Operar com a usuari específic(objectiu obligatori): Introduir el nom de l'usuari qui volem operar. El programa buscarà el nom, si el troba, s’imprimeix per pantalla que s’ha inicialitzat correctament i es mostrarà un submenú. A part d’inicialitzar com a usuari, hi ha l'opció d’inicialitzar com a CEO (introdueix “CEO” per consola). El CEO té un submenú especial. Les variables utilitzats són ints i strings. Les estructures de dades utilitzades són Network i User. Les funcions es troben principalment en el fitxer 3.operate_user.c .
+
+Un cop que estem operant com a usuari específic, tenim tres opcions, cada una d’aquestes opcions s’especialitza en una tasca diferent.
+
+Totes les funcions que tenen a veure amb les sol·licituds d’amistats estan dins del fitxer 31.manage_request.c.
+
+Totes les funcions que tenen a veure amb els amics dels usuaris estan dins del fitxer 32.manage_friends.c
+
+Totes les funcions que tenen a veure amb les publicacions estan dins del fitxer 33.manage_posts.c
+
+Enviar sol·licituds d’amistats(objectiu obligatori): Introduir el nom de l’usuari qui volem enviar sol·licitud. El programa farà una sèrie de comprovacions, com per exemple, el nom de l’usuari qui volem enviar sol·licitud no pot coincidir amb el nom de l’usuari que hem inicialitzat. Si passa per les comprovacions correctament, s’enviarà la sol·licitud d'amistat i s’imprimirà per pantalla que s’ha enviat correctament. Les variables utilitzats son ints, strings i llista de string. Les estructures de dades utilitzades son Network i User. Les funcions es troben principalment en el 31.manage_requests.c, hi ha algunes funcions auxiliars com expandStringArray que es troben en els fitxers network_data_control.c.
+
+Enviar sol·licitud d’amistats a persones desconeguts(objectiu desitjable): En aquí, hem aprofitat la funció anterior, ja que fan els codis semblants per afegir als altres usuaris. La única diferència és que en aquesta part, hem de triar 3 usuaris desconeguts(que no estan afegits en la llista de amics de la persona que està connectat) i podem decidir si volem enviar la solicitud o no a aquestes persones. Ho hem aprofitat de la següent manera: Hem posat una variable int i un bucle if-else. Amb aquesta variable int, podem saber si estem utilitzant l'opció de enviar solicitud aleatori o decidit. I segons aquesta variable int, amb el bucle if-else actuar de forma diferent.
+En aquesta opció, hem creat 4 funcions noves, 3 que tenen la funcionalitat de crear i modificar la estructura de stack, i fer servir per emmagatzemar els 3 usuaris random  i l’altra serveix per buscar quines 3 usuaris són.
+Aquestes funcions adicionals també es poden trobar en 31.manage_request.c i network_data_control.h.
+
+
+Administrar sol·licituds d’amistats(objectiu obligatori): Per aconseguir-lo, hem implementat varies funcions i varies opcions diferents.
+Una funció per imprimir la cola de sol·licituds de més antics als més recents. Una funció serveix per donar l’opció de aceptar a una solicitud concreta o rebutjar-lo. Com que en C11 no existeix la estructura booleana, doncs fem servir dues constants que indiquen un número en concret, i si la opció introduït no fossi aquestes dues constants, doncs demana a l'usuari que segueix introduint.
+La tercera funció, serveix per fer tots els canvis necessaris després d'acceptar a una solicitud. Bàsicament és afegir a l’usuari actual al la llista d’amics de la persona que va enviar la solicitud, i viceversa.  Aquestes funcions es poden trobar en 31.manage_request.c i utilitzant les estructures definides en network_data_control.h.
+
+Llistar les publicacions d’un amic(objectiu lliure): Es demanarà a l’usuari introduir el nom de l'amic qui vol buscar les publicacions. Si no troba l’amic, avisarà l’usuari per pantalla. Les publicacions s’imoprimirà de més recents a més antics. Aquest objectiu utilitza la funció list_string array, que explicarem més endavant. Aquestes funcions es poden trobar en 32.manage_friend.c.
+
+Veure la meva llista d’amics(objectiu lliure): S’imprimeix per pantalla els amics de l’usuari específic.Les variables que utilitza són string i llista de string Aquestes funcions es poden trobar en 32.manage_friend.c.
+
+Suprimir un amic(objectiu lliure):  L’usuari podrà triar l’amic que vol eliminar introduïnt el nom. Si no té cap amic o l’amic que vol eliminar no existeix, s’informarà a l’usuari per la consola. La variable utilitzat és una llista de string on conté els amics. Les funcions es troben principalment en el 32.manage_friend.c
+
+Fer una publicació nova(objectiu obligatori): Es demanarà a l’usuari introduir el contingut de la publicació. Les variables utilitzats son string i llista de string. La estructura de dada utilitzada és el User. Les funcions es troben principalment en el 33.manage_post.c,  hi ha algunes funcions auxiliars com expandStringArray que es troben en els fitxers network_data_control.c.
+
+Llistar els posts de l’usuari específic(objectiu obligatori): S’informarà l’usuari si té alguna publicació o no. Si té publicacions, s’imprimirà per pantalla les publicacions de més recent a més antic. Les variables que hem utilitzat son int i llista de string. La variable who (int) s’utilitza per saber si les publicacions que volem imprimir son de l’usuari especific que hem inicialitzat o són publicacions dels seus amics. Tenim una funció que és llistar les publicacions dels amics(objectiu desitjable), per aquesta raó és necessari la variable who. La estructura de dada que hem utilitzat és el User. Les funcions es troben principalment en el 33.manage_post.c.
+
+Suprimir una publicació(objectiu lliure): L’usuari podrà triar la publicació que vol eliminar introduïnt el número de la publicació. Si no té cap publicacions o la publicació que vol eliminar no existeix, s’informarà a l’usuari per la consola. La variable utilitzat és una llista de string on conté les publicacions. Les funcions es troben principalment en el 33.manage_post.c*****************************************************************************
+
+
+
+## SOLUCIÓ
+
+A continuació, descrbim alguns dels algoritmes més importants de la xarxa social.
+
+### 1. MÒDUL DEL CONTROL DE LES ESTRUCTURES DE LA XARXA
 
 Constants:
 - ATTRIBUTES: Quanitat de dades d'un usuari.
@@ -33,8 +101,8 @@ Usuari:
 - size_requests: Quantitat de publicacions.
 
 Dict:
-- element: Elements del diccionari
-- current_elements: Q
+- element: Elements del diccionari (parell clau-valor)
+- current_elements: Quantitat d'elements
 
 Network:
 - user: Array dinàmica dels usuaris.
@@ -45,7 +113,7 @@ Network:
 - size_banned_users: Quantitat de banejats.
 
 
-2. MÒDUL DEL CONTROL DEL FITXER DELS USUARIS
+### 2. MÒDUL DEL CONTROL DEL FITXER DELS USUARIS
 
 READ_TITLES_LINE
 
@@ -81,7 +149,7 @@ Llegim caràcter a caràcter cadascuna de les strings separades per comes i les 
 
 
 
-3. MÒDUL D'ALGORITMES DE CERCA
+### 3. MÒDUL D'ALGORITMES DE CERCA
 
 binarySearch()
 
@@ -132,7 +200,7 @@ Iniciem la cerca binària de l'atribut i en retornem l'índex.
 Si el nom de l'usuari no està fitat i la llista té una mida inferior a 1, no intentarem cercar-lo.
 
 
-4. MÒDUL D'ALGORITMES D'ORDENACIÓ
+### 4. MÒDUL D'ALGORITMES D'ORDENACIÓ
 
 compAttribute()
 
@@ -175,7 +243,7 @@ Apliquem l'ordenació combinada.
 Actualitzem l'estat d'ordenació de la llista: la llista ja està ordenada segons aquest atribut.
 
 
-5. MÒDUL DE LES OPCIONS
+### 5. MÒDUL DE LES OPCIONS
 
 flushInput()
 
