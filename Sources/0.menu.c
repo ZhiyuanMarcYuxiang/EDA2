@@ -18,20 +18,20 @@ void showMenu () {
 
     while (option != OPTION_QUIT){
 
-        printf("\nPRINCIPAL MENU\n\n");
+        printf("\n===== PRINCIPAL MENU =====\n\n");
 
         printf("%d. Insert new user.\n",OPTION_NEW_USER);
         printf("%d. List all existing users.\n",OPTION_LIST_USERS);
         printf("%d. Operate over an specific user.\n",OPTION_OPERATE_USER);
         printf("%d. Quit.\n",OPTION_QUIT);
-        option = readInt("Choose your option:\n");
+        option = readInt("  Choose your option:\n");
 
-        // system("cls");
+        system("cls");
+
         // Afegim un nou usuari.
         if (option==OPTION_NEW_USER){
             newUser(net);
         }
-
         // Imprimim tots els usuaris.
         else if (option==OPTION_LIST_USERS){
             listUsers(*net);

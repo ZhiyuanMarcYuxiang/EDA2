@@ -266,7 +266,7 @@ void manageRequestsMenu (Network *net, int idx_operating_user) {
 
     while(option != OPTION_RETURN_TO_OPERATE_USER_MENU){
 
-        printf("\nMANAGE REQUESTS MENU\n\n");
+        printf("\n=== MANAGE REQUESTS MENU ===\n\n");
 
         printf("%d. Send friend request to choosed user.\n", OPTION_SEND_TO_CHOOSED_USER);
         printf("%d. Send friend request to random user.\n", OPTION_SEND_TO_RANDOM_USER);
@@ -275,7 +275,7 @@ void manageRequestsMenu (Network *net, int idx_operating_user) {
         printf("%d. Return to previous menu.\n",OPTION_RETURN_TO_OPERATE_USER_MENU);
         option = readInt("Choose your option:\n");
 
-        //system("cls");
+        system("cls");
 
         if(option == OPTION_SEND_TO_CHOOSED_USER){
             // L'usuari tria qui vol enviar solicitud d'amistat

@@ -57,7 +57,7 @@ void manageFriendsMenu (Network *net, int idx_operating_user) {
 
     while(option != OPTION_RETURN_TO_OPERATE_USER_MENU){
 
-        printf("\nMANAGE FRIEANDS MENU\n\n");
+        printf("\n=== MANAGE FRIEANDS MENU ===\n\n");
 
         printf("%d. See my friend list.\n", OPTION_LIST_FRIENDS);
         printf("%d. See friend's posts.\n", OPTION_FRIEND_POST);
@@ -66,7 +66,7 @@ void manageFriendsMenu (Network *net, int idx_operating_user) {
         printf("%d. Return to previous menu.\n",OPTION_RETURN_TO_OPERATE_USER_MENU);
         option = readInt("Choose your option:\n");
 
-        //system("cls");
+        system("cls");
 
         char ** friend = net->user[idx_operating_user].friend;
         int size_friends = net->user[idx_operating_user].size_friends;

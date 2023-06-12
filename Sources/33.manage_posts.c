@@ -68,7 +68,7 @@ void managePostsMenu (Network *net, int idx_operating_user) {
 
     while(option != OPTION_RETURN_TO_OPERATE_USER_MENU){
 
-        printf("\nMANAGE POSTS MENU\n\n");
+        printf("\n==== MANAGE POSTS MENU ====\n\n");
 
         printf("%d. Make a new post.\n", OPTION_NEW_POST);
         printf("%d. List all of my posts.\n", OPTION_LIST_POSTS);
@@ -77,7 +77,7 @@ void managePostsMenu (Network *net, int idx_operating_user) {
         printf("%d. Return to previous menu.\n",OPTION_RETURN_TO_OPERATE_USER_MENU);
         option = readInt("Choose your option:\n");
 
-        //system("cls");
+        system("cls");
 
         char ** post = net->user[idx_operating_user].post;
         int size_posts = net->user[idx_operating_user].size_posts;

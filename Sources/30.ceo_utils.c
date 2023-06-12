@@ -86,7 +86,7 @@ void ceoMenu (Network *net){
 
     while(option != OPTION_RETURN_MENU) {
 
-        printf("\nDEVELOPER MENU\n\n");
+        printf("\n===== DEVELOPER MENU =====\n\n");
 
         printf("%d. Search 10 most used words.\n", OPTION_MOST_USED_WORDS);
         printf("%d. Ban user.\n", OPTION_BAN_USER);
@@ -96,7 +96,7 @@ void ceoMenu (Network *net){
 
         option = readInt("Choose your option:\n");
 
-        //system("cls");
+        system("cls");
 
         if (option == OPTION_MOST_USED_WORDS) {
             net->dictionary->element[0].value = 0;
