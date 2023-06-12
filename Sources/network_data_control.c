@@ -174,6 +174,7 @@ char* readString() {
     fgets (buffer, BUFFER_SIZE, stdin);
 
     int length = strlen(buffer);
+
     buffer[length -1] = '\0';
 
     char* string = malloc(length * sizeof(char));
