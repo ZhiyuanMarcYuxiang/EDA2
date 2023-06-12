@@ -179,6 +179,7 @@ char** newUserData (Network net){
     char** data = initStringArray (ATTRIBUTES);
     char* attribute;
 
+    // Col·loquem els atributs llegits dins d'una array d'strings.
     for (int i = 0; i < ATTRIBUTES; ++i) {
         do{
             print_inputMessages(i);
@@ -197,14 +198,17 @@ char** newUserData (Network net){
 
 /// Funció que crea un nou usuari i li afegeix dades entrades per consola.
 
+
 void newUser (Network *net){
 
     int last = net->size_users;
 
+    // Expandeix la llista d'usuaris i afegeix les noves dades per a l'últim usuari.
     net->user = expandUsers (net->user,last);
 
     net->user[last].data = newUserData(*net);
 
+    // Inicialitzem la resta d'estructures associades a l'usuari.
     net->user[last].post = initStringArray(ONE_SIZE);
     net->user[last].size_posts = SET_ZERO;
 

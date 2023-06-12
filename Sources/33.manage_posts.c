@@ -38,7 +38,7 @@ void newPost (Network *net, int idx_operating_user) {
     net->user[idx_operating_user].post[last] = readString();
 
     // Fem el recompte de les paraules al diccionari.
-    read_words(net->dictionary, net->user[idx_operating_user].post[last]);
+    readWords(net->dictionary, net->user[idx_operating_user].post[last]);
 }
 
 void removePost (Network* net, int idx_operating_user, char **post, int size_posts){

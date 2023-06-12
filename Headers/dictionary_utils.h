@@ -7,16 +7,18 @@
 
 #include "search_utils.h"
 
-void add_value(int value, char* key, Dict* dictionary);
+#define KEY_NOT_FOUND (-1)
 
-int search_index_with_key(char* key, Dict* dictionary);
+void addValue(int value, char* key, Dict* dictionary);
 
-int search_value(char* key, Dict* our_dictionary);
+int searchIndexWithKey(char* key, Dict* dictionary);
 
-void print_dictionary_elements(Dict* dictionary);
+int getValue(char* key, Dict* dictionary);
 
-void count_words(Dict* dictionary, char* post);
+void printDictionaryElements(Dict* dictionary);
 
-void read_words(Dict* dictionary, char* post);
+void countWords(Dict* dictionary, char* post);
+
+void readWords(Dict* dictionary, char* post);
 
 #endif //XARXA_SOCIAL_DICTIONARY_UTILS_H

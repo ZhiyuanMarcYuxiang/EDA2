@@ -1,7 +1,7 @@
 
 #include "../Headers/dictionary_utils.h"
 
-void add_value(int value, char* key, Dict* dictionary) {
+void addValue(int value, char* key, Dict* dictionary) {
 
     // Diccionari ple.
     if(dictionary->current_elements == MAX_DICTIONARY_ELEMENTS) {
@@ -26,27 +26,26 @@ void add_value(int value, char* key, Dict* dictionary) {
     dictionary->current_elements += INCREMENT_SIZE;
 }
 
-int search_index_with_key(char* key, Dict* dictionary) {
-    int i = 0;
-    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
-        if (strcmp(key, dictionary->element[i].key) == 0) {
-            // retorna l'índex on està situat l’element (clau i valor)
-            return i;
+int getIndexWithKey (char* key, Dict* dictionary) {
+
+    // Donada una clau, retorna l'índex on està situada fent una cerca lineal.
+    for (int idx=0; idx < dictionary->current_elements; idx++) {
+        if (strcmp(key, dictionary->element[idx].key) == 0) {
+            return idx;
         }
-        i++;
     }
-    return -1;
+    // En cas contrari, retornem un error.
+    return KEY_NOT_FOUND;
 }
 
-int search_value(char* key, Dict* our_dictionary) {
+int getValue (char* key, Dict* dictionary) {
     // aprofitar la funció definida abans
-    if (search_index_with_key(key, our_dictionary) == -1) {
-        return -1;
+    int idx = getIndexWithKey (key, dictionary);
+
+    if (idx == KEY_NOT_FOUND) {
+        return KEY_NOT_FOUND;
     }
-
-    int idx = search_index_with_key(key, our_dictionary);
-    return our_dictionary->element[idx].value;
-
+    return dictionary->element[idx].value;
 }
 
 int maxWordlength (Dict* dictionary) {
@@ -66,14 +65,14 @@ int maxWordlength (Dict* dictionary) {
     return max;
 }
 
-void print_dictionary_elements(Dict* dictionary) {
+void printDictionaryElements (Dict* dictionary) {
     int idx = 0;
     printf("\n");
 
     while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
     idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
 
-        if (search_value(dictionary->element[idx].key, dictionary) != 0) {
+        if (getValue(dictionary->element[idx].key, dictionary) != 0) {
             printf("WORD:%s ", dictionary->element[idx].key);
             printSpaces(dictionary->element[idx].key, maxWordlength(dictionary));
             printf("USED:%d\n", dictionary->element[idx].value);
@@ -82,22 +81,22 @@ void print_dictionary_elements(Dict* dictionary) {
     }
 }
 
-void count_words(Dict* dictionary, char* post) {
+void countWords (Dict* dictionary, char* post) {
 
     int value;
-    if (search_value(post, dictionary) == -1) {
-        add_value(1, post, dictionary);
+    if (getValue(post, dictionary) == -1) {
+        addValue(1, post, dictionary);
     }
     else {
-        value = search_value(post, dictionary);
-        add_value(value + 1, post, dictionary);
+        value = getValue(post, dictionary);
+        addValue(value + 1, post, dictionary);
     }
 }
 
-void read_words(Dict *dictionary, char* post) {
+void readWords (Dict *dictionary, char* post) {
     int idx = 0;
     char* buffer = malloc(BUFFER_SIZE*sizeof(char));
-    count_words(dictionary, "");
+    countWords (dictionary, "");
     for(int i = 0; i<strlen(post); i++) {
         if(post[i] != ' ' && post[i] != '!' && post[i] != '?' && post[i] != '.' &&
            post[i] != ',' && post[i] != ':' && post[i] != ';' && i!= strlen(post)-1) {
@@ -107,7 +106,7 @@ void read_words(Dict *dictionary, char* post) {
         else if(post[i] == ' ' || post[i] == '!' || post[i] == '?' || post[i] == '.' ||
                 post[i] == ',' || post[i] == ':' || post[i] == ';') {
             buffer[idx] = '\0';
-            count_words(dictionary, buffer);
+            countWords(dictionary, buffer);
             buffer = NULL;
             buffer = malloc(BUFFER_SIZE*sizeof(char));
             idx = 0;
@@ -118,7 +117,7 @@ void read_words(Dict *dictionary, char* post) {
                 buffer[idx] = tolower(post[i]);
                 buffer[idx+1] = '\0';
             }
-            count_words(dictionary, buffer);
+            countWords(dictionary, buffer);
         }
     }
 }
