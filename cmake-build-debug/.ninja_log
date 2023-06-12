@@ -49,3 +49,16 @@
 172	416	7082767489565785	Xarxa_Social.exe	ac576408aa06c21e
 4	180	7082768108608593	CMakeFiles/Xarxa_Social.dir/Sources/0.menu.c.obj	b3e6a4d5db8f0125
 181	436	7082768111062052	Xarxa_Social.exe	ac576408aa06c21e
+6	184	7082772810747507	CMakeFiles/Xarxa_Social.dir/Sources/0.menu.c.obj	b3e6a4d5db8f0125
+185	406	7082772812896606	Xarxa_Social.exe	ac576408aa06c21e
+21	327	7082889183416533	CMakeFiles/Xarxa_Social.dir/Sources/0.main.c.obj	e789ba7998e1da6a
+34	377	7082889183635942	CMakeFiles/Xarxa_Social.dir/Sources/0.menu.c.obj	b3e6a4d5db8f0125
+45	481	7082889184483668	CMakeFiles/Xarxa_Social.dir/Sources/1.new_user.c.obj	7740cf47946f39cc
+329	716	7082889187256259	CMakeFiles/Xarxa_Social.dir/Sources/2.list_users.c.obj	abe17e70dcdb8fe6
+377	734	7082889187296153	CMakeFiles/Xarxa_Social.dir/Sources/33.manage_posts.c.obj	6dc8d051fdae9c05
+482	824	7082889188363297	CMakeFiles/Xarxa_Social.dir/Sources/3.operate_user.c.obj	6e0d0651c10238c
+734	1044	7082889190377912	CMakeFiles/Xarxa_Social.dir/Sources/dictionary_utils.c.obj	e9208825a9f17750
+717	1053	7082889190547448	CMakeFiles/Xarxa_Social.dir/Sources/31.manage_requests.c.obj	7a1e83853126f83a
+824	1088	7082889191076040	CMakeFiles/Xarxa_Social.dir/Sources/32.manage_friends.c.obj	a74e0c4b9cdeb334
+1044	1287	7082889192821365	CMakeFiles/Xarxa_Social.dir/Sources/30.ceo_utils.c.obj	e0fde950bf07352a
+1287	1904	7082889198326646	Xarxa_Social.exe	ac576408aa06c21e

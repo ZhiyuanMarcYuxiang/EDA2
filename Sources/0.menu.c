@@ -4,7 +4,8 @@
 
 #include "../Headers/0.menu.h"
 
-
+// Menú principal del programa. Inicialitzem l'estructura de la xarxa i llegim informació del fitxer dels 20 usuaris.
+// Tenim tres opcions al menú: afegir un nou usuari, enllistar tots els usuaris o operar amb un d'ells.
 void showMenu () {
 
     printf("\nWelcome to ZHIYUMARC Network!\n");
@@ -24,7 +25,7 @@ void showMenu () {
         printf("%d. List all existing users.\n",OPTION_LIST_USERS);
         printf("%d. Operate over an specific user.\n",OPTION_OPERATE_USER);
         printf("%d. Quit.\n",OPTION_QUIT);
-        option = readInt("  Choose your option:\n");
+        option = readInt("Choose your option:\n");
 
         system("cls");
 
