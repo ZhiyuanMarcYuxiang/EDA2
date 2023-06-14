@@ -5,7 +5,7 @@
 #ifndef XARXA_SOCIAL_SORT_UTILS_H
 #define XARXA_SOCIAL_SORT_UTILS_H
 
-#include "../Headers/network_file_control.h"
+#include "print_utils.h"
 
 
 // Ens ordena ascendentment una llista d'usuaris a partir de l'ordenació combinada i recursiva (merge sort).

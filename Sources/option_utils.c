@@ -4,9 +4,6 @@
 
 #include "../Headers/option_utils.h"
 
-#define FALSE 0
-
-
 // Funció que s'encarrega de cancel·lar el bucle que es produiria en el programa si no s'introdueix un enter a la
 // funció read_int. És la funció que supleix a fgetc(stdin), però és més efectiva, ja que esborra més d'un caràcter
 // incorrecte.

@@ -4,17 +4,6 @@
 
 #include "../Headers/31.manage_requests.h"
 
-// Aquí jo el que faria seria que l'usuari amb el qual estem operant pugui anar veient els noms dels usuaris que han
-// enviat sol·licituds en forma de llista. A més, si vol desplegar la informació completa (Nom, Edat, Ciutat i Hobbies)
-// d'un usuari en particular ho pot demanar.
-
-// Poden passar dues coses
-// 1) que l'usuari accepti la sol·licitud, la qual cosa significa actualitzar la llista d'user->friends i buidar la d'user->requests
-// 2) que no l'accepti, que simplement no farem i passarem a analitzar la següent sol·licitud.
-
-
-
-
 /// Funcions per a afegir o eliminar element en una cua de sol·licituds d'un usuari.
 
 void enqueueRequest (Network* net, char* operating_user_name, int idx_requested_user) {
@@ -90,31 +79,13 @@ void sendChoosedUserRequest (Network *net, int idx_operating_user){
 }
 
 
-/// Funcions específques de pila.
 
-RandomUsers* initRandomUsers () {
-    RandomUsers* random_users = (RandomUsers*) malloc(sizeof(RandomUsers));
-    random_users->top = 0;
-    return random_users;
-}
 
-void pushRandomUser (RandomUsers* stack, int random_user_idx) {
-    stack->stack[stack->top] = random_user_idx;
-    stack->top += INCREMENT_SIZE;
-}
 
-void popRandomUser (RandomUsers* stack) {
-    stack->top += DECREMENT_SIZE;
-}
-
-int topRandomUser (RandomUsers* stack) {
-    return stack->stack[stack->top - 1];
-}
+/// Funcions dedicades a enviar sol·licituds a tres usuaris aleatoris.
 
 // Funció que comprova si hi ha suficients usuaris per a enviar-los sol·licitud d'amistat.
-// Suposem que la llista té 20 usuaris i que un usuari té 4 amics; podem triar 3 nous usuaris aleatoris (1r retorn).
-// Si l'usuari té 17 amics, per exemple, només en pot col·locar a 2 de nous, ja que ell no es compta (2n retorn).
-
+// Si tenim masses amics, podrem remetre menys sol·licituds.
 int maxRandomUsersRequests (int size_users, int size_friends){
     int friends_proportion = size_users - (size_friends+1);
     if (MAX_RANDOM_USERS < friends_proportion){
@@ -123,8 +94,6 @@ int maxRandomUsersRequests (int size_users, int size_friends){
     return friends_proportion;
 }
 
-
-/// Funcions dedicades a enviar sol·licituds a tres usuaris aleatoris.
 
 RandomUsers* fullRandomUsers (Network* net, int idx_operating_user, int max_stack) {
 
@@ -216,10 +185,9 @@ void sendRandomUsersRequest (Network* net, int idx_operating_user) {
 
 /// Funcions dedicades a gestionar les sol·licituds rebudes.
 
+// Copiem l'usuari que ens ha enviat la sol·licitud a la nostra estructura d'amics.
+// Com que les requests són una cua, llegim del primer a l'últim.
 void insertNewFriend (Network *net, int idx_user, char *new_friend_name){
-
-    // Copiem l'usuari que ens ha enviat la sol·licitud a la nostra estructura d'amics.
-    // Com que les requests són una cua, llegim del primer a l'últim.
 
     int last =  net->user[idx_user].size_friends;
 
@@ -227,6 +195,7 @@ void insertNewFriend (Network *net, int idx_user, char *new_friend_name){
     net->user[idx_user].friend[last] = copyString(new_friend_name);
     net->user[idx_user].size_friends += INCREMENT_SIZE;
 }
+
 
 void acceptOrDenyRequest (Network* net, int idx_operating_user) {
 
@@ -238,7 +207,6 @@ void acceptOrDenyRequest (Network* net, int idx_operating_user) {
         return;
     }
 
-    // Imprimim les sol·licituds que ens han enviat, en cas de tenir-ne.
     listStringArray(request, size_requests, "You", "request");
 
     printf("\nWe are going to manage the requests.\n");

@@ -8,10 +8,10 @@
 #include "search_utils.h"
 
 #define KEY_NOT_FOUND (-1)
+#define VALUE_NOT_FOUND (-1)
 
 void addValue(int value, char* key, Dict* dictionary);
 
-int searchIndexWithKey(char* key, Dict* dictionary);
 
 int getValue(char* key, Dict* dictionary);
 

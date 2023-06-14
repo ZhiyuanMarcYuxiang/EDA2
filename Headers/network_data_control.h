@@ -33,7 +33,6 @@
 #define RESET 0
 #define SET_ZERO 0
 
-
 #define LESSTHAN (-1)
 #define GREATERTHAN 1
 #define EQUAL 0
@@ -147,6 +146,16 @@ void copyUser (User* copy, User* origin);
 
 char* readString();
 
-void printSpaces (char previous_string[], int max_length);
+/// Funcions específiques de cua.
+
+RandomUsers* initRandomUsers ();
+
+void pushRandomUser (RandomUsers* random_users, int random_user_idx);
+
+void popRandomUser (RandomUsers* random_users);
+
+int topRandomUser (RandomUsers* random_users);
+
+
 
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H

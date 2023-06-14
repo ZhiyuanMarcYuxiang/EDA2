@@ -10,7 +10,7 @@ void addValue(int value, char* key, Dict* dictionary) {
     }
 
     // Diccionari no buit amb clau existent.
-    int i = 0;
+    int i = SET_ZERO;
     while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != EQUAL) {
         if (strcmp(key, dictionary->element[i].key) == EQUAL) {
             // Substituïm el nou valor pel valor vell
@@ -26,11 +26,11 @@ void addValue(int value, char* key, Dict* dictionary) {
     dictionary->current_elements += INCREMENT_SIZE;
 }
 
-int getIndexWithKey (char* key, Dict* dictionary) {
+int searchIndexWithKey (char* key, Dict* dictionary) {
 
     // Donada una clau, retorna l'índex on està situada fent una cerca lineal.
-    for (int idx=0; idx < dictionary->current_elements; idx++) {
-        if (strcmp(key, dictionary->element[idx].key) == 0) {
+    for (int idx = SET_ZERO; idx < dictionary->current_elements; idx++) {
+        if (strcmp(key, dictionary->element[idx].key) == EQUAL) {
             return idx;
         }
     }
@@ -39,11 +39,11 @@ int getIndexWithKey (char* key, Dict* dictionary) {
 }
 
 int getValue (char* key, Dict* dictionary) {
-    // aprofitar la funció definida abans
-    int idx = getIndexWithKey (key, dictionary);
+    // Aprofitar la funció definida abans
+    int idx = searchIndexWithKey (key, dictionary);
 
     if (idx == KEY_NOT_FOUND) {
-        return KEY_NOT_FOUND;
+        return VALUE_NOT_FOUND;
     }
     return dictionary->element[idx].value;
 }
@@ -66,7 +66,7 @@ int maxWordlength (Dict* dictionary) {
 }
 
 void printDictionaryElements (Dict* dictionary) {
-    int idx = 0;
+    int idx = SET_ZERO;
     printf("\n");
 
     while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
@@ -84,7 +84,7 @@ void printDictionaryElements (Dict* dictionary) {
 void countWords (Dict* dictionary, char* post) {
 
     int value;
-    if (getValue(post, dictionary) == -1) {
+    if (getValue(post, dictionary) == VALUE_NOT_FOUND) {
         addValue(1, post, dictionary);
     }
     else {

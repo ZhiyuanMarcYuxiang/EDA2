@@ -4,26 +4,6 @@
 
 #include "../Headers/33.manage_posts.h"
 
-// Ens imprimeix una llista de cadenes.
-// Who pot ser "You" o "Friend" i StringType pot ser "request", "post" o "friend".
-void listStringArray (char **StringArray, int SizeArray, char *Who, char *StringType) {
-
-    if (SizeArray == NULL_SIZE) {
-        printf("\n%s don't have any %s!\n",Who,StringType);
-        return;
-    }
-    if (SizeArray == ONE_SIZE){
-        printf("%s have 1 %s.\n", Who, StringType);
-    }
-    else{
-        printf("%s have %d %ss.\n", Who, SizeArray, StringType);
-    }
-
-    for (int i = 0; i < SizeArray; i++) {
-        printf("%d. %s\n", i+1, StringArray[i]);
-    }
-}
-
 void newPost (Network *net, int idx_operating_user) {
 
     int last = net->user[idx_operating_user].size_posts;

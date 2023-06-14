@@ -14,7 +14,7 @@
 #define OPTION_RETURN_TO_OPERATE_USER_MENU 0
 
 
-void listStringArray (char **StringArray, int SizeArray, char *Who, char *StringType);
+
 
 void managePostsMenu (Network *net, int idx_operating_user);
 

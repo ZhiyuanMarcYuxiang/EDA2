@@ -177,11 +177,28 @@ char* readString() {
     return string;
 }
 
-void printSpaces (char previous_string[], int max_length){
-    int spaces = max_length - strlen(previous_string);
-    for (int j = 0; j < spaces; ++j) {
-        printf(" ");
-    }
+
+/// Funcions específques de pila.
+
+RandomUsers* initRandomUsers () {
+    RandomUsers* random_users = (RandomUsers*) malloc(sizeof(RandomUsers));
+    random_users->top = SET_ZERO;
+    return random_users;
 }
+
+void pushRandomUser (RandomUsers* random_users, int random_user_idx) {
+    random_users->stack[random_users->top] = random_user_idx;
+    random_users->top += INCREMENT_SIZE;
+}
+
+void popRandomUser (RandomUsers* random_users) {
+    random_users->top += DECREMENT_SIZE;
+}
+
+int topRandomUser (RandomUsers* random_users) {
+    return random_users->stack[random_users->top - 1];
+}
+
+
 
 

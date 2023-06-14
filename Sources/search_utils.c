@@ -4,9 +4,21 @@
 
 #include "../Headers/search_utils.h"
 
+// Funció que retorna TRUE quan l'atribut és més gran que el primer de la llista o quan és
+// més petit que l'últim usuari i FALSE en cas contrari. Si un usuari està fitat, hi ha probabilitat que pugui estar a la llista.
+int fencedAttribute (char* attribute, User* user, int size, int type){
+
+    int first = 0;
+    int last = size-1;
+
+    int lowBound = strcmp(user[first].data[type], attribute);
+    int highBound = strcmp(user[last].data[type], attribute);
+
+    return LESSTHAN <= lowBound && highBound<= GREATERTHAN;
+}
+
 // Ens arriba una llista ordenada d'usuaris segons un tipus de dada (NAME, AGE, EMAIL, etc.).
 // Ens retorna l'índex de l'usuari dins la llista en cas de ser trobat o un error en cas contrari.
-
 int binarySearch (char* attribute_to_search, User *user, int size, int type){
 
     int left, right, mid, comparsion;
@@ -37,23 +49,9 @@ int binarySearch (char* attribute_to_search, User *user, int size, int type){
     return USER_NOT_FOUND;
 }
 
-// Funció que retorna TRUE quan l'atribut és més gran que el primer de la llista o quan és
-// més petit que l'últim usuari i FALSE en cas contrari. Si un usuari està fitat, hi ha probabilitat que pugui estar a la llista.
-
-int fencedAttribute (char* attribute, User* user, int size, int type){
-
-    int first = 0;
-    int last = size-1;
-
-    int lowBound = strcmp(user[first].data[type], attribute);
-    int highBound = strcmp(user[last].data[type], attribute);
-
-    return LESSTHAN <= lowBound && highBound<= GREATERTHAN;
-}
 
 // La funció ordena la llista segons el tipus de dada escollida.
 // Verifiquem que estigui fitat dins la llista i iniciem la cerca binària de l'atribut.
-
 int searchNetwork (char* attribute_to_search, Network *net, int type){
 
     sortNetwork (net,type);
@@ -70,7 +68,6 @@ int searchNetwork (char* attribute_to_search, Network *net, int type){
 }
 
 // Funció de cerca lineal. Suposem que la quanitat d'usuaris banejats no serà excessivament gran.
-
 int searchInStringArray(char* String, char** StringArray, int ArraySize) {
 
     for (int idx = 0; idx < ArraySize; idx++)
@@ -83,6 +80,7 @@ int searchInStringArray(char* String, char** StringArray, int ArraySize) {
     return STRING_NOT_FOUND;
 }
 
+// Funció de cerca lineal.
 int searchInIntArray (int integer, int *array, int array_size){
     for (int i=0; i<array_size; i++){
         if(integer == array[i]){
