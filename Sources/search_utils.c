@@ -4,27 +4,41 @@
 
 #include "../Headers/search_utils.h"
 
-int binarySearch (char* attribute, User *user, int size, int type){
+// Ens arriba una llista ordenada d'usuaris segons un tipus de dada (NAME, AGE, EMAIL, etc.).
+// Ens retorna l'índex de l'usuari dins la llista en cas de ser trobat o un error en cas contrari.
 
-    int left,right,mid; int cmp;
-    left = 0;
+int binarySearch (char* attribute_to_search, User *user, int size, int type){
+
+    int left, right, mid, comparsion;
+    left = FIRST;
     right = size-1;
 
+    // Mentre els índexs no es creuin, fem comparació entre l'atribut a cercar i un atribut de la llista.
     while (left<=right) {
 
         mid = (left+right)/2;
-        cmp = strcmp(attribute, user[mid].data[type]);
+        comparsion = strcmp(attribute_to_search, user[mid].data[type]);
 
-        if (cmp == GREATERTHAN)
-            left = mid+1;
-        else if (cmp == LESSTHAN)
-            right = mid-1;
-        else
+        // L'atribut a cercar pot estar en la part superior de la llsita.
+        if (comparsion == GREATERTHAN) {
+            left = mid + 1;
+        }
+        // L'atribut pot estar a la superior de la llsita.
+        else if (comparsion == LESSTHAN) {
+            right = mid - 1;
+        }
+        // Hem trobat l'atribut a cercar.
+        else {
             return mid;
+        }
     }
+
+    // No hem trobat l'atribut en cap moment.
     return USER_NOT_FOUND;
 }
 
+// Funció que retorna TRUE quan l'atribut és més gran que el primer de la llista o quan és
+// més petit que l'últim usuari i FALSE en cas contrari. Si un usuari està fitat, hi ha probabilitat que pugui estar a la llista.
 
 int fencedAttribute (char* attribute, User* user, int size, int type){
 
@@ -37,8 +51,10 @@ int fencedAttribute (char* attribute, User* user, int size, int type){
     return LESSTHAN <= lowBound && highBound<= GREATERTHAN;
 }
 
+// La funció ordena la llista segons el tipus de dada escollida.
+// Verifiquem que estigui fitat dins la llista i iniciem la cerca binària de l'atribut.
 
-int searchNetwork (char* attribute, Network *net, int type){
+int searchNetwork (char* attribute_to_search, Network *net, int type){
 
     sortNetwork (net,type);
 
@@ -46,8 +62,8 @@ int searchNetwork (char* attribute, Network *net, int type){
     int size = net->size_users;
 
     if (size > NULL_SIZE){
-        if(fencedAttribute (attribute, user, size, type) == TRUE){
-            return binarySearch (attribute, user, size, type);
+        if(fencedAttribute (attribute_to_search, user, size, type) == TRUE){
+            return binarySearch (attribute_to_search, user, size, type);
         }
     }
     return USER_NOT_FOUND;

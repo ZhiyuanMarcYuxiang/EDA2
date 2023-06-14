@@ -4,8 +4,8 @@
 
 #include "../Headers/33.manage_posts.h"
 
-
-
+// Ens imprimeix una llista de cadenes.
+// Who pot ser "You" o "Friend" i StringType pot ser "request", "post" o "friend".
 void listStringArray (char **StringArray, int SizeArray, char *Who, char *StringType) {
 
     if (SizeArray == NULL_SIZE) {
@@ -55,7 +55,7 @@ void removePost (Network* net, int idx_operating_user, char **post, int size_pos
         return;
     }
 
-    deleteString_InArray(post, size_posts, idx_post);
+    delete_String_In_StringArray(post, size_posts, idx_post);
     net->user[idx_operating_user].size_posts += DECREMENT_SIZE;
 
     printf("Your post number %d has been removed from your posts!\n", idx_post);

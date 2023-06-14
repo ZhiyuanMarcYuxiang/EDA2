@@ -24,10 +24,9 @@ int maxAttributesLengths(User *user,int size, int type){
     return max;
 }
 
+int *array_maxAttributesLength (Network* net, int max_attributes_lengths[], char titles[][MAX_LENGTH]){
 
-int * array_maxAttributesLength (Network* net, int max_attributes_lengths[], char titles[][MAX_LENGTH]){
-
-    for (int i = 0; i < ATTRIBUTES; ++i) {
+    for (int i = 0; i < SIZE_DATA; ++i) {
         max_attributes_lengths[i] = maxAttributesLengths (net->user, net->size_users, i);
         if (i<TITLES){
             int length = strlen(titles[i]);
@@ -53,7 +52,7 @@ void printTitles (char titles[][MAX_LENGTH], int *max_attributes_lengths){
 void printUser (User user, int *max_attributes_lengths){
 
     // Iterem per cada columna.
-    for (int i = 0; i < ATTRIBUTES; ++i) {
+    for (int i = 0; i < SIZE_DATA; ++i) {
 
         // Per a NAME, AGE, EMAIL I CITY, imiprimim l'atribut i omplim amb espais proporcionals.
         if (i<HOBBY1) {
@@ -83,7 +82,7 @@ void listUsers (Network net){
     // Creem una llista amb les màximes longituds de les strings dels atributs.
     createArrayTitles(titles);
 
-    int max_attributes_lengths[ATTRIBUTES];
+    int max_attributes_lengths[SIZE_DATA];
     array_maxAttributesLength(&net, max_attributes_lengths, titles);
 
     // Imprimim els títols i després usuari a usuari.

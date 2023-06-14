@@ -11,6 +11,8 @@
 #define OPTION_SEND_TO_RANDOM_USER (2)
 #define OPTION_ACCEPT_DENY_REQUESTS (3)
 
+
+
 void manageRequestsMenu (Network *net, int idx_operating_user);
 
 // Imprimeixes els amics

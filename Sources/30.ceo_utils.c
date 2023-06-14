@@ -17,7 +17,7 @@ void unbanUser(Network *net){
     }
 
     // En cas de trobar l'usuari banejat, ens el borra de la llista dels banejats.
-    deleteString_InArray(net->banned_user, banned_idx, size);
+    delete_String_In_StringArray(net->banned_user, banned_idx, size);
     net->size_banned_users += DECREMENT_SIZE;
 
     printf("Now, this user is not banned from ZhiYuMarc Network.\n");

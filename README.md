@@ -18,7 +18,7 @@ En el nostre cas, ens vam inspirar amb les xarxes socials populars que hi ha avu
 La guia de la pràctica de l’Aula Global ens va ser de gran ajuda, ja que va definir el nostre punt de partida i què havíem de fer 
 durant el trimestre. Un cop llegida la guia, vam emprendre el projecte. 
 
-El primer pas va ser definir les estructures de dades i el menú principal amb les funcions que havia de tenir una xarxa social:
+El primer pas va ser definir les estructures de dades de la xarxa (Network, User, Dictionary) i el menú principal amb les funcions que havia de tenir una xarxa social:
 permetre afegir usuaris, enllistar els usuaris i operar com a un usuari específic.
 De mica en mica, vam anar creant la resta de submenús i vam anar afegint funcionalitats més complexes, per 
 exemple, les dedicades a la interacció entre usuaris o les de tractament de dades de fitxers. 
@@ -154,7 +154,7 @@ la d'escriure (append) s'implementa un cop afegim un nou usuari. Les funcions es
 Enllistar les Publicacions d’un Amic: 
 Es demanarà a l’usuari introduir el nom de l'amic qui vol buscar
 les publicacions. Si no troba l’amic, avisarà l’usuari per pantalla. Les publicacions s’imoprimirà de més recents a
-més antics. Aquest objectiu utilitza la funció list_string array, que explicarem més endavant. Aquestes funcions es
+més antics. Aquest objectiu utilitza la funció list_string stack, que explicarem més endavant. Aquestes funcions es
 poden trobar en 32.manage_friend.c.
 
 ### Objectius Lliures
@@ -274,173 +274,84 @@ a sota buides. Aquest error no el vam menysprear, ja que podia passar si editave
 
 <img src="Diagrama_de_la_Xarxa_Social.jpg">
 
-En aquest programa hem utilitzat estructures de dades homogènies, on els seus aributs són habitualment llistes dinàmiques d'un sol tipus
-de dada (per exemple, de caràcters) que van acompanyats d'un quantificador de la seva mida; això ens ha permès
+En aquest programa hem utilitzat estructures de dades homogènies, on els seus aributs són arrays dinàmiques d'un sol tipus
+de dada que van acompanyades d'un quantificador de la seva mida (un enter). Això ens ha permès
 tractar llistes dedicades per a propòsits diferents de la mateixa manera pel que fa a la seva inicialització, ordenació,
-impressió per pantalla, alliberament de memòria i altres funcionalitats.
+impressió per pantalla i altres funcionalitats.
 
-Usuari:
-- data: Array d'strings que conté els atributs de l'usuari. Sempre tindrà mida de la constant ATTRIBUTES.
-- request: Array que conté els usuris que li han enviat licitud a un usuari.
+La gran majoria d'aquestes arrays que utilitzem són llistes de cadenes de caràcters o strings, les quals, en realitat, són matrius de caràcters.
+Aquesta idea se'ns va ocórrer al cap de poc temps de començar amb el projecte, quan estàvem desenvolupant els primers objectius, 
+els d'afegir un nou usuari a la llista, enllistar-los i llegir dades d'un fitxer. El que ens vam fixar és que les dades de l'usuari,
+és a dir, els atributs continguts dins del Data de l'estructura d'User, es podien simplificar totes amb una sola llista de strings. 
+Com a resultat, en comptes de fer servir etiquetes per a accedir a cadascuna d'elles, que seria fer user->data->name, 
+ens va proporcionar el garn avantatge de fer servir índexs, que seria user->data[NAME], la qual cosa era molt més eficient 
+iterar per a les posicions de l'estructura d'usuaris en els bucles FOR i WHILE.
+
+Les estructures de dades les declarem en el fitxer de capçalera network_data_control.h, on també hi ha les funcions respectives
+que tracten amb elles i la majoria de constants que s'utilitzaran en la resta de fitxers (vegeu l'apartat de les constants).
+
+User:
+- data: Llista que conté els atributs de l'usuari. Té una mida fixada de 9 elements. Es declara com a matriu dinàmica de caràcters
+- request: Cua que conté els usuris que li han enviat licitud a un usuari.
 - size_requests: Quantitat de sol·licituds.
-- friends: Array que conté els nostres amics, que són els usuaris els quals els hi hem acceptat la sol·licitud.
+- friends: Llista que conté els nostres amics, que són els usuaris els quals els hi hem acceptat la sol·licitud.
 - size_requests: Quantitat d'amics.
-- post: Array que conté les publicions d'un usuari (format de text).
+- post: Llista que conté les publicions d'un usuari (format de text).
 - size_requests: Quantitat de publicacions.
 
-Dict:
-- element: Elements del diccionari (parell clau/valor).
+Element:
+- key: Llista extreta de les publicacions dels usuaris.
+- value: Quantitat de repeticions de la paraula en totes les publicaions.
+
+Dictionary (inclou Element):
+- element: Llista d'elements diccionari (parell clau/valor). Té mida fixada de 10 elements.
 - current_elements: Quantitat d'elements del diccionari.
 
-Network:
-- user: Array dinàmica dels usuaris.
+Network (inclou Dict i Usuari):
+- user: Llista dinàmica dels usuaris.
 - size_users: Quantitat d'usuaris.
 - order_users: La forma d'ordenació de la llista (per nom, edat, correu, etc.).
 - dictionary: Diccionari que compta de el Top 10 de paraules.
 - banned_user: Array els noms dels usuaris banejats.
 - size_banned_users: Quantitat de banejats.
 
+RandomUsers:
+- stack: Pila amb els índexs de tres usuaris aleatoris. Té mida màxima de 3 elements.
+- top: Quantitat actual d'usuaris aleatoris a la pila.
+
+S'ha de dir que la cua ha estat l'única estructura de dades que no ens caldria haver fet, però com que era un objectiu obligatori l'hem hagut d'implementar.
 
 ### Descripció i Processament del Conjunt de Dades
 
-#### 1) Mòdul de lectura de dades del fitxer CSV
+Els processaments de les dades es troben als fitxxers network_data_control.c i a network_file_control.c.
 
-READ_TITLES_LINE
+Inicialització de dades de la Xarxa: initString, initStringArray, initUser; initDictionary initNetwork ();
 
-Llegim per caràcters la primera línia, la qual és la dels títols (no la utilitzem).
+Expansió de dades: expandUsers, expandStringArray.
 
-READ_USERS_LINES
+Eliminació de dades concretes de llistes: delete_String_In_StringArray
 
-Caràcter per a la lectura del fitxer. Dereferència de la llista dels usuaris.
-Inicialitzem a 0 els índexs per a recórrer l'array multidimensional d'usuaris.
-omptador de salts de línia al final del fitxer.
-Soluciona un bug que es produeix amb el tamany de la xarxa social.
-Ampliem la llista dels usuaris (segons un factor multiplicador).
-Realitzem la lectura de la resta de línies del fitxer caràcter a caràcter.
-Si el caràcter no és coma, salt de línia o final de fitxer...
-Incrementant l'índex dels caràcters.
-Col·loquem el càracter dins la string auxiliar
-En cas contrari...
-Després de l'últim caràcter del buffer, hi col·loquem l'acabament de string.
-Reservem memòria per una nova string (atribut de l'usuari).
-Ressetejem l'índex dels caràcters i incremenetem l'índex dels atributs.
-Si en particular detectem un salt de línia...
-Ressetejem l'índex dels atributs i incrementem l'índex dels usuaris.
-Mentre el caràcter no sigui End Of File (OxFFFFFFFF).
-Actualitzem a la llista d'usuaris.
-Actualitzem el tamany de la xarxa.
+Neteja de dades de la xarxa: clearUsers, clearNetwork.
 
-readUsersFile()
+Còpia de dades: copyString, copyStringArray, copyUser.
 
-@param net: Xarxa d'usuaris inicialitzada.
-@param fileName: Nom d'un fitxer .csv existent amb la primera línia emprada per títols i la resta per amb els
-atributs dels usuaris. D'atributs n'hi ha d'haver de 9 tipus, d'usuris (files) tants com vulguem.
-Llegim caràcter a caràcter cadascuna de les strings separades per comes i les col·loquem a xarxa social.
+Lectura de dades per consola: readString.
 
-#### 2) Mòdul d'algoritmes de cerca
+Lectura de dades d'un fitxer CSV: Read Users File, Read Users Lines.
 
-binarySearch()
-
-Resultat:
-- Ens retorna l'índex de l'usuari dins la llista en cas de ser trobat o un error en cas contrari.
-
-Paràmetres:
-- attribute: Un atribut a cercar a la llista.
-- user: Llista d'usuaris inicialitzada i ordenada alfabèticament segons un tipus.
-- size_users: Mida de la llista d'usuaris (no negatiu).
-- type: Tipus d'atribut de l'usuari: NAME, AGE, EMAIL, etc.
-
-Inicialitzem els tres índexs i també un enter de comparació.
-L'índex de l'esquerra comença a la posició 0.
-L'índex de la dreta comença a la posició última.
-Mentre els índexs no es creuin.
-Comparació entre l'atribut a cercar i un atribut de la llista.
-Si l'usuari que hem introduït és més gran en ASCII que el de la llista,
-vol dir que l'usuari no és entre els primers de l'alfabet i avancem el punter esquerre.
-Si no, si l'usuari és més petit en ASCII,
-llavors està entre els primers i avancem el dret.
-Altrament, hem trobat l'usuari i retornem la posició dins de la llista.
-En cas de no haver trobat l'usuari, la cerca no ha estat exitosa.
-
-
-fencedAttribute()
-
-Resultat: Retorna TRUE quan l'atribut és més gran que el primer de la llista o quan és
-més petit que l'últim usuari i FALSE en cas contrari. Hi ha probabilitat que un usuari fitat pugui estar a la llista.
-
-Paràmetres: els mateixos que binarySearch.
-
-Perquè estigui fitat l'usuari ha de ser més gran o igual al primer usuari o més petit o igual a l'últim.
-
-
-searchNetwork()
-
-Resultat:
-- Ens retorna l'índex de l'usuari dins la llista en cas de ser trobat i un error en cas contrari.
-  Per defecte, la llista queda ordenada segons un atribut.
-
-Paràmetre:
-- net: Llista d'usuaris inicialitzada i necessàriament ordenada.
-
-S'ordena la llista segons el tipus d'atribut escollit.
-Verifiquem que estigui fitat dins la llista.
-Iniciem la cerca binària de l'atribut i en retornem l'índex.
-Si el nom de l'usuari no està fitat i la llista té una mida inferior a 1, no intentarem cercar-lo.
-
-
-#### 3) Mòdul d'algoritmes d'ordenació
-
-compAttribute()
-
-@param userA: Un usuari de la xarxa.
-@param userB: Un altra usuari de la xarxa.
-@param type: Tipus d'atribut.
-@return Compara dos atributs del mateix tipus i de dos usuaris diferents.
-
-merge()
-
-@param userA: Sub-llista d'usuaris inicialitzada (meitat inferior).
-@param sizeA: Mida de "userA".
-@param userB: Sub-llista d'usuaris inicialitzada (meitat superior)
-@param sizeB: Mida de "userB".
-@param type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
-@return Retornem una nova llista d'usuaris, userC, que és la combinació ordenada de les llistes userA i userB.
-
-Reservem memòria per a una nova llista d'usuaris anomenada "C".
-Afegim els element de la llista "A" i la "B" de forma ordenada a la "C".
-Si l'atribut d'un usuari de "A" és més petit que "B", el copiem a "C".
-En aquest punt, alguna de les dues llistes, "A" o "B", està buida.
-Afegim els element que falten de "A" a la llista "C".
-Afegim els element que falten de "B" a la llista "C".
-Retornem la llista combinada.
-
-mergeSort()
-
-@param user: Usuari inicialitzat amb valors per als seus atributs.
-@param size_users: Mida de la llista d'usuaris.
-@param type: Tipus d'atribut de l'usuari (NAME, AGE, EMAIL, etc.).
-@return Retornem una nova llista d'usuaris ordenada ascendentment a partir de l'atribut del nom.
-"Merge Sort" és un ordenament de recursiu a partir de trossejar i combinar la llista.
-
-
-sortNetwork()
-
-Ordena si hi ha més d'un usuari.
-Ordena si el tipus d'atribut que volem ordenar no està ordenat.
-Apliquem l'ordenació combinada.
-Actualitzem l'estat d'ordenació de la llista: la llista ja està ordenada segons aquest atribut.
+Escriptura de dades d'un fitxer CSV: Apend Users File.
 
 ## ALTRES INFORMACIONS
 
 Aquestes són les constants més importants que hem utilitzat.
 
-- ATTRIBUTES: Quanitat de dades d'un usuari.
+- SIZE_DATA: Quanitat de dades d'un usuari.
 - MAX_DICTIONARY_ELEMENTS: Elements màxims del diccionari
 - NAME, AGE, EMAIL, (...): Són els índex per a accedir als atributs de les dades de l'usuari.
-- NULL_SIZE: Mida d'una array buida (0).
-- ONE_SIZE: Mida d'una array amb un element (1).
-- INCREMENT_SIZE, DECREMENT_SIZE: Incrementar o decrementar la mida d'una array.
-- MULTIPLICATIVE_FACTOR: Per a incrementar una array en varis element.
+- NULL_SIZE: Mida d'una stack buida (0).
+- ONE_SIZE: Mida d'una stack amb un element (1).
+- INCREMENT_SIZE, DECREMENT_SIZE: Incrementar o decrementar la mida d'una stack.
+- MULTIPLICATIVE_FACTOR: Per a incrementar una stack en varis element.
 - NOT_ORDERED: La llista no té cap tipus d'ordenació.
 - BUFFER_SIZE: Un nombre molt gran, per a un buffer de caràcters (2^10 bytes)
 - END_CHARACTER: Per a aturar una string llegida per consola.

@@ -5,7 +5,7 @@
 #ifndef XARXA_SOCIAL_MEMORY_UTILS_H
 #define XARXA_SOCIAL_MEMORY_UTILS_H
 
-#define ATTRIBUTES (9)
+#define SIZE_DATA (9)
 #define MAX_DICTIONARY_ELEMENTS (10)
 
 #define NAME (0)
@@ -41,14 +41,18 @@
 #define ACCEPT (1)
 #define DENY (0)
 
+#define MAX_RANDOM_USERS (3)
+
+#define FIRST (0) // Primer usuari d'una llista.
+
 #include "option_utils.h"
 
 typedef struct {
     // Pila de tres usuaris aleatoris.
-    int array[3];
-    // Mida de la pila.
+    int stack[MAX_RANDOM_USERS];
+    // Mida actual de la pila.
     int top;
-}Stack;
+}RandomUsers;
 
 /// Estructura del diccionari.
 
@@ -103,7 +107,7 @@ typedef struct {
 }Network;
 
 
-Stack* initStack();
+/// Inicialització de dades de la Xarxa.
 
 char* initString (int size);
 
@@ -111,22 +115,27 @@ char** initStringArray (int size);
 
 User* initUser();
 
-Dict* init_dictionary();
+Dict* initDictionary();
 
 Network* initNetwork ();
+
+/// Expansió de dades.
 
 User * expandUsers (User *user, int current_size);
 
 char ** expandStringArray (char** stringArray, int current_size);
 
-Dict* expandElements (Dict *dict, int current_size);
+/// Eliminació de dades concretes de llistes.
 
-void deleteString_InArray(char **string_array, int position_to_delete, int current_size);
+void delete_String_In_StringArray(char **string_array, int position_to_delete, int current_size);
+
+/// Neteja de dades de la xarxa.
 
 void clearUsers (User *user, int users_size);
 
-
 void clearNetwork (Network *network);
+
+/// Còpia de dades.
 
 char* copyString (char *origin);
 
@@ -134,19 +143,10 @@ char** copyStringArray (char **origin, int size);
 
 void copyUser (User* copy, User* origin);
 
-int compAttribute (User userA, User userB, int type);
+/// Lectura de dades.
 
 char* readString();
 
 void printSpaces (char previous_string[], int max_length);
-
-
-
-void push (Stack* stack, int random_user_idx);
-
-void pop (Stack* stack);
-
-int top (Stack* stack);
-
 
 #endif //XARXA_SOCIAL_MEMORY_UTILS_H

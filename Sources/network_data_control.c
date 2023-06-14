@@ -4,13 +4,7 @@
 
 #include "../Headers/network_data_control.h"
 
-/// Funcions per a inicialitzar dades.
-
-Stack* initStack() {
-    Stack* stack = (Stack*) malloc(sizeof(Stack));
-    stack->top = 0;
-    return stack;
-}
+/// Funcions per a inicialitzar dades de la xarxa.
 
 char* initString (int size){
     return malloc(size * sizeof(char));
@@ -24,7 +18,7 @@ User* initUser (){
     return malloc(sizeof(User));
 }
 
-Dict* init_dictionary() {
+Dict* initDictionary() {
     Dict* dictionary = (Dict*) malloc(sizeof(Dict));
     dictionary->current_elements = SET_ZERO;
     dictionary->element = (Element*) malloc(MAX_DICTIONARY_ELEMENTS * sizeof(Element));
@@ -42,8 +36,8 @@ Network* initNetwork (){
     net->size_users = NULL_SIZE;
     net->order_users = NOT_ORDERED;
 
-    // Inicialitzem el diccionari per a fer el top de paraules.
-    net->dictionary  = init_dictionary();
+    // Inicialitzem el diccionari per a fer el topRandomUser de paraules.
+    net->dictionary  = initDictionary();
     net->user = initUser();
 
     // Tant el post com el banned_user son una llista de string
@@ -80,9 +74,9 @@ char** expandStringArray (char **stringArray, int current_size){
 
 /// Esborrar un element.
 
-void deleteString_InArray(char **string_array, int size, int position_to_delete){
+void delete_String_In_StringArray(char **string_array, int size, int position_to_delete){
 
-    for (int i = position_to_delete; i < size-1; ++i) {
+    for (int i = position_to_delete; i < size - 1; ++i) {
         string_array[i] = copyString(string_array[i + 1]);
     }
 }
@@ -101,7 +95,7 @@ void clearStringArray (char** string_array, int size){
 void clearUsers (User *user, int users_size){
 
     for (int i = 0; i < users_size; ++i) {
-        clearStringArray (user[i].data, ATTRIBUTES);
+        clearStringArray (user[i].data, SIZE_DATA);
         clearStringArray (user[i].post, user[i].size_posts);
         clearStringArray (user[i].friend,user[i].size_friends);
         clearStringArray (user[i].request,user[i].size_requests);
@@ -151,7 +145,7 @@ char** copyStringArray (char **origin, int size){
 
 void copyUser (User* copy, User* origin){
 
-    copy->data = copyStringArray(origin->data, ATTRIBUTES);
+    copy->data = copyStringArray(origin->data, SIZE_DATA);
 
     copy->post = copyStringArray(origin->post, origin->size_posts);
     copy->size_posts = origin->size_posts;
@@ -190,18 +184,4 @@ void printSpaces (char previous_string[], int max_length){
     }
 }
 
-/// Funcions específiques d'una pila.
 
-
-void push (Stack* stack, int random_user_idx) {
-    stack->array[stack->top] = random_user_idx;
-    stack->top += INCREMENT_SIZE;
-}
-
-void pop (Stack* stack) {
-    stack->top += DECREMENT_SIZE;
-}
-
-int top (Stack* stack) {
-    return stack->array[stack->top-1];
-}

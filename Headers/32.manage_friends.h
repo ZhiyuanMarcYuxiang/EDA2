@@ -7,8 +7,6 @@
 
 #include "33.manage_posts.h"
 
-#define FRIEND (1)
-
 #define OPTION_LIST_FRIENDS (1)
 #define OPTION_FRIEND_POST (2)
 #define OPTION_REMOVE_FRIEND (3)

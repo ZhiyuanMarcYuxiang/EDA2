@@ -12,8 +12,7 @@
 // 1) que l'usuari accepti la sol·licitud, la qual cosa significa actualitzar la llista d'user->friends i buidar la d'user->requests
 // 2) que no l'accepti, que simplement no farem i passarem a analitzar la següent sol·licitud.
 
-#define MAX_STACK 3
-#define FIRST 0
+
 
 
 /// Funcions per a afegir o eliminar element en una cua de sol·licituds d'un usuari.
@@ -35,7 +34,7 @@ void enqueueRequest (Network* net, char* operating_user_name, int idx_requested_
 
 void dequeueRequest (User * operating_user){
     // Esborrem la primera sol·licitud, ja que és una cua.
-    deleteString_InArray(operating_user->request,operating_user->size_requests,FIRST);
+    delete_String_In_StringArray(operating_user->request, operating_user->size_requests, FIRST);
     operating_user->size_requests += DECREMENT_SIZE;
 }
 
@@ -91,23 +90,45 @@ void sendChoosedUserRequest (Network *net, int idx_operating_user){
 }
 
 
-/// Funcions dedicades a enviar sol·licituds a tres usuaris aleatoris.
+/// Funcions específques de pila.
+
+RandomUsers* initRandomUsers () {
+    RandomUsers* random_users = (RandomUsers*) malloc(sizeof(RandomUsers));
+    random_users->top = 0;
+    return random_users;
+}
+
+void pushRandomUser (RandomUsers* stack, int random_user_idx) {
+    stack->stack[stack->top] = random_user_idx;
+    stack->top += INCREMENT_SIZE;
+}
+
+void popRandomUser (RandomUsers* stack) {
+    stack->top += DECREMENT_SIZE;
+}
+
+int topRandomUser (RandomUsers* stack) {
+    return stack->stack[stack->top - 1];
+}
 
 // Funció que comprova si hi ha suficients usuaris per a enviar-los sol·licitud d'amistat.
 // Suposem que la llista té 20 usuaris i que un usuari té 4 amics; podem triar 3 nous usuaris aleatoris (1r retorn).
 // Si l'usuari té 17 amics, per exemple, només en pot col·locar a 2 de nous, ja que ell no es compta (2n retorn).
 
-int maxStack (int size_users, int size_friends){
+int maxRandomUsersRequests (int size_users, int size_friends){
     int friends_proportion = size_users - (size_friends+1);
-    if (MAX_STACK < friends_proportion){
-        return MAX_STACK;
+    if (MAX_RANDOM_USERS < friends_proportion){
+        return MAX_RANDOM_USERS;
     }
     return friends_proportion;
 }
 
 
-Stack* fullStack (Network* net, int idx_operating_user, int max_stack) {
-    Stack* stack = initStack();
+/// Funcions dedicades a enviar sol·licituds a tres usuaris aleatoris.
+
+RandomUsers* fullRandomUsers (Network* net, int idx_operating_user, int max_stack) {
+
+    RandomUsers* random_users = initRandomUsers();
 
     // Mida de la llista dels amics de l'usuari operant.
     int size_friends = net->user[idx_operating_user].size_friends;
@@ -119,8 +140,7 @@ Stack* fullStack (Network* net, int idx_operating_user, int max_stack) {
     char *operating_user_name = net->user[idx_operating_user].data[NAME];
 
     int isItself, isFriend, isBanned, isInStack;
-    int idx_random_user;
-    char *random_user_name;
+    int idx_random_user; char *random_user_name;
 
     for (int i = 0; i<max_stack; i++) {
 
@@ -139,17 +159,18 @@ Stack* fullStack (Network* net, int idx_operating_user, int max_stack) {
             isBanned = searchInStringArray(random_user_name, net->banned_user, net->size_banned_users) != STRING_NOT_FOUND;
 
             // 4) Comprovació que no hagi sortit ja com aleatori.
-            isInStack = searchInIntArray (idx_random_user, stack->array, stack->top);
+            isInStack = searchInIntArray (idx_random_user, random_users->stack, random_users->top);
 
         } while (isItself && isFriend && isBanned && isInStack);
 
-        push(stack, idx_random_user);
+        // Col·loquem l'usuari a la pila.
+        pushRandomUser (random_users, idx_random_user);
     }
-    return stack;
+    return random_users;
 }
 
-// Funció que implementa una pila i simula Tinder
-void sendRandomUserRequest (Network* net, int idx_operating_user) {
+// Funció que implementa una pila i simula Tinder.
+void sendRandomUsersRequest (Network* net, int idx_operating_user) {
 
     // Mida de la llista dels amics de l'usuari operant.
     int size_friends = net->user[idx_operating_user].size_friends;
@@ -158,17 +179,17 @@ void sendRandomUserRequest (Network* net, int idx_operating_user) {
     char *operating_user_name = net->user[idx_operating_user].data[NAME];
 
     // Podem afegir entre 3 i 0 nous usuaris aleatoris, depenent de la quantitat d'amics que tingui l'operant.
-    int max_stack = maxStack (net->size_users, size_friends);
+    int max_stack = maxRandomUsersRequests(net->size_users, size_friends);
 
     printf("\nWe are going to select %d random users to send a request.\n",max_stack);
     printf("[1 for YES, 0 for NO]\n");
 
     // Pila amb els usuaris aleatoris a enviar sol·licitud.
-    Stack* stack = fullStack(net, idx_operating_user, max_stack);
+    RandomUsers* random_users = fullRandomUsers (net, idx_operating_user, max_stack);
 
     for (int i = 0; i < max_stack; ++i) {
 
-        int idx_requested_user = top(stack);
+        int idx_requested_user = topRandomUser(random_users);
         char *requested_user_name = net->user[idx_requested_user].data[NAME];
 
         printf("\n%d. Send a request to user %s?", i+1, requested_user_name);
@@ -176,7 +197,7 @@ void sendRandomUserRequest (Network* net, int idx_operating_user) {
 
         // Cas on acceptem d'enviar-li sol·licitud a l'usuari a sol·licitar.
         if (option == ACCEPT){
-            enqueueRequest(net, operating_user_name, idx_requested_user);
+            enqueueRequest (net, operating_user_name, idx_requested_user);
             printf("Request sent to %s successfully.\n",  requested_user_name);
         }
             // Cas on ho deneguem.
@@ -188,14 +209,14 @@ void sendRandomUserRequest (Network* net, int idx_operating_user) {
             printf("Invalid option!\n");
             option = readInt("\n");
         }
-        pop(stack);
+        popRandomUser (random_users);
     }
-    free(stack);
+    free (random_users);
 }
 
 /// Funcions dedicades a gestionar les sol·licituds rebudes.
 
-void putNewFriend (Network *net, int idx_user, char *new_friend_name){
+void insertNewFriend (Network *net, int idx_user, char *new_friend_name){
 
     // Copiem l'usuari que ens ha enviat la sol·licitud a la nostra estructura d'amics.
     // Com que les requests són una cua, llegim del primer a l'últim.
@@ -205,20 +226,6 @@ void putNewFriend (Network *net, int idx_user, char *new_friend_name){
     net->user[idx_user].friend = expandStringArray (net->user[idx_user].friend,last);
     net->user[idx_user].friend[last] = copyString(new_friend_name);
     net->user[idx_user].size_friends += INCREMENT_SIZE;
-}
-
-void acceptedRequest (Network* net, int idx_operating_user, char* accepted_user_name) {
-
-    // Afegim a l'usuari acceptat dins de l'usuari operatn.
-
-    putNewFriend(net,idx_operating_user,accepted_user_name);
-
-    // L'usuari acceptat afegeix també a l'operant dins dels seus amics.
-
-    int idx_accepted_user = searchNetwork(accepted_user_name,net,NAME);
-    char *operating_user_name = net->user[idx_operating_user].data[NAME];
-
-    putNewFriend(net,idx_accepted_user,operating_user_name);
 }
 
 void acceptOrDenyRequest (Network* net, int idx_operating_user) {
@@ -243,16 +250,28 @@ void acceptOrDenyRequest (Network* net, int idx_operating_user) {
     for (int i=0; i < size_requests; i++){
 
         printf("\nHi I'm %s! Do you want to be my friend?", request[i]);
-
         option = readInt ("\n");
 
         if (option == ACCEPT){
-            acceptedRequest(net, idx_operating_user, request[i]);
+
+            // Nom de l'usuari acceptat, nom de l'usuari operant i l'índex de l'acceptat.
+            char *accepted_user_name = request[i];
+            char *operating_user_name = net->user[idx_operating_user].data[NAME];
+            int idx_accepted_user = searchNetwork(accepted_user_name,net,NAME);
+
+            // Afegim l'usuari acceptat dins l'usuari operant.
+            insertNewFriend (net, idx_operating_user, accepted_user_name);
+
+            // L'usuari acceptat afegeix també a l'operant dins dels seus amics.
+            insertNewFriend (net, idx_accepted_user, operating_user_name);
+
             printf("You have accepted %s as a friend!\n", request[i]);
 
         }else{
             printf("Request denied\n");
         }
+
+        // Després de llegir una sol·licitud, sempre l'esboreem de la llista.
         dequeueRequest(&net->user[idx_operating_user]);
     }
 }
@@ -282,7 +301,7 @@ void manageRequestsMenu (Network *net, int idx_operating_user) {
             sendChoosedUserRequest(net,idx_operating_user);
         }
         else if(option == OPTION_SEND_TO_RANDOM_USER){
-            sendRandomUserRequest(net,idx_operating_user);
+            sendRandomUsersRequest(net, idx_operating_user);
         }
         else if(option == OPTION_ACCEPT_DENY_REQUESTS){
             acceptOrDenyRequest(net, idx_operating_user);

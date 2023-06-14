@@ -11,8 +11,8 @@ void addValue(int value, char* key, Dict* dictionary) {
 
     // Diccionari no buit amb clau existent.
     int i = 0;
-    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != 0) {
-        if (strcmp(key, dictionary->element[i].key) == 0) {
+    while (i<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements != EQUAL) {
+        if (strcmp(key, dictionary->element[i].key) == EQUAL) {
             // Substituïm el nou valor pel valor vell
             dictionary->element[i].value = value;
             return;
@@ -49,8 +49,8 @@ int getValue (char* key, Dict* dictionary) {
 }
 
 int maxWordlength (Dict* dictionary) {
-    int idx = 0;
-    int max = 0;
+    int idx = SET_ZERO;
+    int max = SET_ZERO;
     int length;
 
     while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
@@ -72,7 +72,7 @@ void printDictionaryElements (Dict* dictionary) {
     while (idx<MAX_DICTIONARY_ELEMENTS && dictionary->current_elements >= MAX_DICTIONARY_ELEMENTS ||
     idx < dictionary->current_elements && dictionary->current_elements < MAX_DICTIONARY_ELEMENTS) {
 
-        if (getValue(dictionary->element[idx].key, dictionary) != 0) {
+        if (getValue(dictionary->element[idx].key, dictionary) != EQUAL) {
             printf("WORD:%s ", dictionary->element[idx].key);
             printSpaces(dictionary->element[idx].key, maxWordlength(dictionary));
             printf("USED:%d\n", dictionary->element[idx].value);

@@ -150,7 +150,7 @@ int checkAttribute (Network *net, char *attribute, int type) {
 
 /// Impressió de missatges per a l'entrada de valors.
 
-void print_inputMessages(int type){
+void printInputMessages(int type){
 
     printf("Introduce your ");
 
@@ -174,15 +174,15 @@ void print_inputMessages(int type){
 
 /// Lectura per consola dels atributs validats de l'usuari.
 
-char** newUserData (Network net){
+char** readUserData (Network net){
 
-    char** data = initStringArray (ATTRIBUTES);
+    char** data = initStringArray (SIZE_DATA);
     char* attribute;
 
-    // Col·loquem els atributs llegits dins d'una array d'strings.
-    for (int i = 0; i < ATTRIBUTES; ++i) {
+    // Col·loquem els atributs llegits dins d'una stack d'strings.
+    for (int i = 0; i < SIZE_DATA; ++i) {
         do{
-            print_inputMessages(i);
+            printInputMessages(i);
             attribute = readString();
 
         } while (checkAttribute(&net, attribute, i) == FALSE);
@@ -206,7 +206,7 @@ void newUser (Network *net){
     // Expandeix la llista d'usuaris i afegeix les noves dades per a l'últim usuari.
     net->user = expandUsers (net->user,last);
 
-    net->user[last].data = newUserData(*net);
+    net->user[last].data = readUserData(*net);
 
     // Inicialitzem la resta d'estructures associades a l'usuari.
     net->user[last].post = initStringArray(ONE_SIZE);

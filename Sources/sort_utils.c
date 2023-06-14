@@ -6,37 +6,45 @@
 
 /// Funcions de comparació de dades
 
-int compAttribute (User userA, User userB, int type){
+// Compara dos atributs del mateix tipus i de dos usuaris diferents.
+int compAttribute (User userA, User userB, int type) {
     return strcmp(userA.data[type], userB.data[type]);
 }
 
 /// Combinació de dues subllistes d'usuaris.
 
-User* merge(User *userA, int sizeA, User *userB, int sizeB, int type){
-
+// Retornem una nova llista d'usuaris, userC, que és la combinació ordenada de les llistes userA i userB.
+User* merge(User *userA, int sizeA, User *userB, int sizeB, int type)
+{
     User *userC = initUser();
-    int a = SET_ZERO, b = SET_ZERO, c = SET_ZERO ;
+    int a = SET_ZERO, b = SET_ZERO, c = SET_ZERO;
 
-    while(a!=sizeA && b!=sizeB){
-
+    // Afegim els elements de la llista "A" i la "B" de forma ordenada a la llista "C".
+    while(a!=sizeA && b!=sizeB)
+    {
         userC = expandUsers(userC, c);
 
-        if (compAttribute (userA[a],userB[b],type) == LESSTHAN){
+        if(compAttribute (userA[a],userB[b],type) == LESSTHAN){
             copyUser (&userC[c], &userA[a]); a++;
         }
-        else{
+        else {
             copyUser (&userC[c], &userB[b]); b++;
         }
         c++;
     }
 
-    while(a != sizeA){
+    // En aquest punt, alguna de les dues llistes, "A" o "B", està buida.
+    // Afegim els element que falten de "A" a la llista "C".
+    while(a != sizeA)
+    {
         userC = expandUsers(userC, c);
         copyUser (&userC[c], &userA[a]);
         a++; c++;
     }
 
-    while (b != sizeB) {
+    // Fem el mateix per "B".
+    while (b != sizeB)
+    {
         userC = expandUsers(userC, c);
         copyUser (&userC[c], &userB[b]);
         b++; c++;
@@ -45,7 +53,7 @@ User* merge(User *userA, int sizeA, User *userB, int sizeB, int type){
     return userC;
 }
 
-
+// Retornem una nova llista d'usuaris ordenada ascendentment a partir de l'atribut del nom.
 User* mergeSort(User *user, int size, int type){
 
     if (size == ONE_SIZE)
@@ -62,7 +70,7 @@ User* mergeSort(User *user, int size, int type){
     return merge(lowerHalf, mid, upperHalf, size-mid, type);
 }
 
-
+// Funció que ordena els usuaris si hi ha més d'un usuari i si el tipus d'atribut que volem ordenar no està ordenat.
 void sortNetwork (Network *net, int type){
 
     if(net->size_users > ONE_SIZE)

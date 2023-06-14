@@ -44,7 +44,7 @@ void removeFriend (Network* net, int idx_operating_user, char **friend, int size
     }
 
     // Ens esborra un amic.
-    deleteString_InArray(friend, size_friends, idx_friend);
+    delete_String_In_StringArray(friend, size_friends, idx_friend);
     net->user[idx_operating_user].size_friends += DECREMENT_SIZE;
 
     printf("%s has been removed from your friend list!\n", friend_name);
