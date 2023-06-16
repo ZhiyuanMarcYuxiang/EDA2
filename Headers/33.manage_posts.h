@@ -13,9 +13,6 @@
 
 #define OPTION_RETURN_TO_OPERATE_USER_MENU 0
 
-
-
-
 void managePostsMenu (Network *net, int idx_operating_user);
 
 

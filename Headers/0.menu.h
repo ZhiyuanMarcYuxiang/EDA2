@@ -12,7 +12,6 @@
 #define OPTION_OPERATE_USER (3)
 #define OPTION_QUIT (0)
 
-
 #include "1.new_user.h"
 
 // Funció principal amb el primer menú.

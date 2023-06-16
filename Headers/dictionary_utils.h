@@ -12,7 +12,6 @@
 
 void addValue(int value, char* key, Dict* dictionary);
 
-
 int getValue(char* key, Dict* dictionary);
 
 void printDictionaryElements(Dict* dictionary);

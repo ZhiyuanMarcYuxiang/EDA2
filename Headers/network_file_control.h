@@ -5,8 +5,6 @@
 #ifndef XARXA_SOCIAL_FILE_CONTROL_H
 #define XARXA_SOCIAL_FILE_CONTROL_H
 
-
-
 #define USERS_FILE "../Files/20users.csv"
 
 #define JUMP_BUG 2

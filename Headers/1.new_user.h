@@ -9,6 +9,7 @@
 #define DOMAIN_LENGHT 3
 
 #include "2.list_users.h"
+#include "network_data_control.h"
 
 // a) Nou usuari
 //      Inscriu un nou usuari a l'estructura de dades dels usuaris.
