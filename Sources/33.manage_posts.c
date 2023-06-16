@@ -12,10 +12,12 @@ void newPost (Network *net, int idx_operating_user) {
     net->user->post = expandStringArray(net->user->post, last);
     net->user[idx_operating_user].size_posts += INCREMENT_SIZE;
 
-
     // Llegim una string per consola (un nou post).
     printf("\nWrite your new post:\n");
     net->user[idx_operating_user].post[last] = readString();
+
+    // Expandim l'estructura del diciconari.
+    net->dictionary = expandElements(net->dictionary,net->dictionary->size_elements);
 
     // Fem el recompte de les paraules al diccionari.
     readWords(net->dictionary, net->user[idx_operating_user].post[last]);

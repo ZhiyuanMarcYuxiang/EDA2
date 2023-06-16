@@ -67,6 +67,8 @@ typedef struct{
     Element* element;
     // Elements actuals del diccionari (com a màxim en poden ser 10).
     int current_elements;
+    // Mida real del diccionari.
+    int size_elements;
 } Dict;
 
 /// Estructura dels usuaris.
@@ -119,6 +121,8 @@ Dict* initDictionary();
 Network* initNetwork ();
 
 /// Expansió de dades.
+
+Dict* expandElements (Dict *dict, int current_size);
 
 User * expandUsers (User *user, int current_size);
 

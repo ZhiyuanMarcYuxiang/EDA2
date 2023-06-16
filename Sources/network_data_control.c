@@ -50,6 +50,22 @@ Network* initNetwork (){
 
 /// Funcions d'expansió de dades.
 
+Dict* expandElements (Dict *dict, int current_size) {
+    // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem de 10 en 10.
+    if ((current_size % (MULTIPLICATIVE_FACTOR * 2)) == 0) {
+        int real_size = current_size + (MULTIPLICATIVE_FACTOR * 2);
+        dict->size_elements = real_size;
+        dict->element = realloc(dict->element, real_size * sizeof(Element));
+    }
+
+    for (int i = current_size; i < dict->size_elements; i++) {
+        dict->element[i].key = "";
+        dict->element->value = SET_ZERO;
+    }
+
+    return dict;
+}
+
 User* expandUsers (User *user, int current_size){
 
     // Quan la mida la llista d'usuaris té uns certs valors, l'ampliem.
